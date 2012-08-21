@@ -3,13 +3,11 @@ package org.northstar.bricks.services;
 import com.google.inject.Inject;
 import com.google.sitebricks.client.transport.Json;
 import com.google.sitebricks.headless.Reply;
-import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.domain.User;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
