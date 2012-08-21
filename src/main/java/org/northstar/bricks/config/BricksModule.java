@@ -27,7 +27,6 @@ public class BricksModule extends SitebricksModule {
 
 		install(new JpaPersistModule("myFirstJpaUnit").addFinder(UserFinder.class));
 
-
 		bind(FlashCache.class).to(HttpSessionFlashCache.class).in(
 				Scopes.SINGLETON);
         bind(EntryDao.class).to(SimpleEntryDao.class).in(Scopes.SINGLETON);
