@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>bricks - ${pageTitle}</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="/static/default.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<header id="header">
+				<div id="logo">
+					<h1>龙城危险化学品监管</h1>
+					<h2>石龙镇危险化学品安全监管信息化管理系统</h2>
+				</div>
+				<div id="search">
+					<form onsubmit="javascript:onSearch();">
+						<input type="text" name="item" id="s" />
+						<input type="button" id="x" value=" 查 找 "/>
+					</form>
+				</div>
+
+			</header>
+			<nav id="menu">
+				<ul>
+					<li>
+						<a href="/">Home|主页</a>
+					</li>
+					<li>
+						<a href="/guestbook">GuestBook|留言</a>
+					</li>
+					<li>
+						<a href="http://google-sitebricks.googlecode.com/svn/trunk">source</a>
+					</li>
+					<li>
+						<a href="http://code.google.com/p/google-guice">guice</a>
+					</li>
+				</ul>
+			</nav>
+			<section id="page">
+				<!-- start contents -->
+				<div id="content">
+                    @Decorated
+                    <div>This should be replaced by the extension</div>
+
+				</div>
+
+				<nav id="sidebar">
+					<ul>
+						<li>
+							<h2>PROFILE</h2>
+							<ul>
+								@Repeat(items=pages, var="page")
+								<li>
+									@ShowIf(page=="Home")
+									<a href="/">${page}</a>
+									@ShowIf(page!="Home")
+									<a href="${page.toLowerCase()}">${page}</a></li>
+							</ul>
+
+						</li>
+						<li>
+							<h2>OTHER</h2>
+							<ul>
+								<li>
+									<a href="http://www.benmccann.com/dev-blog/">Blog</a>
+								</li>
+								<li>
+									<a href="http://www.benmccann.com/">Homepage</a>
+								</li>
+								<li>
+									<a href="http://angel.co/ben-mccann/">AngelList</a>
+								</li>
+							</ul>
+
+						</li>
+					</ul>
+				</nav>
+			</section>
+
+			<footer id="footer">
+				<div id="legal">COPYRIGHT &COPY;
+					2012 NORTHSTAR STUDIO. ALL RIGHTS RESERVED. DESIGN BY NORTHSTAR.
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>bricks - Home page</title>
+    <meta charset="UTF-8"/>
+
+</head>
+<body>
+
+<div class="post">
+    <h1 class="title">Examples</h1>
+    <div class="entry">
+            <ul>
+                @Repeat(items=pagedUsers, var="user")
+                <li>${user.id}. ${user.name}</li>
+            </ul>
+            @Pager(page=page, maxPerPage=maxPerPage)
+            <div>Pager here</div>
+
+    </div>
+   <!--div <p class="pager_container">-->
+        <!--@Repeat(items="1..10",var="index")-->
+        <!--<span class="pager">${index}</span>-->
+    <!--</p>-->
+</div>
+<script type="text/javascript">
+    function onSearch(){
+        location.href = "/?page="+document.getElementById("s").value;
+    }
+</script>
+</body>
+</html>
