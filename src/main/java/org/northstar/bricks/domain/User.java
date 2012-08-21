@@ -13,10 +13,6 @@ import javax.persistence.*;
         })
 @Entity
 public class User implements Serializable {
-
-    /**
-     *
-     */
     private static final long serialVersionUID = 7158126725092237523L;
 
     @Id
@@ -50,4 +46,25 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!id.equals(user.id)) return false;
+        if (!name.equals(user.name)) return false;
+        if (!password.equals(user.password)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + password.hashCode();
+        return result;
+    }
 }

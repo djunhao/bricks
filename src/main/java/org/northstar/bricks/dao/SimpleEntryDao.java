@@ -14,9 +14,9 @@
  */
  
 package org.northstar.bricks.dao;
- 
+
 import org.northstar.bricks.domain.Entry;
- 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

@@ -1,10 +1,9 @@
 package org.northstar.bricks.pages;
 
-import org.northstar.bricks.dao.EntryDao;
-import org.northstar.bricks.domain.Entry;
-
 import com.google.inject.Inject;
 import com.google.sitebricks.rendering.EmbedAs;
+import org.northstar.bricks.dao.EntryDao;
+import org.northstar.bricks.domain.Entry;
 
 /**
  * Used as a teaser element in the entry site of a guestbook

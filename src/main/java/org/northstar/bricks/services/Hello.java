@@ -7,9 +7,9 @@ import com.google.sitebricks.http.Post;
 import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.domain.User;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Hello {
     @Inject
@@ -36,7 +36,7 @@ public class Hello {
 
     @Post
     public Reply<Map<String, String>> hello() {
-       ArrayList<User> users = finder.authenticated(name, password);
+       Set<User> users = finder.authenticated(name, password);
         System.out.println("\n>>>[BRICKS] Hello world!");
         Map<String, String> result = new HashMap<String, String>();
         if (!users.isEmpty())

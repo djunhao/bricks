@@ -8,6 +8,7 @@ import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.domain.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Decorated
 public class Home extends Decorator {
@@ -32,7 +33,7 @@ public class Home extends Decorator {
              this.page = page;
     }
 
-    public ArrayList<User> getPagedUsers() {
+    public List<User> getPagedUsers() {
         if(page<1)
             page = 1;
         int start = (page - 1) * maxPerPage;

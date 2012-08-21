@@ -9,6 +9,7 @@ import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.domain.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,7 +35,7 @@ public class UserPager {
 
     }
 
-    private ArrayList<User> getNext(){
+    private List<User> getNext(){
         int start = page * maxPerPage;
         return finder.listUsers(start, maxPerPage);
     }

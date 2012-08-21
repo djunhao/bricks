@@ -1,10 +1,10 @@
 package org.northstar.bricks.dao;
 
+import org.northstar.bricks.domain.Card;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
-import org.northstar.bricks.domain.Card;
 
 public class CardDao {
 	public List<Card> list() {

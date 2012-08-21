@@ -1,9 +1,6 @@
 package org.northstar.bricks.dao;
 
-import com.google.inject.Inject;
-import org.northstar.bricks.domain.User;
-
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,8 +16,8 @@ public abstract class Pager {
     public Pager(){
 
     }
-    public abstract ArrayList<?> getNext();
-    public abstract ArrayList<?> getPrevious();
+    public abstract List<?> getNext();
+    public abstract List<?> getPrevious();
 
     public int getPage() {
         return page;

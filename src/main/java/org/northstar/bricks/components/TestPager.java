@@ -5,8 +5,7 @@ import org.northstar.bricks.dao.Pager;
 import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.domain.User;
 
-import java.security.PublicKey;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,13 +27,13 @@ public class TestPager extends Pager {
     private UserFinder finder;
 
     @Override
-    public ArrayList<User> getNext(){
+    public List<User> getNext(){
 
         int start = page * maxPerPage;
         return finder.listUsers(start, maxPerPage);
     }
     @Override
-    public ArrayList<User> getPrevious(){
+    public List<User> getPrevious(){
 
         int start = (page-2) * maxPerPage;
         return finder.listUsers(start, maxPerPage);
