@@ -1,8 +1,6 @@
 package org.northstar.bricks.components;
 
-import com.google.inject.servlet.SessionScoped;
 import com.google.sitebricks.Show;
-import org.northstar.bricks.domain.User;
 
 import java.util.Arrays;
 import java.util.List;

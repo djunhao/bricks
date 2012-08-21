@@ -1,14 +1,11 @@
 package org.northstar.bricks.components;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
-import com.google.sitebricks.Visible;
 import com.google.sitebricks.http.Get;
 import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.domain.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

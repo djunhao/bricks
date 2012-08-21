@@ -1,8 +1,8 @@
 package org.northstar.bricks.domain;
 
-import java.util.Date;
-
 import org.northstar.bricks.pages.Guestbook;
+
+import java.util.Date;
  
 /**
  * Entry in a {@link Guestbook}

@@ -1,8 +1,7 @@
 package org.northstar.bricks.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @NamedQueries({
         @NamedQuery(name = "getAllUsers", query = "Select u From User u"),

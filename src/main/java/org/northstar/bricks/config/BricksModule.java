@@ -1,5 +1,12 @@
 package org.northstar.bricks.config;
 
+import com.google.inject.Scopes;
+import com.google.inject.persist.PersistFilter;
+import com.google.inject.persist.jpa.JpaPersistModule;
+import com.google.sitebricks.SitebricksModule;
+import com.google.sitebricks.SitebricksServletModule;
+import com.google.sitebricks.binding.FlashCache;
+import com.google.sitebricks.binding.HttpSessionFlashCache;
 import org.northstar.bricks.components.GuestbookNavigation;
 import org.northstar.bricks.components.NewCard;
 import org.northstar.bricks.components.UserPager;
@@ -8,14 +15,6 @@ import org.northstar.bricks.dao.SimpleEntryDao;
 import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.pages.*;
 import org.northstar.bricks.services.Hello;
-
-import com.google.inject.Scopes;
-import com.google.inject.persist.PersistFilter;
-import com.google.inject.persist.jpa.JpaPersistModule;
-import com.google.sitebricks.SitebricksModule;
-import com.google.sitebricks.SitebricksServletModule;
-import com.google.sitebricks.binding.FlashCache;
-import com.google.sitebricks.binding.HttpSessionFlashCache;
 
 /**
  * Configures a Sitebrick Module
