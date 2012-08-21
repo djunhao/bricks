@@ -8,8 +8,6 @@ import org.northstar.bricks.domain.User;
 
 import java.util.ArrayList;
 
-import java.util.Collection;
-
 public interface UserFinder {
 
 //	@Finder(query="select u from User u", returnAs=ArrayList.class)
@@ -24,7 +22,6 @@ public interface UserFinder {
     @Finder(namedQuery = "getPagedUsers", returnAs = ArrayList.class)
     ArrayList<User> listUsers(@FirstResult int first, @MaxResults int max);
 
-    @Finder(namedQuery = "getUserByNamePwd")
+    @Finder(namedQuery = "getUserByNamePwd", returnAs = ArrayList.class)
     ArrayList<User> authenticated(@Named("name") String name, @Named("password") String password);
-
 }

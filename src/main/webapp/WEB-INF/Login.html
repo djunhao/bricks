@@ -14,12 +14,12 @@
                 $('#loginform').submit(function()//提交表单
                 {
                     var options = {
-                        target:'#msg',
-                        url:'/hello', //提交给哪个执行
+                        target: '#msg',
+                        url:'hello', //提交给哪个执行
                         type:'POST',
                         beforeSubmit: validate,
                         success: function(data){ $('#msg').html(data.info);} //显示操作提示
-                    };
+                        };
                     $('#loginform').ajaxSubmit(options);
                     return false; //为了不刷新页面,返回false，反正都已经在后台执行完了，没事！
                 });
@@ -29,9 +29,10 @@
         for (var i=0; i < formData.length; i++) {
             if (!formData[i].value) {
                 $('#msg').html('请输入用户名和密码！');
+                return false;
             }
         }
-    };
+    }
 </script>
 <div class="login_container" id="login">
     <div id="msg"></div>
