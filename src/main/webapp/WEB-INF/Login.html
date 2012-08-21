@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>none</title>
+    @Require
+    <script type="text/javascript" charset="UTF-8" src="static/js/jquery-1.7.2.min.js"></script>
+    @Require
+    <script type="text/javascript" charset="UTF-8" src="http://malsup.github.com/jquery.form.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(document).ready(function()
+            {
+                $('#loginform').submit(function()//提交表单
+                {
+                    var options = {
+                        target:        '#msg',
+                        url:'hello', //提交给哪个执行
+                        type:'POST',
+                        beforeSubmit: validate,
+                        success: function(data){ $('#msg'').html(data.info);} //显示操作提示
+                    };
+                    $('#loginform').ajaxSubmit(options);
+                    return false; //为了不刷新页面,返回false，反正都已经在后台执行完了，没事！
+                });
+            }
+    );
+    function validate(formData, jqForm, options) {
+        // formData is an array of objects representing the name and value of each field
+        // that will be sent to the server;  it takes the following form:
+        //
+        // [
+        //     { name:  username, value: valueOfUsernameInput },
+        //     { name:  password, value: valueOfPasswordInput }
+        // ]
+        //
+        // To validate, we can examine the contents of this array to see if the
+        // username and password fields have values.  If either value evaluates
+        // to false then we return false from this method.
+
+        for (var i=0; i < formData.length; i++) {
+            if (!formData[i].value) {
+                $('#msg').html('Please enter a value for both Username and Password');
+                return false;
+            }
+        }
+    }
+</script>
+<div class="login_container" id="login">
+    <div id="msg"></div>
+    <div class="login_box">
+        <div class="logo_title">
+            <h1><img src="/static/images/login_title.gif"/>用户登录</h1>
+        </div>
+        <div class="login_operate">
+            <form id="loginform" method="post" name="loginform">
+                <div class="username">
+                    <label class="txt_default" for="name">用户名</label>
+                    <input class="txt alias" id="name" name="name" type="text" tabindex="1"/>
+                </div>
+                <div class="password">
+                    <label class="txt_default" for="password">密&nbsp;&nbsp;&nbsp;码</label>
+                    <input class="txt password" id="password" name="password" type="password" tabindex="2"/>
+                </div>
+                <div class="about_password">
+                    <input class="remerber_password" id="remerber_password" type="checkbox" disabled/>
+                    <label for="remerber_password">记住登录状态</label>
+                    <a class="forgetPassword" href="" target="_blank">忘记密码？</a>
+                </div>
+                <div class="login_submit">
+                    <a class="login_btn_wrapper" href=""><input class="login_btn" type="submit" value="登录"/></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

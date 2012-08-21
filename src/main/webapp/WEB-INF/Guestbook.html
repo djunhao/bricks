@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Guestbook</title>
+</head>
+<body>
+<div class="post">
+    <h1 class="title">Guestbook Demo</h1>
+    <div class="entry">
+        <h2>Welcome to my guestbook, the time is now ${time}.</h2>
+        <ol>
+            @Repeat(items=entries, var="entry")
+            <li><a href="/guestbook/${entry.id}">${entry.name} on ${entry.date}</a></li>
+        </ol>
+        <p></p>
+
+        Add a new entry:
+        <br/>
+        <form action="/guestbook" method="post">
+            <div><label for="newEntry.name"> 姓名:</label> <input name="newEntry.name" type="text"/></div>
+            <div><label for="newEntry.text"> 留言：</label></div><textarea rows="10" cols="50" name="newEntry.text"></textarea>
+            <div><input type="submit" value="保存" name="save"/></div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
