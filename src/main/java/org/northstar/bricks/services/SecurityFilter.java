@@ -24,7 +24,7 @@ public class SecurityFilter implements Filter {
         this.injector = injector;
     }
 
-    @Override
+    //@Override
     public void init(FilterConfig filterConfig) throws ServletException {
         //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -51,7 +51,7 @@ public class SecurityFilter implements Filter {
         }
     }
 
-    @Override
+    //@Override
     public void destroy() {
         //To change body of implemented methods use File | Settings | File Templates.
     }

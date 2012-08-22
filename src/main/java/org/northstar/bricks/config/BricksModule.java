@@ -15,6 +15,7 @@ import org.northstar.bricks.dao.SimpleEntryDao;
 import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.pages.*;
 import org.northstar.bricks.services.Hello;
+import org.northstar.bricks.services.LoginAction;
 
 /**
  * Configures a Sitebrick Module
@@ -37,9 +38,11 @@ public class BricksModule extends SitebricksModule {
         at("/guestbook").show(Guestbook.class);
         at("/guestbook/:id").show(GuestbookEntry.class);
         at("/login").show(Login.class);
+
         at("/count").show(Count.class);
 
 		at("/hello").serve(Hello.class);
+        at("/loginAction").serve(LoginAction.class);
 
 		embed(NewCard.class).as("Card");
         embed(GuestbookNavigation.class).as("navigation");

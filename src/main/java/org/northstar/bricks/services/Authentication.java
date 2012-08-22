@@ -1,6 +1,10 @@
 package org.northstar.bricks.services;
 
+import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.domain.User;
+
+import javax.inject.Inject;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,11 +14,17 @@ import org.northstar.bricks.domain.User;
  * To change this template use File | Settings | File Templates.
  */
 public class Authentication {
+    @Inject
+    private UserFinder finder;
+    @Inject
+    private Identity identity;
     public Identity authenticate(String login, String password)
     {
-        User user = new User();
-        Identity identity = new Identity();
-        identity.setUid(user.getId());
+        Set<User> userSet = finder.authenticated(login, password);
+        for(User user: userSet){
+            identity.setUid(user.getId());
+            identity.setName(user.getName());
+        }
         return identity;
     }
 }

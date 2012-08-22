@@ -11,18 +11,13 @@
 <script type="text/javascript">
     $(document).ready(function()
             {
-                $('#loginform').submit(function()//提交表单
-                {
-                    var options = {
-                        target: '#msg',
-                        url:'hello', //提交给哪个执行
-                        type:'POST',
-                        beforeSubmit: validate,
-                        success: function(data){ $('#msg').html(data.info);} //显示操作提示
-                        };
-                    $('#loginform').ajaxSubmit(options);
-                    return false; //为了不刷新页面,返回false，反正都已经在后台执行完了，没事！
-                });
+                var options = {
+                    url:'loginAction', //提交给哪个执行
+                    type:'POST',
+                    beforeSubmit: validate,
+                    success: function(data){ $('#msg').html(data.info);} //显示操作提示
+                };
+               $('#loginform').ajaxForm(options);
             }
     );
     function validate(formData, jqForm, options) {

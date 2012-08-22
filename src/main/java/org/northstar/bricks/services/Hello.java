@@ -37,10 +37,14 @@ public class Hello {
     @Post
     public Reply<Map<String, String>> hello() {
        Set<User> users = finder.authenticated(name, password);
-        System.out.println("\n>>>[BRICKS] Hello world!");
+
         Map<String, String> result = new HashMap<String, String>();
-        if (!users.isEmpty())
+        if (!users.isEmpty())           {
+            for (User u: users){
+                System.out.println("\n>>>[BRICKS] 用户"+u.getName()+"登录成功！");
+            }
             result.put("info", "用户" + name + "登录成功！");
+        }
         else result.put("info", "用户名或密码错误！");
         return Reply.with(result).as(Json.class);
     }
