@@ -10,13 +10,14 @@
 <body>
 <script type="text/javascript">
     $(document).ready(function () {
+                $('#msg').hide();
                 var options = {
                     //target: '#msg',
                     url:'loginAction', //提交给哪个执行
                     type:'POST',
                     beforeSubmit:validate,
                     //replaceTarget: true,
-                    //dataType:'json',
+                    dataType:'json',
                     success:showErr//显示操作提示
                 };
                 $('#loginform').ajaxForm(options);
@@ -26,22 +27,23 @@
         for (var i = 0; i < formData.length; i++) {
             if (!formData[i].value) {
                 $('#msg').html('请输入用户名和密码！');
+                $('#msg').show();
                 return false;
             }
         }
     }
     function showErr(data) {
-        if(data==0){
-            location.href="/flow";
-            return false;
+        if(data.info=="success"){
+            window.location="flow";
         } else {
-            $('#msg').html(data.errof);
+            $('#msg').html(data.info);
+            $('#msg').show();
             return false;
         }
     }
 </script>
 <div class="login_container" id="login">
-    <div id="msg"></div>
+    <div id="msg" style="border: 1px solid red;"></div>
     <div class="login_box">
         <div class="logo_title">
             <h1><img src="/static/images/login_title.gif"/>用户登录</h1>
