@@ -27,4 +27,5 @@ public interface UserFinder {
 
     @Finder(namedQuery = "getUserByNamePwd", returnAs = HashSet.class)
     Set<User> authenticated(@Named("name") String name, @Named("password") String password);
+
 }

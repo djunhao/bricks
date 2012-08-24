@@ -15,42 +15,19 @@ import java.util.List;
  * Time: 下午2:48
  * To change this template use File | Settings | File Templates.
  */
-public class UserPager {
+public class Pager {
     private int page;
     private int maxPerPage;
     private int totalPages;
 
-    //@Inject
-    private UserFinder finder;
-    //@Inject
-    private UserDao dao;
-
-    @Inject
-    public UserPager(UserFinder finder, UserDao dao){
-        this.finder = finder;
-        this.dao = dao;
-
-    }
-
-    private List<User> getNext(){
-        int start = page * maxPerPage;
-        return finder.listUsers(start, maxPerPage);
-    }
-
     public int getTotalPages(){
-        int usersCount = (int)dao.getUserCounts();
-        totalPages = ((usersCount-1)/maxPerPage+1);
         return totalPages;
     }
-    private void setTotalPages(int totalPages){
+    public void setTotalPages(int totalPages){
         this.totalPages = totalPages;
     }
     public int getPage() {
         return page;
-    }
-    @Get
-    void get(){
-        getTotalPages();
     }
 
     public void setPage(int page) {
@@ -58,8 +35,8 @@ public class UserPager {
     }
 
     public boolean isNextExists(){
-       //return page < totalPages;
-        return !getNext().isEmpty();
+       return page < totalPages;
+       // return !getNext().isEmpty();
     }
     public boolean isPrevExists(){
         return page > 1;
@@ -71,7 +48,4 @@ public class UserPager {
     public int getMaxPerPage(){
         return maxPerPage;
     }
-
-
-
 }

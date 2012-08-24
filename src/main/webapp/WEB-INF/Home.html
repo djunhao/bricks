@@ -14,14 +14,9 @@
                 @Repeat(items=pagedUsers, var="user")
                 <li>${user.id}. ${user.name}</li>
             </ul>
-            @Pager(page=page, maxPerPage=maxPerPage)
+            @Pager(page=page, maxPerPage=maxPerPage, totalPages=totalPages)
             <div>Pager here</div>
-
     </div>
-   <!--div <p class="pager_container">-->
-        <!--@Repeat(items="1..10",var="index")-->
-        <!--<span class="pager">${index}</span>-->
-    <!--</p>-->
 </div>
 <script type="text/javascript">
     function onSearch(){

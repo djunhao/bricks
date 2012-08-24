@@ -17,8 +17,9 @@ public class UserDao {
 		em.persist(user);
 	}
 
-    public long getUserCounts() {
+    public int getUserCounts() {
         Query query = em.createQuery("select count(u) from User u", User.class);
-        return (Long) query.getSingleResult();
+        Number result = (Number)query.getSingleResult();
+        return result.intValue();
     }
 }

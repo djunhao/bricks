@@ -9,7 +9,7 @@ import com.google.sitebricks.binding.FlashCache;
 import com.google.sitebricks.binding.HttpSessionFlashCache;
 import org.northstar.bricks.components.GuestbookNavigation;
 import org.northstar.bricks.components.NewCard;
-import org.northstar.bricks.components.UserPager;
+import org.northstar.bricks.components.Pager;
 import org.northstar.bricks.dao.EntryDao;
 import org.northstar.bricks.dao.SimpleEntryDao;
 import org.northstar.bricks.dao.UserFinder;
@@ -32,6 +32,7 @@ public class BricksModule extends SitebricksModule {
 				Scopes.SINGLETON);
         bind(EntryDao.class).to(SimpleEntryDao.class).in(Scopes.SINGLETON);
 		at("static/default.css").export("bricks.css");
+        at("static/pager.css").export("pager.css");
 
 		at("/").show(Home.class);
 		at("/flow").show(Flow.class);
@@ -46,7 +47,7 @@ public class BricksModule extends SitebricksModule {
 
 		embed(NewCard.class).as("Card");
         embed(GuestbookNavigation.class).as("navigation");
-        embed(UserPager.class).as("Pager");
+        embed(Pager.class).as("Pager");
 	}
 
 	@Override

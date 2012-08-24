@@ -1,6 +1,7 @@
 package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
+import com.google.sitebricks.Visible;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.components.Decorator;
 import org.northstar.bricks.dao.UserDao;
@@ -16,6 +17,7 @@ public class Home extends Decorator {
     private ArrayList<User> pagedUsers;
     private int page;
     private int maxPerPage = 4;
+    //private int totalPages;
 
     @Inject
     private UserFinder finder;
@@ -39,7 +41,15 @@ public class Home extends Decorator {
         int start = (page - 1) * maxPerPage;
         return finder.listUsers(start, maxPerPage);
     }
-
+    public int getTotalPages(){
+        int availableRows = dao.getUserCounts();
+        int totalPages = (availableRows-1)/maxPerPage + 1;
+        return totalPages;
+    }
+/*
+    public void setTotalPages(int totalPages){
+        this.totalPages = totalPages;
+    }*/
     @Override
     public String getPageTitle() {
         return "主页再次测试！";
@@ -48,11 +58,8 @@ public class Home extends Decorator {
     public int getMaxPerPage() {
         return maxPerPage;
     }
-
+/*
     public void setMaxPerPage(int maxPerPage) {
         this.maxPerPage = maxPerPage;
-    }
-
-
-
+    }*/
 }

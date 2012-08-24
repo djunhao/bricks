@@ -24,7 +24,6 @@ import java.util.Set;
  * Time: 下午5:51
  * To change this template use File | Settings | File Templates.
  */
-@Show("Flow.html")
 public class LoginAction {
     private String name;
     private String password;
@@ -55,7 +54,7 @@ public class LoginAction {
         Set<User> userSet = finder.authenticated(name, password);
         Map<String, String> result = new HashMap<String, String>();
         if(userSet.isEmpty()){
-            result.put("info", "用户名或密码错误！");
+            result.put("error", "用户名或密码错误！");
             return Reply.with(result).as(Json.class);
         }
         for (User user: userSet){

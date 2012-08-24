@@ -9,23 +9,34 @@
 </head>
 <body>
 <script type="text/javascript">
-    $(document).ready(function()
-            {
+    $(document).ready(function () {
                 var options = {
+                    //target: '#msg',
                     url:'loginAction', //提交给哪个执行
                     type:'POST',
-                    beforeSubmit: validate,
-                    success: function(data){ $('#msg').html(data.info);} //显示操作提示
+                    beforeSubmit:validate,
+                    //replaceTarget: true,
+                    //dataType:'json',
+                    success:showErr//显示操作提示
                 };
-               $('#loginform').ajaxForm(options);
+                $('#loginform').ajaxForm(options);
             }
     );
     function validate(formData, jqForm, options) {
-        for (var i=0; i < formData.length; i++) {
+        for (var i = 0; i < formData.length; i++) {
             if (!formData[i].value) {
                 $('#msg').html('请输入用户名和密码！');
                 return false;
             }
+        }
+    }
+    function showErr(data) {
+        if(data==0){
+            location.href="/flow";
+            return false;
+        } else {
+            $('#msg').html(data.errof);
+            return false;
         }
     }
 </script>
