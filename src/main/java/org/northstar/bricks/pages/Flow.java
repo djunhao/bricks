@@ -3,15 +3,15 @@ package org.northstar.bricks.pages;
 import com.google.inject.Inject;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.rendering.Decorated;
-import org.northstar.bricks.services.Identity;
+import org.northstar.bricks.domain.User;
 
 @Decorated
 public class Flow extends Decorator {
 
-    private final Identity identity;
+    private final User identity;
 
     @Inject
-    public Flow(Identity identity) {
+    public Flow(User identity) {
         this.identity = identity;
     }
 

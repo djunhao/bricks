@@ -17,14 +17,14 @@ public class Authentication {
     @Inject
     private UserFinder finder;
     @Inject
-    private Identity identity;
-    public Identity authenticate(String login, String password)
+    private User user;
+    public User authenticate(String login, String password)
     {
         Set<User> userSet = finder.authenticated(login, password);
-        for(User user: userSet){
-            identity.setUid(user.getId());
-            identity.setName(user.getName());
+        for(User u: userSet){
+            user.setId(u.getId());
+            user.setName(u.getName());
         }
-        return identity;
+        return user;
     }
 }

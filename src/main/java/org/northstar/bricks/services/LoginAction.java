@@ -39,24 +39,20 @@ public class LoginAction {
     }
 
     @Inject
-    private Identity identity;
+    private User user;
     @Inject
-    private UserFinder finder;
+    private Authentication auth;
 
     @Post
     public Reply login() {
         System.out.println("loginAction excuted ...");
-        Set<User> userSet = finder.authenticated(name, password);
+        user = auth.authenticate(name, password);
         Map<String, String> result = new HashMap<String, String>();
-        if (userSet.isEmpty()) {
-            result.put("info", "用户名或密码错误！");
+        if(user.isAuthenticate()) {
+            result.put("info", "success");
 
         } else {
-            for (User user : userSet) {
-                identity.setName(user.getName());
-                identity.setUid(user.getId());
-            }
-            result.put("info", "success");
+            result.put("info", "您输入的用户名或密码不正确！");
         }
         return Reply.with(result).as(Json.class);
     }

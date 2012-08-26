@@ -1,16 +1,19 @@
 package org.northstar.bricks.domain;
 
+import com.google.inject.servlet.SessionScoped;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @NamedQueries({
-        @NamedQuery(name = "getAllUsers", query = "Select u From User u"),
-        @NamedQuery(name = "getUserByName", query = "Select u From User u Where u.name = :name"),
-        @NamedQuery(name = "getUserById", query = "Select u From User u Where u.id = :id"),
-        @NamedQuery(name = "getUserByNamePwd", query = "select u from User u where u.name=:name and u.password=:password"),
-        @NamedQuery(name = "getPagedUsers", query = "Select u From User u")
+        @NamedQuery(name = "findAll", query = "Select u From User u"),
+        @NamedQuery(name = "findByName", query = "Select u From User u Where u.name = :name"),
+        @NamedQuery(name = "findById", query = "Select u From User u Where u.id = :id"),
+        @NamedQuery(name = "findByNameAndPwd", query = "select u from User u where u.name=:name and u.password=:password"),
+        @NamedQuery(name = "findPagedUsers", query = "Select u From User u")
         })
 @Entity
+@SessionScoped
 public class User implements Serializable {
     private static final long serialVersionUID = 7158126725092237523L;
 
@@ -45,6 +48,13 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public boolean isAuthenticate(){
+        return id != null;
+    }
+
+    public void logout(){
+        this.id = null;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
