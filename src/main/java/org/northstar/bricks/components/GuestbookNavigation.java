@@ -14,28 +14,28 @@ public class GuestbookNavigation {
 
     @Inject
     private EntryDao entryDao;
- 
+
     public Entry getCurrent() {
         return current;
     }
- 
+
     public void setCurrent(Entry argCurrent) {
         current = argCurrent;
     }
- 
+
     public Entry getNext() {
-        return entryDao.read(current.getId()+1);
+        return entryDao.read(current.getId() + 1);
     }
- 
+
     public Entry getPrevious() {
-        return entryDao.read(current.getId()-1);
+        return entryDao.read(current.getId() - 1);
     }
- 
+
     public boolean isNextExists() {
-        return current.getId()+1 < entryDao.readAll().size();
+        return current.getId() + 1 < entryDao.readAll().size();
     }
- 
+
     public boolean isPreviousExists() {
-        return current.getId()-1 > 0;
+        return current.getId() - 1 > 0;
     }
 }

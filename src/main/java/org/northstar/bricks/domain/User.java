@@ -11,7 +11,7 @@ import java.io.Serializable;
         @NamedQuery(name = "findById", query = "Select u From User u Where u.id = :id"),
         @NamedQuery(name = "findByNameAndPwd", query = "select u from User u where u.name=:name and u.password=:password"),
         @NamedQuery(name = "findPagedUsers", query = "Select u From User u")
-        })
+})
 @Entity
 @SessionScoped
 public class User implements Serializable {
@@ -48,13 +48,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public boolean isAuthenticate(){
+    public boolean isAuthenticate() {
         return id != null;
     }
 
-    public void logout(){
+    public void logout() {
         this.id = null;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

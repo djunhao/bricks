@@ -14,7 +14,8 @@ import org.northstar.bricks.components.Decorator;
 public class Login extends Decorator {
 
     @Override
-    public String getPageTitle(){
+    public String getPageTitle() {
         return "Bricks - 用户登录";
     }
+
 }

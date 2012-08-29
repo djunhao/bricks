@@ -213,6 +213,7 @@ input, textarea, select {
 /* Post */
 
 .post {
+    padding-bottom: 15px;
 }
 
 .post .title {

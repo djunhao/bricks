@@ -9,17 +9,18 @@ import javax.persistence.Query;
 
 public class UserDao {
 
-	@Inject
-	private EntityManager em;
+    @Inject
+    private EntityManager em;
 
-	@Transactional
-	public void createNewUser(User user) {
-		em.persist(user);
-	}
+    @Transactional
+    public void createNewUser(User user) {
+        em.persist(user);
+    }
 
     public int getUserCounts() {
-        Query query = em.createQuery("select count(u) from User u", User.class);
-        Number result = (Number)query.getSingleResult();
+        System.out.println("getUserCount executed...");
+        Query query = em.createQuery("select count(u) from User u");
+        Number result = (Number) query.getSingleResult();
         return result.intValue();
     }
 }

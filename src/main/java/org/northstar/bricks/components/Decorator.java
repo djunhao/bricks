@@ -1,6 +1,9 @@
 package org.northstar.bricks.components;
 
+import com.google.inject.Inject;
 import com.google.sitebricks.Show;
+import com.google.sitebricks.http.Get;
+import org.northstar.bricks.domain.User;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,14 +11,39 @@ import java.util.List;
 @Show("Decorator.html")
 public abstract class Decorator {
     private final List<String> PAGES;
+    @Inject
+    private User user;
+    private boolean logout;
+
+    public boolean isLogout() {
+        return logout;
+    }
+
+    public void setLogout(boolean logout) {
+        this.logout = logout;
+    }
 
     protected Decorator() {
         PAGES = Arrays.asList("Home", "Flow", "About");
     }
 
-    public List<String> getPages(){
-		return PAGES;
-	}
+    public List<String> getPages() {
+        return PAGES;
+    }
 
-	public abstract String getPageTitle();
+    public boolean isUserExists() {
+        return user.isAuthenticate();
+    }
+
+    public abstract String getPageTitle();
+
+    public User getLogedUser() {
+        return user;
+    }
+
+    @Get
+    public void logout() {
+        if (logout)
+            user.logout();
+    }
 }

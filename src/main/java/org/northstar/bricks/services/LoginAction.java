@@ -4,12 +4,10 @@ import com.google.inject.Inject;
 import com.google.sitebricks.client.transport.Json;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Post;
-import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.domain.User;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,6 +19,12 @@ import java.util.Set;
 public class LoginAction {
     private String name;
     private String password;
+
+    @Inject
+    public LoginAction(User user, Authentication auth) {
+        this.user = user;
+        this.auth = auth;
+    }
 
     public String getName() {
         return name;
@@ -38,17 +42,15 @@ public class LoginAction {
         this.password = password;
     }
 
-    @Inject
-    private User user;
-    @Inject
-    private Authentication auth;
+    private final User user;
+    private final Authentication auth;
 
     @Post
     public Reply login() {
         System.out.println("loginAction excuted ...");
-        user = auth.authenticate(name, password);
+        auth.authenticate(name, password);
         Map<String, String> result = new HashMap<String, String>();
-        if(user.isAuthenticate()) {
+        if (user.isAuthenticate()) {
             result.put("info", "success");
 
         } else {

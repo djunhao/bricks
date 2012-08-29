@@ -11,7 +11,7 @@ import org.northstar.bricks.domain.Entry;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
- 
+
 /**
  * Resource which represents a list of {@link Entry} instances
  *
@@ -19,16 +19,17 @@ import java.util.List;
  */
 @Decorated
 public class Guestbook extends Decorator {
+
     private List<Entry> entries;
     private Entry newEntry = new Entry();
- 
-    @Inject
+
     private EntryDao entryDao;
- 
+
+    @Inject
     public Guestbook(EntryDao argEntryDao) {
         entryDao = argEntryDao;
     }
- 
+
     public Guestbook() {
     }
 
@@ -40,27 +41,27 @@ public class Guestbook extends Decorator {
     public List<Entry> getEntries() {
         return entries;
     }
- 
+
     @Get
     public void load() {
         entries = entryDao.readAll();
     }
- 
+
     @Post
     public String save() {
         newEntry.setDate(new Date());
         Integer id = entryDao.save(newEntry);
         return String.format("guestbook/%1$s", id);
     }
- 
+
     public Entry getNewEntry() {
         return newEntry;
     }
- 
+
     public void setNewEntry(Entry argNewEntry) {
         newEntry = argNewEntry;
     }
- 
+
     public String getTime() {
         return new SimpleDateFormat().format(new Date());
     }

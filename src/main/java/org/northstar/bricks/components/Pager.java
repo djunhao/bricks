@@ -1,13 +1,5 @@
 package org.northstar.bricks.components;
 
-import com.google.inject.Inject;
-import com.google.sitebricks.http.Get;
-import org.northstar.bricks.dao.UserDao;
-import org.northstar.bricks.dao.UserFinder;
-import org.northstar.bricks.domain.User;
-
-import java.util.List;
-
 /**
  * Created with IntelliJ IDEA.
  * User: northstar
@@ -20,12 +12,14 @@ public class Pager {
     private int maxPerPage;
     private int totalPages;
 
-    public int getTotalPages(){
+    public int getTotalPages() {
         return totalPages;
     }
-    public void setTotalPages(int totalPages){
+
+    public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
+
     public int getPage() {
         return page;
     }
@@ -34,18 +28,20 @@ public class Pager {
         this.page = page;
     }
 
-    public boolean isNextExists(){
-       return page < totalPages;
-       // return !getNext().isEmpty();
+    public boolean isNextExists() {
+        return page < totalPages;
+        // return !getNext().isEmpty();
     }
-    public boolean isPrevExists(){
+
+    public boolean isPrevExists() {
         return page > 1;
     }
 
     public void setMaxPerPage(int maxPerPage) {
         this.maxPerPage = maxPerPage;
     }
-    public int getMaxPerPage(){
+
+    public int getMaxPerPage() {
         return maxPerPage;
     }
 }

@@ -13,7 +13,7 @@ import com.google.inject.servlet.SessionScoped;
 public class Counter {
     int count = 0;
 
-    public synchronized int increment(){
+    public synchronized int increment() {
         return count++;
     }
 }

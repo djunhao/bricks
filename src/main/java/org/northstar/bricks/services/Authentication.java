@@ -14,14 +14,18 @@ import java.util.Set;
  * To change this template use File | Settings | File Templates.
  */
 public class Authentication {
+    private final UserFinder finder;
+    private final User user;
+
     @Inject
-    private UserFinder finder;
-    @Inject
-    private User user;
-    public User authenticate(String login, String password)
-    {
+    public Authentication(UserFinder finder, User user) {
+        this.finder = finder;
+        this.user = user;
+    }
+
+    public User authenticate(String login, String password) {
         Set<User> userSet = finder.authenticated(login, password);
-        for(User u: userSet){
+        for (User u : userSet) {
             user.setId(u.getId());
             user.setName(u.getName());
         }

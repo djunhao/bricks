@@ -2,6 +2,7 @@ package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.rendering.Decorated;
+import org.northstar.bricks.components.Decorator;
 import org.northstar.bricks.domain.Counter;
 
 /**
@@ -12,13 +13,15 @@ import org.northstar.bricks.domain.Counter;
  * To change this template use File | Settings | File Templates.
  */
 @Decorated
-public class Count extends Decorator{
+public class Count extends Decorator {
     final Counter counter;
+
     @Inject
     public Count(Counter counter) {
         this.counter = counter;
     }
-    public int getCount(){
+
+    public int getCount() {
         return counter.increment();
     }
 
