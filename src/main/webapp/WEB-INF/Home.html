@@ -14,7 +14,7 @@
                 @Repeat(items=pagedUsers, var="mm", pageVar="page")
                 <li>${mm.id}. ${mm.name}</li>
             </ul>
-            @Pager(page=page, maxPerPage=maxPerPage, totalPages=totalPages)
+            @Pager(page=page, maxPerPage=maxPerPage, maxPages=totalPages)
             <div>Pager here</div>
     </div>
 </div>

@@ -5,22 +5,33 @@ import com.google.inject.persist.Transactional;
 import org.northstar.bricks.domain.User;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.logging.Logger;
 
 public class UserDao {
 
     @Inject
-    private EntityManager em;
+    private EntityManager entityManager;
+    @Inject
+    private Logger logger;
 
     @Transactional
     public void createNewUser(User user) {
-        em.persist(user);
+        entityManager.persist(user);
     }
 
     public int getUserCounts() {
-        System.out.println("getUserCount executed...");
-        Query query = em.createQuery("select count(u) from User u");
-        Number result = (Number) query.getSingleResult();
+        logger.info("getUserCounts() executed...");
+        /*Query query = em.createQuery("select count(u) from User u");
+        Number result = (Number) query.getSingleResult();*/
+        final CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        final CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
+        final Root<User> root = criteriaQuery.from(User.class);
+        criteriaQuery.select(builder.count(root));
+
+        Long result = entityManager.createQuery(criteriaQuery).getSingleResult();
         return result.intValue();
     }
 }

@@ -1,5 +1,9 @@
 package org.northstar.bricks.components;
 
+import com.google.inject.Inject;
+import com.google.sitebricks.http.Get;
+import org.northstar.bricks.dao.PagedDataSource;
+
 /**
  * Created with IntelliJ IDEA.
  * User: northstar
@@ -10,14 +14,25 @@ package org.northstar.bricks.components;
 public class Pager {
     private int page;
     private int maxPerPage;
-    private int totalPages;
+    private int maxPages;
 
-    public int getTotalPages() {
-        return totalPages;
+   /* @Inject
+    private PagedDataSource source;
+
+    @Get
+    void render(){
+        int availableRows = source.getTotalRowCount();
+
+        maxPages = ((availableRows - 1) / maxPerPage) + 1;
+
+    }*/
+
+    public int getMaxPages() {
+        return maxPages;
     }
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
+    public void setMaxPages(int maxPages) {
+        this.maxPages = maxPages;
     }
 
     public int getPage() {
@@ -29,7 +44,7 @@ public class Pager {
     }
 
     public boolean isNextExists() {
-        return page < totalPages;
+        return page < maxPages;
         // return !getNext().isEmpty();
     }
 

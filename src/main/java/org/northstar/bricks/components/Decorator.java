@@ -32,7 +32,7 @@ public abstract class Decorator {
     }
 
     public boolean isUserExists() {
-        return user.isAuthenticate();
+        return user.isAuthenticated();
     }
 
     public abstract String getPageTitle();

@@ -17,7 +17,8 @@
 		<log4j.version>1.6.1</log4j.version>
 		<guice.version>3.0</guice.version>
 		<sitebricks.version>0.8.6</sitebricks.version>
-		<objectdb.version>2.4.0</objectdb.version>
+		<objectdb.version>2.4.3</objectdb.version>
+        <jetty-maven-plugin.version>7.6.5.v20120716</jetty-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -49,6 +50,11 @@
 			<artifactId>objectdb</artifactId>
 			<version>${objectdb.version}</version>
 		</dependency>
+        <!--<dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>49.1</version>
+        </dependency>-->
 	</dependencies>
 	<repositories>
 		<repository>
@@ -68,8 +74,10 @@
 		<plugins>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.26</version>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<!--<version>6.1.26</version>-->
+                <!--<version>8.1.5.v20120716</version>-->
+                <version>${jetty-maven-plugin.version}</version>
                 <configuration>
                     <scanIntervalSeconds>2</scanIntervalSeconds>
                 </configuration>

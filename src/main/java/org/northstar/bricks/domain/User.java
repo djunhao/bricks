@@ -1,6 +1,7 @@
 package org.northstar.bricks.domain;
 
 import com.google.inject.servlet.SessionScoped;
+import net.jcip.annotations.ThreadSafe;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 })
 @Entity
 @SessionScoped
+@ThreadSafe
 public class User implements Serializable {
     private static final long serialVersionUID = 7158126725092237523L;
 
@@ -48,8 +50,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public boolean isAuthenticate() {
-        return id != null;
+    public boolean isAuthenticated() {
+        return this.id != null;
     }
 
     public void logout() {

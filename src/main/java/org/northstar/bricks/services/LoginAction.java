@@ -17,12 +17,16 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class LoginAction {
+
     private String name;
     private String password;
 
+    private User login;
+    private Authentication auth;
+
     @Inject
-    public LoginAction(User user, Authentication auth) {
-        this.user = user;
+    public LoginAction(User login,Authentication auth) {
+        this.login = login;
         this.auth = auth;
     }
 
@@ -42,15 +46,12 @@ public class LoginAction {
         this.password = password;
     }
 
-    private final User user;
-    private final Authentication auth;
-
     @Post
     public Reply login() {
         System.out.println("loginAction excuted ...");
-        auth.authenticate(name, password);
+        login = auth.authenticate(name, password);
         Map<String, String> result = new HashMap<String, String>();
-        if (user.isAuthenticate()) {
+        if (login.isAuthenticated()) {
             result.put("info", "success");
 
         } else {

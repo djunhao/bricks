@@ -22,16 +22,8 @@ public class Guestbook extends Decorator {
 
     private List<Entry> entries;
     private Entry newEntry = new Entry();
-
-    private EntryDao entryDao;
-
     @Inject
-    public Guestbook(EntryDao argEntryDao) {
-        entryDao = argEntryDao;
-    }
-
-    public Guestbook() {
-    }
+    private EntryDao entryDao;
 
     @Override
     public String getPageTitle() {

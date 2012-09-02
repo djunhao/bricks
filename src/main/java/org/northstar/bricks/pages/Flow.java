@@ -13,14 +13,14 @@ public class Flow extends Decorator {
 
     @Get
     public String get() {
-        if (!isUserExists())
-            return "login";
-        return null;
+        if (isUserExists())
+            return null;
+        return "login";
     }
 
     @Override
     public String getPageTitle() {
-        return "Persist value页面";
+        return "需密码访问页面";
     }
 
 }

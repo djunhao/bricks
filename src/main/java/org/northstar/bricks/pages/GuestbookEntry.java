@@ -34,7 +34,7 @@ public class GuestbookEntry extends Decorator {
     public Guestbook delete(@Named("id") String argId) {
         load(argId);
         entryDao.delete(entry);
-        return new Guestbook(entryDao);
+        return new Guestbook();
     }
 
     @Override

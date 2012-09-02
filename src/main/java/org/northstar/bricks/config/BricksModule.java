@@ -1,16 +1,16 @@
 package org.northstar.bricks.config;
 
 import com.google.inject.Scopes;
+import com.google.inject.Singleton;
 import com.google.inject.persist.PersistFilter;
 import com.google.inject.persist.jpa.JpaPersistModule;
+import com.google.inject.servlet.SessionScoped;
 import com.google.sitebricks.SitebricksModule;
 import com.google.sitebricks.SitebricksServletModule;
 import org.northstar.bricks.components.GuestbookNavigation;
 import org.northstar.bricks.components.NewCard;
 import org.northstar.bricks.components.Pager;
-import org.northstar.bricks.dao.EntryDao;
-import org.northstar.bricks.dao.SimpleEntryDao;
-import org.northstar.bricks.dao.UserFinder;
+import org.northstar.bricks.dao.*;
 import org.northstar.bricks.pages.*;
 import org.northstar.bricks.services.Hello;
 import org.northstar.bricks.services.LoginAction;
@@ -27,8 +27,10 @@ public class BricksModule extends SitebricksModule {
 
         install(new JpaPersistModule("myFirstJpaUnit").addFinder(UserFinder.class));
 
-//		bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
-        bind(EntryDao.class).to(SimpleEntryDao.class).in(Scopes.SINGLETON);
+		//bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
+        bind(EntryDao.class).to(SimpleEntryDao.class);
+        bind(PagedDataSource.class).to(JpaPagedDataSource.class).in(Scopes.SINGLETON);
+
         at("static/default.css").export("bricks.css");
         at("static/pager.css").export("pager.css");
 

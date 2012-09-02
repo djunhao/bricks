@@ -1,26 +1,34 @@
 package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
+import com.google.sitebricks.http.Get;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.components.Decorator;
+import org.northstar.bricks.dao.JpaPagedDataSource;
+import org.northstar.bricks.dao.PagedDataSource;
 import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.dao.UserFinder;
 import org.northstar.bricks.domain.User;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Decorated
 public class Home extends Decorator {
 
-    private ArrayList<User> pagedUsers;
+    private List<User> pagedUsers;
     private int page;
     private int maxPerPage = 4;
 
+    private final UserFinder finder;
+    private final UserDao dao;
+
     @Inject
-    private UserFinder finder;
-    @Inject
-    private UserDao dao;
+    Home(UserFinder finder, UserDao dao){
+        this.finder = finder;
+        this.dao = dao;
+    }
 
     public int getPage() {
         return page;
