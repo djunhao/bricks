@@ -1,5 +1,7 @@
 package org.northstar.bricks.dao;
 
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
 import org.northstar.bricks.domain.User;
@@ -8,10 +10,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 public class UserDao {
-
     @Inject
     private EntityManager entityManager;
     @Inject

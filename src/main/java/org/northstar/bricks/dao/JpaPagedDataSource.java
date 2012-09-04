@@ -18,7 +18,7 @@ import java.util.List;
  * Time: 上午12:03
  * To change this template use File | Settings | File Templates.
  */
-public class JpaPagedDataSource<E> implements PagedDataSource {
+public class JpaPagedDataSource<E> implements PagedDataSource<E> {
     @Inject
     private EntityManager entityManager;
     private Class<E> entityType;
@@ -26,7 +26,7 @@ public class JpaPagedDataSource<E> implements PagedDataSource {
     private List<E> preparedResults;
 
     public JpaPagedDataSource(){}
-   // @Inject
+
     public JpaPagedDataSource(final Class<E> entityType) {
         assert entityType != null;
         this.entityType = entityType;
@@ -37,7 +37,7 @@ public class JpaPagedDataSource<E> implements PagedDataSource {
         CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
         final Root<E> root = criteriaQuery.from(entityType);
         criteriaQuery = criteriaQuery.select(builder.count(root));
-        //applyAdditionalConstraints(criteriaQuery, root, builder);
+        applyAdditionalConstraints(criteriaQuery, root, builder);
         return entityManager.createQuery(criteriaQuery).getSingleResult().intValue();
     }
 
@@ -45,7 +45,7 @@ public class JpaPagedDataSource<E> implements PagedDataSource {
         final CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         final CriteriaQuery<E> criteriaQuery = builder.createQuery(entityType);
         final Root<E> root = criteriaQuery.from(entityType);
-        //applyAdditionalConstraints(criteriaQuery.select(root), root, builder);
+        applyAdditionalConstraints(criteriaQuery.select(root), root, builder);
         if (propertyName != null) {
             final Path<Object> propertyPath = root.get(propertyName);
             criteriaQuery.orderBy(builder.desc(propertyPath));
@@ -61,7 +61,7 @@ public class JpaPagedDataSource<E> implements PagedDataSource {
                                               final CriteriaBuilder builder) {
     }
 
-    @Override
+    //@Override
     public Iterator<E> iterator() {
         return preparedResults.iterator();
     }
