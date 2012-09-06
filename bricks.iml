@@ -14,6 +14,51 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orientdb-object/1.1.0/orientdb-object-1.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orientdb-core/1.1.0/orientdb-core-1.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orient-commons/1.1.0/orient-commons-1.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../local_repo/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.0.Final/hibernate-jpa-2.0-api-1.0.0.Final.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../local_repo/org/javassist/javassist/3.16.1-GA/javassist-3.16.1-GA.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
           <root url="jar://$MODULE_DIR$/../../local_repo/com/google/sitebricks/sitebricks/0.8.6/sitebricks-0.8.6.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -320,7 +365,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../local_repo/com/google/inject/extensions/guice-persist/3.0/guice-persist-3.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orientdb-enterprise/1.1.0/orientdb-enterprise-1.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -329,7 +374,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../local_repo/com/objectdb/objectdb/2.4.0/objectdb-2.4.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orientdb-client/1.1.0/orientdb-client-1.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -344,6 +389,31 @@
     <webroots>
       <root relative="/" url="file://$MODULE_DIR$/src/main/webapp" />
     </webroots>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib/orientdb-object-1.1.0.jar" />
+      <url>jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orientdb-object/1.1.0/orientdb-object-1.1.0.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib/orientdb-core-1.1.0.jar" />
+      <url>jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orientdb-core/1.1.0/orientdb-core-1.1.0.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib/orient-commons-1.1.0.jar" />
+      <url>jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orient-commons/1.1.0/orient-commons-1.1.0.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar" />
+      <url>jar://$MODULE_DIR$/../../local_repo/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.0.Final/hibernate-jpa-2.0-api-1.0.0.Final.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib/javassist-3.16.1-GA.jar" />
+      <url>jar://$MODULE_DIR$/../../local_repo/org/javassist/javassist/3.16.1-GA/javassist-3.16.1-GA.jar!/</url>
+    </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/sitebricks-0.8.6.jar" />
@@ -516,13 +586,13 @@
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
-      <attribute name="URI" value="/WEB-INF/lib/guice-persist-3.0.jar" />
-      <url>jar://$MODULE_DIR$/../../local_repo/com/google/inject/extensions/guice-persist/3.0/guice-persist-3.0.jar!/</url>
+      <attribute name="URI" value="/WEB-INF/lib/orientdb-enterprise-1.1.0.jar" />
+      <url>jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orientdb-enterprise/1.1.0/orientdb-enterprise-1.1.0.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
-      <attribute name="URI" value="/WEB-INF/lib/objectdb-2.4.0.jar" />
-      <url>jar://$MODULE_DIR$/../../local_repo/com/objectdb/objectdb/2.4.0/objectdb-2.4.0.jar!/</url>
+      <attribute name="URI" value="/WEB-INF/lib/orientdb-client-1.1.0.jar" />
+      <url>jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orientdb-client/1.1.0/orientdb-client-1.1.0.jar!/</url>
     </containerElement>
   </component>
 </module>

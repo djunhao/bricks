@@ -53,7 +53,6 @@ public class LoginAction {
         Map<String, String> result = new HashMap<String, String>();
         if (login.isAuthenticated()) {
             result.put("info", "success");
-
         } else {
             result.put("info", "您输入的用户名或密码不正确！");
         }

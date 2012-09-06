@@ -1,9 +1,10 @@
 package org.northstar.bricks.services;
 
-import org.northstar.bricks.dao.UserFinder;
+import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.domain.User;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,17 +15,16 @@ import java.util.Set;
  * To change this template use File | Settings | File Templates.
  */
 public class Authentication {
-    private final UserFinder finder;
     private final User user;
-
+    private final UserDao dao;
     @Inject
-    public Authentication(UserFinder finder, User user) {
-        this.finder = finder;
+    public Authentication(UserDao dao, User user) {
+        this.dao = dao;
         this.user = user;
     }
 
     public User authenticate(String login, String password) {
-        Set<User> userSet = finder.authenticated(login, password);
+        List<User> userSet = dao.authenticated(login, password);
         for (User u : userSet) {
             user.setId(u.getId());
             user.setName(u.getName());

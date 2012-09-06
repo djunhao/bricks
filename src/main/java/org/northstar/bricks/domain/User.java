@@ -3,28 +3,27 @@ package org.northstar.bricks.domain;
 import com.google.inject.servlet.SessionScoped;
 import net.jcip.annotations.ThreadSafe;
 
-import javax.persistence.*;
+import javax.persistence.Id;
 import java.io.Serializable;
 
-@NamedQueries({
-        @NamedQuery(name = "findAll", query = "Select u From User u"),
-        @NamedQuery(name = "findByName", query = "Select u From User u Where u.name = :name"),
-        @NamedQuery(name = "findById", query = "Select u From User u Where u.id = :id"),
-        @NamedQuery(name = "findByNameAndPwd", query = "select u from User u where u.name=:name and u.password=:password"),
-        @NamedQuery(name = "findPagedUsers", query = "Select u From User u")
-})
-@Entity
 @SessionScoped
 @ThreadSafe
 public class User implements Serializable {
     private static final long serialVersionUID = 7158126725092237523L;
-
     @Id
-    @GeneratedValue
     private Long id;
 
     private String name;
     private String password;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public Long getId() {
         return id;

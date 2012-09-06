@@ -1,9 +1,5 @@
 package org.northstar.bricks.components;
 
-import com.google.inject.Inject;
-import com.google.sitebricks.http.Get;
-import org.northstar.bricks.dao.PagedDataSource;
-
 /**
  * Created with IntelliJ IDEA.
  * User: northstar
