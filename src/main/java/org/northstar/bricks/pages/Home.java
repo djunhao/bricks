@@ -1,9 +1,12 @@
 package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
+import com.google.sitebricks.http.Get;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.components.Decorator;
 import org.northstar.bricks.dao.UserDao;
+import org.northstar.bricks.domain.Role;
 import org.northstar.bricks.domain.User;
 
 import java.util.List;
@@ -17,7 +20,7 @@ public class Home extends Decorator {
     private final UserDao dao;
 
     @Inject
-    Home(UserDao dao){
+    Home(@Named("orientdb") UserDao dao) {
         this.dao = dao;
     }
 

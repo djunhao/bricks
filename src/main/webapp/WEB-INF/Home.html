@@ -12,7 +12,7 @@
     <div class="entry">
             <ul>
                 @Repeat(items=pagedUsers, var="user")
-                <li>${user.name} - ${user.role}</li>
+                <li>${user.name} - ${user.role.type}</li>
             </ul>
     </div>
 </div>

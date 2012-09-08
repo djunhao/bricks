@@ -4,33 +4,27 @@ import com.google.inject.servlet.SessionScoped;
 import net.jcip.annotations.ThreadSafe;
 
 import javax.persistence.Id;
-import java.io.Serializable;
 
 @SessionScoped
 @ThreadSafe
-public class User implements Serializable {
-    private static final long serialVersionUID = 7158126725092237523L;
+public class User {
     @Id
-    private Long id;
+    private Object rid;
 
     private String name;
     private String password;
-    private String role;
+    private Role role;
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Object getRid() {
+        return rid;
     }
 
     public String getName() {
@@ -50,11 +44,11 @@ public class User implements Serializable {
     }
 
     public boolean isAuthenticated() {
-        return this.id != null;
+        return this.name != null;
     }
 
     public void logout() {
-        this.id = null;
+        this.name = null;
     }
 
     @Override
@@ -64,7 +58,7 @@ public class User implements Serializable {
 
         User user = (User) o;
 
-        if (!id.equals(user.id)) return false;
+        if (!rid.equals(user.rid)) return false;
         if (!name.equals(user.name)) return false;
         if (!password.equals(user.password)) return false;
 
@@ -73,7 +67,7 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
+        int result = rid.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + password.hashCode();
         return result;

@@ -25,7 +25,7 @@ public class LoginAction {
     private Authentication auth;
 
     @Inject
-    public LoginAction(User login,Authentication auth) {
+    public LoginAction(User login, Authentication auth) {
         this.login = login;
         this.auth = auth;
     }

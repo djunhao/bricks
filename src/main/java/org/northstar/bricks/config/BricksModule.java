@@ -1,11 +1,14 @@
 package org.northstar.bricks.config;
 
+import com.google.inject.name.Names;
 import com.google.sitebricks.SitebricksModule;
 import org.northstar.bricks.components.GuestbookNavigation;
 import org.northstar.bricks.components.NewCard;
 import org.northstar.bricks.components.Pager;
 import org.northstar.bricks.dao.EntryDao;
+import org.northstar.bricks.dao.OrientUserDao;
 import org.northstar.bricks.dao.SimpleEntryDao;
+import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.pages.*;
 import org.northstar.bricks.services.Hello;
 import org.northstar.bricks.services.LoginAction;
@@ -22,8 +25,9 @@ public class BricksModule extends SitebricksModule {
 
         //install(new JpaPersistModule("myFirstJpaUnit").addFinder(UserFinder.class));
 
-		//bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
+        //bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
         bind(EntryDao.class).to(SimpleEntryDao.class);
+        bind(UserDao.class).annotatedWith(Names.named("orientdb")).to(OrientUserDao.class);
 
         at("static/default.css").export("bricks.css");
         at("static/pager.css").export("pager.css");

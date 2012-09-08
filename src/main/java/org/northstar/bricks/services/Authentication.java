@@ -1,11 +1,11 @@
 package org.northstar.bricks.services;
 
+import com.google.inject.name.Named;
 import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.domain.User;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,8 +17,9 @@ import java.util.Set;
 public class Authentication {
     private final User user;
     private final UserDao dao;
+
     @Inject
-    public Authentication(UserDao dao, User user) {
+    public Authentication(@Named("orientdb") UserDao dao, User user) {
         this.dao = dao;
         this.user = user;
     }
@@ -26,7 +27,6 @@ public class Authentication {
     public User authenticate(String login, String password) {
         List<User> userSet = dao.authenticated(login, password);
         for (User u : userSet) {
-            user.setId(u.getId());
             user.setName(u.getName());
         }
         return user;

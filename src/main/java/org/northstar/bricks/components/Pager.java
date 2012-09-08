@@ -12,7 +12,7 @@ public class Pager {
     private int maxPerPage;
     private int maxPages;
 
-   /* @Inject
+    /* @Inject
     private PagedDataSource source;
 
     @Get
