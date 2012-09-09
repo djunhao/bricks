@@ -15,6 +15,8 @@
                 <li>${user.name} - ${user.role.type}</li>
             </ul>
     </div>
+    @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
+    <div>pager here</div>
 </div>
 </body>
 </html>

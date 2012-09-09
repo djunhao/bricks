@@ -5,6 +5,7 @@ import com.google.inject.name.Named;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.components.Decorator;
+import org.northstar.bricks.dao.RoleDao;
 import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.domain.Role;
 import org.northstar.bricks.domain.User;
@@ -16,8 +17,10 @@ public class Home extends Decorator {
 
     private List<User> pagedUsers;
     private int page;
-    private int maxPerPage = 4;
+    private Integer maxPerPage = 5;
     private final UserDao dao;
+    @Inject
+    private RoleDao roleDao;
 
     @Inject
     Home(@Named("orientdb") UserDao dao) {
@@ -45,4 +48,18 @@ public class Home extends Decorator {
         return maxPerPage;
     }
 
+    public int getMaxPages(){
+        int userCounts = dao.getUserCounts();
+        return (userCounts - 1) / maxPerPage + 1;
+    }
+/*
+    @Get
+    void load(){
+        User user = new User();
+        user.setName("ljx");
+        user.setPassword("112233");
+        Role role = roleDao.getRoleByType("leader");
+        user.setRole(role);
+        dao.createNewUser(user);
+    }*/
 }

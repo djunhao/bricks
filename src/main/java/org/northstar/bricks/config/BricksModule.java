@@ -5,10 +5,7 @@ import com.google.sitebricks.SitebricksModule;
 import org.northstar.bricks.components.GuestbookNavigation;
 import org.northstar.bricks.components.NewCard;
 import org.northstar.bricks.components.Pager;
-import org.northstar.bricks.dao.EntryDao;
-import org.northstar.bricks.dao.OrientUserDao;
-import org.northstar.bricks.dao.SimpleEntryDao;
-import org.northstar.bricks.dao.UserDao;
+import org.northstar.bricks.dao.*;
 import org.northstar.bricks.pages.*;
 import org.northstar.bricks.services.Hello;
 import org.northstar.bricks.services.LoginAction;
@@ -28,6 +25,7 @@ public class BricksModule extends SitebricksModule {
         //bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
         bind(EntryDao.class).to(SimpleEntryDao.class);
         bind(UserDao.class).annotatedWith(Names.named("orientdb")).to(OrientUserDao.class);
+        bind(RoleDao.class).to(OrientRoleDao.class);
 
         at("static/default.css").export("bricks.css");
         at("static/pager.css").export("pager.css");

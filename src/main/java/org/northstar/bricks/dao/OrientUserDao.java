@@ -2,16 +2,20 @@ package org.northstar.bricks.dao;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.orientechnologies.orient.core.id.ORID;
+import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.config.BricksConstants;
 import org.northstar.bricks.domain.User;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
-@Singleton
+//@Singleton
 public class OrientUserDao implements UserDao {
     @Inject
     private Logger logger;
@@ -43,11 +47,8 @@ public class OrientUserDao implements UserDao {
     }
 
     public List<User> findPagedUsers() {
-        OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User limit 5");
+        final OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User limit 5");
         List<User> userList = database.query(query);
-        for (List<User> result = database.query(query); !result.isEmpty(); result = database.query(query)) {
-            userList = result;
-        }
         //database.close();
         return userList;
     }
