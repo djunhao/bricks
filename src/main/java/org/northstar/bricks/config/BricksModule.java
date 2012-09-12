@@ -25,6 +25,7 @@ public class BricksModule extends SitebricksModule {
         //bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
         bind(EntryDao.class).to(SimpleEntryDao.class);
         bind(UserDao.class).annotatedWith(Names.named("orientdb")).to(OrientUserDao.class);
+        bind(UserDao.class).to(OrientUserDao.class);
         bind(RoleDao.class).to(OrientRoleDao.class);
 
         at("static/default.css").export("bricks.css");

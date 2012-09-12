@@ -11,5 +11,5 @@ import org.northstar.bricks.domain.Role;
  */
 public interface RoleDao {
     Role getRoleById(Object rid);
-    Role getRoleByType(String type);
+    Role getRoleByName(String name);
 }

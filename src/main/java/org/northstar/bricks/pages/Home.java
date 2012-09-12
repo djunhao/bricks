@@ -10,7 +10,9 @@ import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.domain.Role;
 import org.northstar.bricks.domain.User;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Decorated
 public class Home extends Decorator {
@@ -19,11 +21,13 @@ public class Home extends Decorator {
     private int page;
     private Integer maxPerPage = 5;
     private final UserDao dao;
+   /* @Inject
+    private RoleDao roleDao;*/
     @Inject
-    private RoleDao roleDao;
+    private Logger logger;
 
     @Inject
-    Home(@Named("orientdb") UserDao dao) {
+    Home(UserDao dao) {
         this.dao = dao;
     }
 
@@ -36,7 +40,12 @@ public class Home extends Decorator {
     }
 
     public List<User> getPagedUsers() {
-        return dao.findPagedUsers();
+        long startIndex = 0;
+        if(page < 1) {
+            page = 1;
+        }
+        startIndex = (page - 1) * maxPerPage - 1;
+        return dao.findPagedUsers(startIndex, maxPerPage);
     }
 
     @Override
@@ -52,13 +61,14 @@ public class Home extends Decorator {
         int userCounts = dao.getUserCounts();
         return (userCounts - 1) / maxPerPage + 1;
     }
-/*
-    @Get
+    /*@Get
     void load(){
-        User user = new User();
-        user.setName("ljx");
-        user.setPassword("112233");
-        Role role = roleDao.getRoleByType("leader");
+        User user =
+        Role role = roleDao.getRoleByName("leader");
+        logger.info("get role from: " + role.getName());
+        Role role = new Role();
+        role.setName("leader");
+        role.setMode((byte) 0);
         user.setRole(role);
         dao.createNewUser(user);
     }*/

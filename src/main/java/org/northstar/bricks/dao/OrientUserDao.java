@@ -10,21 +10,23 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.config.BricksConstants;
 import org.northstar.bricks.domain.User;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
-//@Singleton
+@Singleton
 public class OrientUserDao implements UserDao {
     @Inject
     private Logger logger;
 
     private final OObjectDatabaseTx database;
+   /* = OObjectDatabasePool.global().acquire(
+            BricksConstants.ORIENTDB_URL,
+            BricksConstants.ORIENTDB_USER,
+            BricksConstants.ORIENTDB_PASSWORD);*/
 
     public OrientUserDao() {
-        database = OObjectDatabasePool.global().acquire(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
-        database.getEntityManager().registerEntityClasses("org.northstar.bricks.domain");
+        database = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL).open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        database.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
     }
 
     public void createNewUser(User user) {
@@ -34,37 +36,45 @@ public class OrientUserDao implements UserDao {
     }
 
     public int getUserCounts() {
-        logger.info("getUserCounts() executed...");
         long count = database.countClass(User.class);
-        //database.close();
+        logger.info("User counts is: " + count);
         return (int) count;
+        //database.close();
     }
 
     public List<User> findAll() {
         List<User> result = database.query(new OSQLSynchQuery<User>("select from User"));
-        //database.close();
         return result;
+        //database.close();
     }
 
-    public List<User> findPagedUsers() {
-        final OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User limit 5");
-        List<User> userList = database.query(query);
-        //database.close();
+    public List<User> findPagedUsers(long startIndex, int maxResults) {
+        OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User where @rid > ? limit " + maxResults);
+
+        int clusterId = database.getClusterIdByName(User.class.getSimpleName());
+        ORID startRid = new ORecordId(clusterId, startIndex);
+        //List<User> userList = database.command(query).execute(startRid);
+        List<User> userList = database.query(query, startRid);
+
+        logger.info("get RID: " + startRid);
+
         return userList;
     }
 
     public List<User> authenticated(String name, String password) {
         /*OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User where name=:name and password=:password");
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("name", name);
-        params.put("password", password);
-        List<User> result = db.command(query).execute(params);*/
-        OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select distinct(name) from User where name = ? and password = ?");
+     Map<String, Object> params = new HashMap<String, Object>();
+     params.put("name", name);
+     params.put("password", password);
+     List<User> result = db.command(query).execute(params);*/
+
+        OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User where name = ? and password = ?");
         List<User> result = database.command(query).execute(name, password);
         for (User u : result) {
             logger.info("User Rid is:" + u.getRid() + " and name is:" + u.getName());
         }
-        //database.close();
         return result;
+        //database.close();
     }
 }
+
