@@ -27,11 +27,11 @@
 			<artifactId>sitebricks</artifactId>
 			<version>${sitebricks.version}</version>
 		</dependency>
-		<!--<dependency>
+		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-persist</artifactId>
 			<version>${guice.version}</version>
-		</dependency>-->
+		</dependency>
         <dependency>
             <groupId>com.orientechnologies</groupId>
             <artifactId>orientdb-object</artifactId>

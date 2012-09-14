@@ -5,7 +5,6 @@ import com.google.inject.Singleton;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.config.BricksConstants;
 import org.northstar.bricks.domain.User;
@@ -18,14 +17,15 @@ public class OrientUserDao implements UserDao {
     @Inject
     private Logger logger;
 
-    private final OObjectDatabaseTx database;
+    @Inject
+    private OObjectDatabaseTx database;
    /* = OObjectDatabasePool.global().acquire(
             BricksConstants.ORIENTDB_URL,
             BricksConstants.ORIENTDB_USER,
             BricksConstants.ORIENTDB_PASSWORD);*/
 
     public OrientUserDao() {
-        database = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL).open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        //database = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL).open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
         database.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
     }
 
@@ -38,8 +38,8 @@ public class OrientUserDao implements UserDao {
     public int getUserCounts() {
         long count = database.countClass(User.class);
         logger.info("User counts is: " + count);
-        return (int) count;
         //database.close();
+        return (int) count;
     }
 
     public List<User> findAll() {
@@ -57,7 +57,7 @@ public class OrientUserDao implements UserDao {
         List<User> userList = database.query(query, startRid);
 
         logger.info("get RID: " + startRid);
-
+        //database.close();
         return userList;
     }
 

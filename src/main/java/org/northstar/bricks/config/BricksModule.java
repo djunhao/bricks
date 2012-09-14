@@ -1,11 +1,16 @@
 package org.northstar.bricks.config;
 
 import com.google.inject.name.Names;
+import com.google.inject.persist.PersistFilter;
+import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.sitebricks.SitebricksModule;
+import com.google.sitebricks.SitebricksServletModule;
 import org.northstar.bricks.components.GuestbookNavigation;
 import org.northstar.bricks.components.NewCard;
 import org.northstar.bricks.components.Pager;
 import org.northstar.bricks.dao.*;
+import org.northstar.bricks.orientdb.OrientDBFilter;
+import org.northstar.bricks.orientdb.OrientDBModule;
 import org.northstar.bricks.pages.*;
 import org.northstar.bricks.services.Hello;
 import org.northstar.bricks.services.LoginAction;
@@ -20,11 +25,12 @@ public class BricksModule extends SitebricksModule {
     @Override
     protected void configureSitebricks() {
 
-        //install(new JpaPersistModule("myFirstJpaUnit").addFinder(UserFinder.class));
+        //install(new JpaPersistModule("myFirstJpaUnit"));
+        install(new OrientDBModule(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD));
 
         //bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
         bind(EntryDao.class).to(SimpleEntryDao.class);
-        bind(UserDao.class).annotatedWith(Names.named("orientdb")).to(OrientUserDao.class);
+        //bind(UserDao.class).annotatedWith(Names.named("jpa")).to(OrientJpaUserDao.class);
         bind(UserDao.class).to(OrientUserDao.class);
         bind(RoleDao.class).to(OrientRoleDao.class);
 
@@ -46,15 +52,14 @@ public class BricksModule extends SitebricksModule {
         embed(GuestbookNavigation.class).as("navigation");
         embed(Pager.class).as("Pager");
     }
-/*
     @Override
     protected SitebricksServletModule servletModule() {
         return new SitebricksServletModule() {
             @Override
             protected void configurePreFilters() {
-                filter("*//*").through(PersistFilter.class);
+                filter("/*").through(OrientDBFilter.class);
             }
         };
-    }*/
+    }
 
 }

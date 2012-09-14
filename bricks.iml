@@ -365,6 +365,15 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../local_repo/com/google/inject/extensions/guice-persist/3.0/guice-persist-3.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
           <root url="jar://$MODULE_DIR$/../../local_repo/com/orientechnologies/orientdb-enterprise/1.1.0/orientdb-enterprise-1.1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -583,6 +592,11 @@
       <attribute name="method" value="1" />
       <attribute name="URI" value="/WEB-INF/lib/pojo-mbean-1.1.jar" />
       <url>jar://$MODULE_DIR$/../../local_repo/org/softee/pojo-mbean/1.1/pojo-mbean-1.1.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib/guice-persist-3.0.jar" />
+      <url>jar://$MODULE_DIR$/../../local_repo/com/google/inject/extensions/guice-persist/3.0/guice-persist-3.0.jar!/</url>
     </containerElement>
     <containerElement type="library" level="module">
       <attribute name="method" value="1" />
