@@ -16,7 +16,7 @@ public interface UserDao {
 
     int getUserCounts();
 
-    List<User> findAll();
+    List findAll();
 
     List<User> findPagedUsers(long startIndex, int maxResults);
 

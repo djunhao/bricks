@@ -46,6 +46,7 @@ public class Home extends Decorator {
         }
         startIndex = (page - 1) * maxPerPage - 1;
         return dao.findPagedUsers(startIndex, maxPerPage);
+        //return dao.findAll();
     }
 
     @Override

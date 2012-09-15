@@ -9,16 +9,17 @@
 		transaction-type="RESOURCE_LOCAL">
 		<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
 		<!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
-		<provider>com.objectdb.jpa.Provider</provider>
+		<provider>com.orientechnologies.orient.object.jpa.OJPAPersistenceProvider</provider>
 		<!-- JPA entities must be registered here -->
 		<class>org.northstar.bricks.domain.User</class>
+        <class>org.northstar.bricks.domain.Role</class>
 		<properties>
 			<!-- <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" 
 				/> <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" /> 
 				<property name="javax.persistence.jdbc.username" value="sa" /> <property 
 				name="eclipselink.ddl-generation" value="create-tables" /> <property name="eclipselink.logging.level" 
 				value="fine" /> -->
-			<property name="javax.persistence.jdbc.url" value="my.odb" />
+			<property name="javax.persistence.jdbc.url" value="remote:localhost/bricks" />
 			 <!--<property name="javax.persistence.jdbc.url"
                  value="objectdb://localhost/my.odb"/>-->
 			<property name="javax.persistence.jdbc.user" value="admin" />
