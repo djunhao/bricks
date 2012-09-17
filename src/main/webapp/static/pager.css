@@ -2,6 +2,7 @@
 p.pager_container {
     /*position: absolute;
     bottom: 90px;*/
+    margin-top: 10px;
 }
 
 .pager_container .pager {

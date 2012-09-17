@@ -34,8 +34,7 @@
     }
     function showErr(data) {
         if(data.info=="success"){
-            /*window.location="flow";*/
-            history.back();
+            window.location = "/";
         } else {
             $('#msg').html(data.info);
             $('#msg').show();
