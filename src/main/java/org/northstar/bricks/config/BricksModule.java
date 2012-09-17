@@ -20,7 +20,7 @@ public class BricksModule extends SitebricksModule {
     protected void configureSitebricks() {
 
         //install(new JpaPersistModule("myFirstJpaUnit"));
-        //install(new OrientDBModule(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD));
+        //install(new OrientdbModule(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD));
 
         //bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
         bind(EntryDao.class).to(SimpleEntryDao.class);
@@ -37,7 +37,7 @@ public class BricksModule extends SitebricksModule {
         at("/login").show(Login.class);
         at("/hello").show(Hello.class);
         at("/count").show(Count.class);
-        at("/user/:name").show(EditUser.class);
+        at("/useradmin/edit/:id").show(EditUser.class);
 
         at("/loginAction").serve(LoginAction.class);
         at("/logout").serve(Logout.class);
@@ -51,7 +51,7 @@ public class BricksModule extends SitebricksModule {
         return new SitebricksServletModule() {
             @Override
             protected void configurePreFilters() {
-                filter("*//*").through(OrientDBFilter.class);
+                filter("*//*").through(OrientdbFilter.class);
             }
         };
     }*/

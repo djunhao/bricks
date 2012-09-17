@@ -6,6 +6,7 @@ import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
+import com.orientechnologies.orient.core.tx.OTransaction;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.config.BricksConstants;
 import org.northstar.bricks.domain.User;
@@ -19,32 +20,33 @@ public class OrientUserDao implements UserDao {
     private Logger logger;
 
     private OObjectDatabaseTx database;
-    /* = OObjectDatabasePool.global().acquire(
-    BricksConstants.ORIENTDB_URL,
-    BricksConstants.ORIENTDB_USER,
-    BricksConstants.ORIENTDB_PASSWORD);*/
 
     public OrientUserDao() {
-        database = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL).open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
-        database.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
     }
 
-    public void persist(User user) {
-        database.newInstance(User.class);
-        database.save(user);
-        //database.close();
+    public void saveOrUpdate(User user) {
+        if (database == null) {
+            database = getConnection();
+        }
+        try {
+            database.begin(OTransaction.TXTYPE.OPTIMISTIC);
+            database.newInstance(User.class);
+            database.save(user);
+            database.commit();
+        } catch (Exception e) {
+            database.rollback();
+        } /*finally {
+            if (database != null) {
+                database.close();
+            }
+        }*/
     }
 
     public int getUserCounts() {
+        database = getConnection();
         long count = database.countClass(User.class);
-        logger.info("User counts is: " + count);
         //database.close();
         return (int) count;
-    }
-
-    public User findById(Object id) {
-        ORecordId rid = (ORecordId) id;
-        return database.load(rid);
     }
 
     public User findByName(String name) {
@@ -60,22 +62,24 @@ public class OrientUserDao implements UserDao {
     }
 
     public List<User> findAll() {
+        database = getConnection();
         String queryString = "select from User";
-        OQuery<User> command = new OSQLSynchQuery<>(queryString);
+        OQuery<User> command = new OSQLSynchQuery<User>(queryString);
         List<User> result = database.query(command);
-        return result;
         //database.close();
+        return result;
     }
 
     public List<User> findPagedUsers(long startIndex, int maxResults) {
+        database = getConnection();
         String queryString = "select from User where @rid > ? limit " + maxResults;
-        OQuery<User> command = new OSQLSynchQuery<>(queryString);
+        OQuery<User> command = new OSQLSynchQuery<User>(queryString);
         int clusterId = database.getClusterIdByName(User.class.getSimpleName());
         ORID startRid = new ORecordId(clusterId, startIndex);
         //List<User> userList = database.command(query).execute(startRid);
-        List<User> result = database.query(command, startRid);
+        List<User> userList = database.query(command, startRid);
         //database.close();
-        return result;
+        return userList;
     }
 
     public List<User> authenticated(String name, String password) {
@@ -86,11 +90,32 @@ public class OrientUserDao implements UserDao {
      params.put("name", name);
      params.put("password", password);
      List<User> result = db.command(query).execute(params);*/
+        database = getConnection();
         String queryString = "select from User where name = ? and password = ?";
-        OQuery<User> command = new OSQLSynchQuery<>(queryString);
-        List<User> result = database.query(command, name, password);
-        return result;
+        OQuery<User> command =  new OSQLSynchQuery<User>(queryString);
+        List<User> result = database.command(command).execute(name, password);
+        /*User user = new User();
+        for (User u : result) {
+            user = u;
+        }*/
         //database.close();
+        return result;
+    }
+
+    public User findById(Long id) {
+        database = getConnection();
+        int clusterId = database.getClusterIdByName(User.class.getSimpleName());
+        ORID rid = new ORecordId(clusterId, id);
+        User user = database.load(rid);
+        //database.close();
+        return user;
+    }
+
+    final OObjectDatabaseTx getConnection() {
+        final OObjectDatabaseTx databaseTx = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL);
+        databaseTx.open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        databaseTx.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
+        return databaseTx;
     }
 }
 

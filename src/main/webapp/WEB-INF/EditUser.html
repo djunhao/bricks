@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>editing user</title>
-    <meta charset="UTF-8"/>
+    <title>user edit</title>
 </head>
 <body>
-<form method="post">
-    name:<input type="text" name="user.name" value="${user.name}"/><br/>
-    password:<input type="password" name="user.password" value="${user.password}"/><br/>
- <!--   role:<input type="text" name="user.role.name" value="${user.role.name}"/><br/>-->
-    <input type="submit" value="EDIT">
+<form action="/useradmin/edit/${user.id}" method="post">
+    <table>
+        <thead>
+        <tr class="title">
+            <th>用户名</th>
+            <th>密码</th>
+            <th>权限</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input type="text" name="user.name" value="${user.name}"/></td>
+            <td><input type="password" name="user.password" value="${user.password}"/></td>
+            <td><input type="text" name="user.role.name" value="${role.name}"/></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3"><input type="submit" value="更新用户"/></td>
+        </tr>
+        </tfoot>
+    </table>
 </form>
-
 </body>
 </html>

@@ -17,11 +17,11 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 @Singleton
-public class OrientDBFilter implements Filter {
+public class OrientdbFilter implements Filter {
     private final PersistService persistService;
 
     @Inject
-    public OrientDBFilter(PersistService persistService) {
+    public OrientdbFilter(PersistService persistService) {
         this.persistService = persistService;
     }
     public void init(FilterConfig filterConfig) throws ServletException {

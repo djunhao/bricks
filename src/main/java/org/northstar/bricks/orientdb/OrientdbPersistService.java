@@ -9,28 +9,27 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
  * Time: 上午12:27
  * To change this template use File | Settings | File Templates.
  */
-public class OrientDBPersistService implements PersistService {
+public class OrientdbPersistService implements PersistService {
     private final String url;
     private final String user;
     private final String password;
     private final OObjectDatabaseTx managedDatabase;
     private volatile OObjectDatabaseTx localDatabase;
 
-    public OrientDBPersistService(String url, String user, String password) {
+    public OrientdbPersistService(String url, String user, String password) {
         this.url = url;
         this.user = user;
         this.password = password;
         this.managedDatabase = null;
     }
 
-    public OrientDBPersistService(OObjectDatabaseTx database) {
+    public OrientdbPersistService(OObjectDatabaseTx database) {
         this.url = null;
         this.user = null;
         this.password = null;
         this.managedDatabase = database;
     }
 
-    @Override
     public synchronized boolean start() {
         if (null != managedDatabase || null != localDatabase) {
             return false;
@@ -39,7 +38,6 @@ public class OrientDBPersistService implements PersistService {
         return true;
     }
 
-    @Override
     public synchronized void stop() {
         if (null != localDatabase) {
             localDatabase.close();

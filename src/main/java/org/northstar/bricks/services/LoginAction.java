@@ -3,7 +3,9 @@ package org.northstar.bricks.services;
 import com.google.inject.Inject;
 import com.google.sitebricks.client.transport.Json;
 import com.google.sitebricks.headless.Reply;
+import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Post;
+import org.northstar.bricks.auth.CurrentUser;
 import org.northstar.bricks.domain.User;
 
 import java.util.HashMap;
@@ -20,12 +22,15 @@ public class LoginAction {
 
     private String name;
     private String password;
+    private String lastUrl;
 
-    private User login;
+    private CurrentUser login;
     private Authentication auth;
+    @Inject
+    private Request request;
 
     @Inject
-    public LoginAction(User login, Authentication auth) {
+    public LoginAction(CurrentUser login, Authentication auth) {
         this.login = login;
         this.auth = auth;
     }
@@ -46,12 +51,21 @@ public class LoginAction {
         this.password = password;
     }
 
+    public String getLastUrl() {
+        return lastUrl;
+    }
+
+    public void setLastUrl(String lastUrl) {
+        this.lastUrl = lastUrl;
+    }
+
     @Post
     public Reply login() {
         System.out.println("loginAction excuted ...");
         login = auth.authenticate(name, password);
         Map<String, String> result = new HashMap<String, String>();
         if (login.isAuthenticated()) {
+            //return Reply.saying().redirect(lastUrl);
             result.put("info", "success");
         } else {
             result.put("info", "您输入的用户名或密码不正确！");

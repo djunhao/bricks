@@ -9,11 +9,28 @@
 
 <div class="post">
     <h1 class="title">Examples</h1>
+
     <div class="entry">
-            <ul>
-                @Repeat(items=pagedUsers, var="user")
-                <li><a href="user/${user.name}">${user.name}</a> - ${user.role.name}</li>
-            </ul>
+        <table>
+            <!--<caption>用户列表</caption>-->
+            <thead>
+            <tr class="title">
+                <th>序号</th>
+                <th>用户名</th>
+                <th>权限</th>
+            </tr>
+            </thead>
+            <tbody>
+            @Repeat(items=pagedUsers, var="user")
+            <tr>
+                <td>${user.id}</td>
+                <td><a href="useradmin/edit/${user.id}">${user.name}</a></td>
+                <td>${user.role.name}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
     </div>
     @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
     <div>pager here</div>

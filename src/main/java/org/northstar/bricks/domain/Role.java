@@ -17,7 +17,6 @@ public class Role {
     private byte mode;
 
     public Role() {
-
     }
 
     public Object getRid() {
@@ -38,5 +37,27 @@ public class Role {
 
     public void setMode(byte mode) {
         this.mode = mode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Role role = (Role) o;
+
+        if (mode != role.mode) return false;
+        if (rid != null ? !rid.equals(role.rid) : role.rid != null) return false;
+        if (!name.equals(role.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = rid != null ? rid.hashCode() : 0;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (int) mode;
+        return result;
     }
 }

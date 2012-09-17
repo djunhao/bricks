@@ -1,6 +1,5 @@
 package org.northstar.bricks.orientdb;
 
-import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 
 /**
@@ -10,21 +9,21 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
  * Time: 上午1:07
  * To change this template use File | Settings | File Templates.
  */
-public class OrientDBModule extends PersistModule {
-    private final OrientDBPersistService persistService;
-    private final OrientDBProvider dbProvider;
+public class OrientdbModule extends PersistModule {
+    private final OrientdbPersistService persistService;
+    private final OrientdbProvider dbProvider;
 
-    public OrientDBModule(String url, String user, String password) {
-        this(new OrientDBPersistService(url, user, password));
+    public OrientdbModule(String url, String user, String password) {
+        this(new OrientdbPersistService(url, user, password));
     }
 
-    public OrientDBModule(OObjectDatabaseTx managedDatabase) {
-         this(new OrientDBPersistService(managedDatabase));
+    public OrientdbModule(OObjectDatabaseTx managedDatabase) {
+         this(new OrientdbPersistService(managedDatabase));
     }
 
-    public OrientDBModule(OrientDBPersistService persistService) {
+    public OrientdbModule(OrientdbPersistService persistService) {
         this.persistService = persistService;
-        this.dbProvider = new OrientDBProvider(persistService);
+        this.dbProvider = new OrientdbProvider(persistService);
     }
     @Override
     protected void configurePersistence() {

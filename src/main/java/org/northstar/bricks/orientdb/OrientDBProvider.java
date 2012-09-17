@@ -10,10 +10,10 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
  * Time: 上午1:00
  * To change this template use File | Settings | File Templates.
  */
-public class OrientDBProvider implements Provider<OObjectDatabaseTx> {
-    private final OrientDBPersistService orientDBPersistService;
+public class OrientdbProvider implements Provider<OObjectDatabaseTx> {
+    private final OrientdbPersistService orientDBPersistService;
 
-    public OrientDBProvider(OrientDBPersistService orientDBPersistService) {
+    public OrientdbProvider(OrientdbPersistService orientDBPersistService) {
         this.orientDBPersistService = orientDBPersistService;
     }
 
