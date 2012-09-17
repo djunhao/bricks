@@ -12,7 +12,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface UserDao {
-    void createNewUser(User user);
+    void saveOrUpdate(User user);
 
     int getUserCounts();
 
@@ -21,4 +21,6 @@ public interface UserDao {
     List<User> findPagedUsers(long startIndex, int maxResults);
 
     List<User> authenticated(String name, String password);
+
+    User findById(Long id);
 }

@@ -3,6 +3,7 @@ package org.northstar.bricks.services;
 import com.google.inject.Inject;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Get;
+import org.northstar.bricks.auth.CurrentUser;
 import org.northstar.bricks.domain.User;
 
 /**
@@ -13,16 +14,16 @@ import org.northstar.bricks.domain.User;
  * To change this template use File | Settings | File Templates.
  */
 public class Logout {
-    private final User user;
+    private final CurrentUser currentUser;
 
     @Inject
-    protected Logout(final User user) {
-        this.user = user;
+    protected Logout(final CurrentUser currentUser) {
+        this.currentUser = currentUser;
     }
 
     @Get
     public Reply logout() {
-        user.logout();
+        currentUser.logout();
         return Reply.saying().redirect("/bricks");
     }
 }

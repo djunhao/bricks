@@ -2,10 +2,8 @@ package org.northstar.bricks.config;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.orientechnologies.orient.object.db.OObjectDatabasePool;
-import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
-import org.northstar.bricks.services.PersistService;
-import org.northstar.bricks.services.UnitOfWork;
+import org.northstar.bricks.orientdb.PersistService;
+import org.northstar.bricks.orientdb.UnitOfWork;
 
 import javax.servlet.*;
 import java.io.IOException;

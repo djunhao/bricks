@@ -1,7 +1,7 @@
 /* Pager */
 p.pager_container {
-    position: absolute;
-    bottom: 90px;
+    /*position: absolute;
+    bottom: 90px;*/
 }
 
 .pager_container .pager {

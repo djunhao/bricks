@@ -1,15 +1,12 @@
 package org.northstar.bricks.domain;
 
 import com.google.inject.servlet.SessionScoped;
-import net.jcip.annotations.ThreadSafe;
 
 import javax.persistence.Id;
 
-@SessionScoped
-@ThreadSafe
 public class User {
     @Id
-    private Object rid;
+    private Long id;
 
     private String name;
     private String password;
@@ -23,8 +20,8 @@ public class User {
         this.role = role;
     }
 
-    public Object getRid() {
-        return rid;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -43,14 +40,6 @@ public class User {
         this.password = password;
     }
 
-    public boolean isAuthenticated() {
-        return this.name != null;
-    }
-
-    public void logout() {
-        this.name = null;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,7 +47,7 @@ public class User {
 
         User user = (User) o;
 
-        if (!rid.equals(user.rid)) return false;
+        if (!id.equals(user.id)) return false;
         if (!name.equals(user.name)) return false;
         if (!password.equals(user.password)) return false;
 
@@ -67,7 +56,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = rid.hashCode();
+        int result = id.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + password.hashCode();
         return result;

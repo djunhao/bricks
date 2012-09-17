@@ -3,6 +3,7 @@ package org.northstar.bricks.components;
 import com.google.inject.Inject;
 import com.google.sitebricks.Show;
 import com.google.sitebricks.http.Get;
+import org.northstar.bricks.auth.CurrentUser;
 import org.northstar.bricks.domain.User;
 
 import java.util.Arrays;
@@ -12,7 +13,7 @@ import java.util.List;
 public abstract class Decorator {
     private final List<String> PAGES;
     @Inject
-    private User user;
+    private CurrentUser currentUser;
     private boolean logout;
 
     public boolean isLogout() {
@@ -32,18 +33,18 @@ public abstract class Decorator {
     }
 
     public boolean isUserExists() {
-        return user.isAuthenticated();
+        return currentUser.isAuthenticated();
     }
 
     public abstract String getPageTitle();
 
     public User getLogedUser() {
-        return user;
+        return currentUser.getUser();
     }
 
     @Get
     public void logout() {
         if (logout)
-            user.logout();
+            currentUser.logout();
     }
 }

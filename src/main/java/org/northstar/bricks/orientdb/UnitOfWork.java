@@ -1,4 +1,4 @@
-package org.northstar.bricks.services;
+package org.northstar.bricks.orientdb;
 
 /**
  * Created with IntelliJ IDEA.

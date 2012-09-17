@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.sitebricks.client.transport.Json;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Post;
+import org.northstar.bricks.auth.CurrentUser;
 import org.northstar.bricks.domain.User;
 
 import java.util.HashMap;
@@ -21,11 +22,11 @@ public class LoginAction {
     private String name;
     private String password;
 
-    private User login;
+    private CurrentUser login;
     private Authentication auth;
 
     @Inject
-    public LoginAction(User login, Authentication auth) {
+    public LoginAction(CurrentUser login, Authentication auth) {
         this.login = login;
         this.auth = auth;
     }
