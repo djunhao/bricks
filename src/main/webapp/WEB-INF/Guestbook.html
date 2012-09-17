@@ -9,7 +9,7 @@
         <h2>Welcome to my guestbook, the time is now ${time}.</h2>
         <ol>
             @Repeat(items=entries, var="entry")
-            <li><a href="/guestbook/${entry.id}">${entry.name} on ${entry.date}</a></li>
+            <li><a href="/guestbook/edit/${entry.id}">${entry.name} on ${entry.date}</a></li>
         </ol>
         <p></p>
 

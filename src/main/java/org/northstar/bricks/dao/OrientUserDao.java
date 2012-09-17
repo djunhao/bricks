@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.config.BricksConstants;
@@ -17,19 +18,18 @@ public class OrientUserDao implements UserDao {
     @Inject
     private Logger logger;
 
-    @Inject
     private OObjectDatabaseTx database;
-   /* = OObjectDatabasePool.global().acquire(
-            BricksConstants.ORIENTDB_URL,
-            BricksConstants.ORIENTDB_USER,
-            BricksConstants.ORIENTDB_PASSWORD);*/
+    /* = OObjectDatabasePool.global().acquire(
+    BricksConstants.ORIENTDB_URL,
+    BricksConstants.ORIENTDB_USER,
+    BricksConstants.ORIENTDB_PASSWORD);*/
 
     public OrientUserDao() {
-        //database = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL).open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        database = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL).open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
         database.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
     }
 
-    public void createNewUser(User user) {
+    public void persist(User user) {
         database.newInstance(User.class);
         database.save(user);
         //database.close();
@@ -42,37 +42,53 @@ public class OrientUserDao implements UserDao {
         return (int) count;
     }
 
+    public User findById(Object id) {
+        ORecordId rid = (ORecordId) id;
+        return database.load(rid);
+    }
+
+    public User findByName(String name) {
+        String queryString = "select from User where name = ?";
+        OQuery<User> command = new OSQLSynchQuery<>(queryString);
+
+        List<User> result = database.query(command, name);
+        User user = new User();
+        for (User u : result) {
+            user = u;
+        }
+        return user;
+    }
+
     public List<User> findAll() {
-        List<User> result = database.query(new OSQLSynchQuery<User>("select from User"));
+        String queryString = "select from User";
+        OQuery<User> command = new OSQLSynchQuery<>(queryString);
+        List<User> result = database.query(command);
         return result;
         //database.close();
     }
 
     public List<User> findPagedUsers(long startIndex, int maxResults) {
-        OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User where @rid > ? limit " + maxResults);
-
+        String queryString = "select from User where @rid > ? limit " + maxResults;
+        OQuery<User> command = new OSQLSynchQuery<>(queryString);
         int clusterId = database.getClusterIdByName(User.class.getSimpleName());
         ORID startRid = new ORecordId(clusterId, startIndex);
         //List<User> userList = database.command(query).execute(startRid);
-        List<User> userList = database.query(query, startRid);
-
-        logger.info("get RID: " + startRid);
+        List<User> result = database.query(command, startRid);
         //database.close();
-        return userList;
+        return result;
     }
 
     public List<User> authenticated(String name, String password) {
-        /*OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User where name=:name and password=:password");
+        /*
+        //for learn
+        OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User where name=:name and password=:password");
      Map<String, Object> params = new HashMap<String, Object>();
      params.put("name", name);
      params.put("password", password);
      List<User> result = db.command(query).execute(params);*/
-
-        OSQLSynchQuery<User> query = new OSQLSynchQuery<User>("select from User where name = ? and password = ?");
-        List<User> result = database.command(query).execute(name, password);
-        for (User u : result) {
-            logger.info("User Rid is:" + u.getRid() + " and name is:" + u.getName());
-        }
+        String queryString = "select from User where name = ? and password = ?";
+        OQuery<User> command = new OSQLSynchQuery<>(queryString);
+        List<User> result = database.query(command, name, password);
         return result;
         //database.close();
     }

@@ -19,7 +19,7 @@ public class Authentication {
     private final UserDao dao;
 
     @Inject
-    public Authentication(@Named("orientdb") UserDao dao, User user) {
+    public Authentication(UserDao dao, User user) {
         this.dao = dao;
         this.user = user;
     }

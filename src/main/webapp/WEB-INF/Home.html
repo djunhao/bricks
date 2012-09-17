@@ -12,7 +12,7 @@
     <div class="entry">
             <ul>
                 @Repeat(items=pagedUsers, var="user")
-                <li>${user.name} - ${user.role.name}</li>
+                <li><a href="user/${user.name}">${user.name}</a> - ${user.role.name}</li>
             </ul>
     </div>
     @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
