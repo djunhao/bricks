@@ -15,9 +15,7 @@ import org.northstar.bricks.domain.Entry;
  *
  * @author David Linsin - linsin@synyx.de
  */
-@Decorated
-@Singleton
-public class GuestbookEntry extends Decorator {
+public class GuestbookEntry {
 
     private Entry entry;
     @Inject
@@ -32,6 +30,10 @@ public class GuestbookEntry extends Decorator {
         return entry;
     }
 
+    public void setEntry(Entry entry) {
+        this.entry = entry;
+    }
+
     @Post
     public Guestbook delete(@Named("id") String argId) {
         load(argId);
@@ -39,7 +41,6 @@ public class GuestbookEntry extends Decorator {
         return new Guestbook();
     }
 
-    @Override
     public String getPageTitle() {
         return "Entry #" + entry.getId();
     }

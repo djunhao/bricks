@@ -13,7 +13,9 @@ import java.util.List;
  */
 public interface UserDao {
 
-    void saveOrUpdate(User user);
+    void save(User user);
+
+    void update(User user, Long id);
 
     int getUserCounts();
 

@@ -2,33 +2,109 @@
 <html>
 <head>
     <title>user edit</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/static/default.css"/>
 </head>
 <body>
-<form action="/useradmin/edit/${user.id}" method="post">
-    <table>
-        <thead>
-        <tr class="title">
-            <th>用户名</th>
-            <th>密码</th>
-            <th>权限</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><input type="text" name="user.name" value="${user.name}"/></td>
-            <td><input type="password" name="user.password" value="${user.password}"/></td>
-            <td><select>
-                @Repeat(items=roleList, var="role")
-                <option value="${role.name}">${role.name}</option>
-            </select></td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3"><input type="submit" value="更新用户"/></td>
-        </tr>
-        </tfoot>
-    </table>
-</form>
+<div id="wrapper">
+    <header id="header">
+        <div id="logo">
+            <h1>龙城危险化学品监管</h1>
+            <h2>石龙镇危险化学品安全监管信息化管理系统</h2>
+        </div>
+        <div id="search">
+            <form onsubmit="javascript:onSearch();">
+                <input type="text" name="item" id="s"/>
+                <input type="button" id="x" value=" 查 找 "/>
+            </form>
+        </div>
+
+    </header>
+    <nav id="menu">
+        <ul>
+            <li>
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="/guestbook">留言簿</a>
+            </li>
+            <li>
+                <a href="/useradmin/create">创建新用户</a>
+            </li>
+            <li>
+                <a href="/hello">测试页面</a>
+            </li>
+            <li>
+                <a href="/about">关于</a>
+            </li>
+        </ul>
+    </nav>
+    <section id="page">
+        <!-- start contents -->
+        <div id="content">
+            <form action="/useradmin/edit/${user.id}" method="post">
+                <table>
+                    <thead>
+                    <tr class="title">
+                        <th>用户名</th>
+                        <th>密码</th>
+                        <th>权限</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="text" name="user.name" value="${user.name}"/></td>
+                        <td><input type="password" name="user.password" value="${user.password}"/></td>
+                        <td><select  name="role.name">
+                            @Repeat(items=roleList, var="role")
+                            <option value="${role.name}">${role.name}</option>
+                        </select></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="3"><input type="submit" value="更新用户"/></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+
+        <nav id="sidebar">
+            <ul>
+                @ShowIf(userExists)
+                <li>
+                    <h2>USERINFO</h2>
+                    <ul>
+                        <li>欢迎您，${currentUser.user.name}！</li>
+                        <li><a href="/?logout=true">注销</a></li>
+                    </ul>
+
+                </li>
+                <li>
+                    <h2>OTHER</h2>
+                    <ul>
+                        <li>
+                            <a href="http://www.benmccann.com/dev-blog/">Blog</a>
+                        </li>
+                        <li>
+                            <a href="http://www.benmccann.com/">Homepage</a>
+                        </li>
+                        <li>
+                            <a href="http://angel.co/ben-mccann/">AngelList</a>
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <footer id="footer">
+        <div id="legal">COPYRIGHT &COPY;
+            2012 NORTHSTAR STUDIO. ALL RIGHTS RESERVED. DESIGN BY NORTHSTAR.
+        </div>
+    </footer>
+</div>
 </body>
 </html>

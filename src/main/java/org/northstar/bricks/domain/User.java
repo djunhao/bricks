@@ -3,9 +3,13 @@ package org.northstar.bricks.domain;
 import com.google.inject.servlet.SessionScoped;
 import com.orientechnologies.orient.core.annotation.OId;
 
+import javax.persistence.Id;
+
 public class User {
-    @OId
+    @Id
     private Long id;
+    /*@OId
+    private Object rid;*/
 
     private String name;
     private String password;

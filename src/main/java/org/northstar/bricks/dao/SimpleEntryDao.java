@@ -15,6 +15,7 @@
 
 package org.northstar.bricks.dao;
 
+import com.google.inject.Singleton;
 import org.northstar.bricks.domain.Entry;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import java.util.List;
  *
  * @author David Linsin - linsin@synyx.de
  */
+@Singleton
 public class SimpleEntryDao implements EntryDao {
     private final List<Entry> entries;
 
