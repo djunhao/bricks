@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>user edit</title>
+</head>
+<body>
+<form action="/useradmin/create" method="post">
+    <table>
+        <thead>
+        <tr class="title">
+            <th>用户名</th>
+            <th>密码</th>
+            <th>权限</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input type="text" name="user.name"/></td>
+            <td><input type="password" name="user.password"/></td>
+            <td>
+                <select name="role.name">
+                    @Repeat(items=roleList, var="userRole")
+                    <option value="${userRole.name}">${userRole.name}</option>
+                </select>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3"><input type="submit" value="创建用户"/></td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package org.northstar.bricks.services;
+package org.northstar.bricks.auth;
 
 import com.google.inject.name.Named;
 import org.northstar.bricks.auth.CurrentUser;

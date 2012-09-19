@@ -1,12 +1,9 @@
-package org.northstar.bricks.services;
+package org.northstar.bricks.auth;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.client.transport.Json;
 import com.google.sitebricks.headless.Reply;
-import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Post;
-import org.northstar.bricks.auth.CurrentUser;
-import org.northstar.bricks.domain.User;
 
 import java.util.HashMap;
 import java.util.Map;

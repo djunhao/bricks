@@ -6,9 +6,10 @@ import org.northstar.bricks.components.NewCard;
 import org.northstar.bricks.components.Pager;
 import org.northstar.bricks.dao.*;
 import org.northstar.bricks.pages.*;
-import org.northstar.bricks.services.Hello;
-import org.northstar.bricks.services.LoginAction;
-import org.northstar.bricks.services.Logout;
+import org.northstar.bricks.test.Forms;
+import org.northstar.bricks.test.Hello;
+import org.northstar.bricks.auth.LoginAction;
+import org.northstar.bricks.auth.Logout;
 
 /**
  * Configures a Sitebrick Module
@@ -30,21 +31,28 @@ public class BricksModule extends SitebricksModule {
         //at("static/default.css").export("bricks.css");
         //at("static/pager.css").export("pager.css");
 
+        /* Project related page, service and widget */
         at("/").show(Home.class);
+        at("/login").show(Login.class);
+        at("/loginAction").serve(LoginAction.class);
+        at("/useradmin/edit/:id").show(EditUser.class);
+        at("/useradmin/create").show(CreateUser.class);
+        at("/about").show(About.class);
+
+        at("/logout").serve(Logout.class);
+
+        embed(Pager.class).as("Pager");
+
+        /** Testing page, service and widget */
         at("/flow").show(Flow.class);
         at("/guestbook").show(Guestbook.class);
-        at("/guestbook/edit/:id").show(GuestbookEntry.class);
-        at("/login").show(Login.class);
+        at("/guestbook/:id").show(GuestbookEntry.class);
         at("/hello").show(Hello.class);
         at("/count").show(Count.class);
-        at("/useradmin/edit/:id").show(EditUser.class);
-
-        at("/loginAction").serve(LoginAction.class);
-        at("/logout").serve(Logout.class);
+        at("/forms").show(Forms.class);
 
         embed(NewCard.class).as("Card");
         embed(GuestbookNavigation.class).as("navigation");
-        embed(Pager.class).as("Pager");
     }
     /*@Override
     protected SitebricksServletModule servletModule() {

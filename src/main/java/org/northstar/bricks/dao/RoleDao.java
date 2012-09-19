@@ -2,6 +2,8 @@ package org.northstar.bricks.dao;
 
 import org.northstar.bricks.domain.Role;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: dfamily
@@ -12,4 +14,5 @@ import org.northstar.bricks.domain.Role;
 public interface RoleDao {
     Role getRoleById(Object rid);
     Role getRoleByName(String name);
+    List<Role> findAll();
 }

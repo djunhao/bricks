@@ -2,12 +2,12 @@ package org.northstar.bricks.dao;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.config.BricksConstants;
 import org.northstar.bricks.domain.Role;
-import org.northstar.bricks.domain.User;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,32 +24,44 @@ public class OrientRoleDao implements RoleDao {
     @Inject
     Logger logger;
 
-    private final OObjectDatabaseTx database;
+    private OObjectDatabaseTx database;
 
     public OrientRoleDao() {
-        database = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL).open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
-        database.getEntityManager().registerEntityClasses("org.northstar.bricks.domain");
     }
 
-    public Role getRoleById(Object rid) {
-        OSQLSynchQuery<Role> query = new OSQLSynchQuery<Role>("select from Role where @rid = ?");
-        List<Role> roleList = database.command(query).execute(rid);
-        Role role = new Role();
-        for (Role r : roleList) {
-            role = r;
-        }
+    public Role getRoleById(Object id) {
+        database = getConnection();
+        ORecordId rid = new ORecordId((String) id);
+        Role role = database.load(rid);
         //database.close();
         return role;
     }
 
     public Role getRoleByName(String name) {
-        OSQLSynchQuery<Role> query = new OSQLSynchQuery<Role>("select from Role where name = ?");
-        List<Role> roleList = database.command(query).execute(name);
+        String queryString = "select from Role where name = ?";
+        OQuery<Role> command = new OSQLSynchQuery<Role>(queryString);
+        List<Role> roleList = database.command(command).execute(name);
         Role role = new Role();
         for (Role r : roleList) {
             role = r;
         }
         //database.close();
         return role;
+    }
+
+    public List<Role> findAll() {
+        database = getConnection();
+        String queryString = "select from Role";
+        OQuery<Role> command = new OSQLSynchQuery<Role>(queryString);
+        List<Role> result = database.query(command);
+        //database.close();
+        return result;
+    }
+
+    final OObjectDatabaseTx getConnection() {
+        final OObjectDatabaseTx databaseTx = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL);
+        databaseTx.open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        databaseTx.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
+        return databaseTx;
     }
 }

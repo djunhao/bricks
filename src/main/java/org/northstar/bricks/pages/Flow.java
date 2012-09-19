@@ -7,15 +7,15 @@ import org.northstar.bricks.components.Decorator;
 @Decorated
 public class Flow extends Decorator {
 
-    public String getName() {
-        return getLogedUser().getName();
-    }
-
     @Get
     public String get() {
         if (isUserExists())
             return null;
         return "login";
+    }
+
+    public String getName() {
+        return getCurrentUser().getUser().getName();
     }
 
     @Override

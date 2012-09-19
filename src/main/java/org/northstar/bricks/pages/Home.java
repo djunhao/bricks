@@ -51,7 +51,7 @@ public class Home extends Decorator {
 
     @Override
     public String getPageTitle() {
-        return "主页再次测试！";
+        return "主页";
     }
 
     public int getMaxPerPage() {

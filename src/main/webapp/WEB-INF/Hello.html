@@ -15,32 +15,196 @@
         document.getElementById("theForm").submit();
     }
 </script>
-        <div class="post">
-            <h1 class="title">examples</h1>
+<div class="post">
+    <h1 class="title">select examples</h1>
 
-            <div class="entry">
+    <div class="entry">
 
-                The following demonstrates a form with HTTP PUT method simulated via a hidden field..
-                <br/><br/>
+        @Repeat(items=data, var="event")
+        <div class="result ${event}">${event}</div>
 
-                <form id="theForm" method="post">
+        The following demonstrates a routing mechanism using the Select annotation
+        <br/><br/>
 
-                    <input id="hidden_field" type="hidden" name="__sitebricks__action" value="put"/>
-                    <input name="text" type="text" value="${text}"/>
+        <h2>GET</h2>
 
-                    <input id="put" type="submit" value="PUT"/>
-                    <input type="button" onclick="removeHiddenFieldAndSubmit()()" value="POST"/>
-                </form>
+        <form method="get">
+            <input id="shouldRenderDivForDefaultGetOnlySubmit" type="submit"/>
+        </form>
 
-                <br/>
-                Hint: POST button removes hidden field via javascript and then submits normally via POST
-                <br/>
-                Bound:
-                <p id="boundText">
-                    textfield: ${text}
-                </p>
-                Message: <span id="putMessage">${putMessage}</span>
-            </div>
-                                   </div>
+        <form method="get">
+            <input name="event" value="foo"/>
+            <input id="shouldRenderDivForFooGetOnlySubmit" type="submit"/>
+        </form>
+
+        <form method="get">
+            <input name="event" value="bar"/>
+            <input id="shouldRenderDivForBarGetOnlySubmit" type="submit"/>
+        </form>
+
+
+        <form method="get">
+            <input name="event" value="foo"/>
+            <input name="event" value="bar"/>
+            <input id="shouldRenderDivForFooBarGetSubmit" type="submit"/>
+        </form>
+
+        <form method="get">
+            <input name="event" value="unknown"/>
+            <input id="shouldRenderDivForUnknownGetSubmit" type="submit"/>
+        </form>
+
+        <form method="get">
+            <input name="event" value="foo"/>
+            <input name="event" value="unknown"/>
+            <input id="shouldRenderDivForUnknownAndFooGetSubmit" type="submit"/>
+        </form>
+
+        <form method="get">
+            <input name="event" value="304"/>
+            <input id="shouldRenderDivForRedirectGetSubmit" type="submit"/>
+        </form>
+
+
+        <h2>POST</h2>
+
+        <form method="post">
+            <input id="shouldRenderDivForDefaultPostOnlySubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input name="event" value="foo"/>
+            <input id="shouldRenderDivForFooPostOnlySubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input name="event" value="bar"/>
+            <input id="shouldRenderDivForBarPostOnlySubmit" type="submit"/>
+        </form>
+
+
+        <form method="post">
+            <input name="event" value="foo"/>
+            <input name="event" value="bar"/>
+            <input id="shouldRenderDivForFooBarPostSubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input name="event" value="unknown"/>
+            <input id="shouldRenderDivForUnknownPostSubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input name="event" value="foo"/>
+            <input name="event" value="unknown"/>
+            <input id="shouldRenderDivForUnknownAndFooPostSubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input name="event" value="304"/>
+            <input id="shouldRenderDivForRedirectPostSubmit" type="submit"/>
+        </form>
+
+
+        <h2>PUT</h2>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="put"/>
+            <input id="shouldRenderDivForDefaultPutOnlySubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="put"/>
+            <input name="event" value="foo"/>
+            <input id="shouldRenderDivForFooPutOnlySubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="put"/>
+            <input name="event" value="bar"/>
+            <input id="shouldRenderDivForBarPutOnlySubmit" type="submit"/>
+        </form>
+
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="put"/>
+            <input name="event" value="foo"/>
+            <input name="event" value="bar"/>
+            <input id="shouldRenderDivForFooBarPutSubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="put"/>
+            <input name="event" value="unknown"/>
+            <input id="shouldRenderDivForUnknownPutSubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="put"/>
+            <input name="event" value="foo"/>
+            <input name="event" value="unknown"/>
+            <input id="shouldRenderDivForUnknownAndFooPutSubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="put"/>
+            <input name="event" value="304"/>
+            <input id="shouldRenderDivForRedirectPutSubmit" type="submit"/>
+        </form>
+
+
+        <h2>DELETE</h2>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="delete"/>
+            <input id="shouldRenderDivForDefaultDeleteOnlySubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="delete"/>
+            <input name="event" value="foo"/>
+            <input id="shouldRenderDivForFooDeleteOnlySubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="delete"/>
+            <input name="event" value="bar"/>
+            <input id="shouldRenderDivForBarDeleteOnlySubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="delete"/>
+            <input name="event" value="foo"/>
+            <input name="event" value="bar"/>
+            <input id="shouldRenderDivForFooBarDeleteSubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="delete"/>
+            <input name="event" value="unknown"/>
+            <input id="shouldRenderDivForUnknownDeleteSubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="delete"/>
+            <input name="event" value="foo"/>
+            <input name="event" value="unknown"/>
+            <input id="shouldRenderDivForUnknownAndFooDeleteSubmit" type="submit"/>
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="__sitebricks__action" value="delete"/>
+            <input name="event" value="304"/>
+            <input id="shouldRenderDivForRedirectDeleteSubmit" type="submit"/>
+        </form>
+
+
+        <br/>
+        Hint: POST button removes hidden field via javascript and then submits normally via POST
+        <br/>
+        Bound:
+        <p id="boundText">
+        </p>
+    </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package org.northstar.bricks.services;
+package org.northstar.bricks.auth;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.headless.Reply;

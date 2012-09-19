@@ -1,6 +1,7 @@
 package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.google.sitebricks.rendering.Decorated;
@@ -18,6 +19,7 @@ import java.util.List;
  * @author David Linsin - linsin@synyx.de
  */
 @Decorated
+@Singleton
 public class Guestbook extends Decorator {
 
     private List<Entry> entries;

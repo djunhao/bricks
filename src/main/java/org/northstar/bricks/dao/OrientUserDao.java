@@ -25,21 +25,9 @@ public class OrientUserDao implements UserDao {
     }
 
     public void saveOrUpdate(User user) {
-        if (database == null) {
             database = getConnection();
-        }
-        try {
-            database.begin(OTransaction.TXTYPE.OPTIMISTIC);
-            database.newInstance(User.class);
+            //database.newInstance(User.class);
             database.save(user);
-            database.commit();
-        } catch (Exception e) {
-            database.rollback();
-        } /*finally {
-            if (database != null) {
-                database.close();
-            }
-        }*/
     }
 
     public int getUserCounts() {
@@ -51,7 +39,7 @@ public class OrientUserDao implements UserDao {
 
     public User findByName(String name) {
         String queryString = "select from User where name = ?";
-        OQuery<User> command = new OSQLSynchQuery<>(queryString);
+        OQuery<User> command = new OSQLSynchQuery<User>(queryString);
 
         List<User> result = database.query(command, name);
         User user = new User();

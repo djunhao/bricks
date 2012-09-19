@@ -3,7 +3,7 @@ package org.northstar.bricks.pages;
 import com.google.inject.Inject;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.components.Decorator;
-import org.northstar.bricks.domain.Counter;
+import org.northstar.bricks.test.Counter;
 
 /**
  * Created with IntelliJ IDEA.

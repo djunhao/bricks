@@ -17,7 +17,10 @@
         <tr>
             <td><input type="text" name="user.name" value="${user.name}"/></td>
             <td><input type="password" name="user.password" value="${user.password}"/></td>
-            <td><input type="text" name="user.role.name" value="${role.name}"/></td>
+            <td><select>
+                @Repeat(items=roleList, var="role")
+                <option value="${role.name}">${role.name}</option>
+            </select></td>
         </tr>
         </tbody>
         <tfoot>

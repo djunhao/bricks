@@ -1,4 +1,4 @@
-package org.northstar.bricks.domain;
+package org.northstar.bricks.test;
 
 import com.google.inject.servlet.SessionScoped;
 

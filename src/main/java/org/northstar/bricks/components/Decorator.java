@@ -38,8 +38,12 @@ public abstract class Decorator {
 
     public abstract String getPageTitle();
 
-    public User getLogedUser() {
-        return currentUser.getUser();
+    public CurrentUser getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(CurrentUser currentUser) {
+        this.currentUser = currentUser;
     }
 
     @Get

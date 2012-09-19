@@ -3,6 +3,7 @@ package org.northstar.bricks.auth;
 import com.google.inject.Inject;
 import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.SessionScoped;
+import net.jcip.annotations.ThreadSafe;
 import org.northstar.bricks.domain.User;
 
 import javax.servlet.http.Cookie;
@@ -17,12 +18,13 @@ import java.util.UUID;
  * To change this template use File | Settings | File Templates.
  */
 @SessionScoped
+@ThreadSafe
 public class CurrentUser {
-    public static final String SESSION_COOKIE_NAME = "x-bricks-session-id";
+    /*public static final String SESSION_COOKIE_NAME = "x-bricks-session-id";
 
     @Inject
     private HttpServletRequest request;
-
+*/
     private User user;
 
     public User getUser() {
@@ -33,9 +35,9 @@ public class CurrentUser {
         this.user = user;
     }
 
-    public String newSessionId() {
+   /* public String newSessionId() {
         return UUID.randomUUID().toString();
-    }
+    }*/
 
     public boolean isAuthenticated() {
         return this.user != null;
@@ -45,7 +47,7 @@ public class CurrentUser {
         this.user = null;
     }
 
-    public Cookie getSessionCookie() {
+    /*public Cookie getSessionCookie() {
         Cookie[] cookies = request.getCookies();
         if (null == cookies) {
             return null;
@@ -57,5 +59,5 @@ public class CurrentUser {
             }
         }
         return null;
-    }
+    }*/
 }

@@ -2,12 +2,9 @@ package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
-import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.google.sitebricks.rendering.Decorated;
-import org.northstar.bricks.auth.CurrentUser;
 import org.northstar.bricks.components.Decorator;
 import org.northstar.bricks.dao.RoleDao;
 import org.northstar.bricks.dao.UserDao;
@@ -19,42 +16,51 @@ import java.util.List;
 /**
  * Created with IntelliJ IDEA.
  * User: northstar
- * Date: 12-9-17
- * Time: 上午11:14
+ * Date: 12-9-18
+ * Time: 上午9:01
  * To change this template use File | Settings | File Templates.
  */
 @Decorated
 @Singleton
-public class EditUser extends Decorator {
-    private User user;
-    private Role role;
-    private List<Role> roleList;
+public class CreateUser extends Decorator{
 
     private UserDao userDao;
     private RoleDao roleDao;
 
+    private User user;
+    private Role role;
+    private List<Role> roleList;
+
+    @Inject
+    void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+    @Inject
+    void setRoleDao(RoleDao roleDao) {
+        this.roleDao = roleDao;
+    }
 
     @Get
-    String load(@Named("id") Long id) {
-        if(!isUserExists()) {
-            return "/login";
-        } else {
-            user = userDao.findById(id);
-            roleList = roleDao.findAll();
-            return null;
-        }
+    void load() {
+        roleList = roleDao.findAll();
     }
+
     @Post
-    String update(@Named("id") Long id){
-        load(id);
-        Role saveRold = roleDao.getRoleByName(role.getName());
-        user.setRole(saveRold);
+    String create() {
+        Role aRole = roleDao.getRoleByName(role.getName());
+        System.out.println(">>> Selected role name is: " + aRole.getName());
+        user.setRole(aRole);
         userDao.saveOrUpdate(user);
         return "/";
     }
 
-    public List<Role> getRoleList(){
+    public List<Role> getRoleList() {
         return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
     }
 
     public User getUser() {
@@ -75,18 +81,6 @@ public class EditUser extends Decorator {
 
     @Override
     public String getPageTitle() {
-        return "编辑用户信息";
-    }
-    @Inject
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
-    }
-    @Inject
-    public void setRoleDao(RoleDao roleDao) {
-        this.roleDao = roleDao;
+        return "创建用户";
     }
 }
