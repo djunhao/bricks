@@ -1,39 +1,106 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>bricks - Home page</title>
+    <title>bricks - ${pageTitle}</title>
     <meta charset="UTF-8"/>
-
+    <link rel="stylesheet" href="/static/default.css"/>
 </head>
 <body>
+<div id="wrapper">
+    <header id="header">
+        <div id="logo">
+            <h1>龙城危险化学品监管</h1>
 
-<div class="post">
-    <h1 class="title">Examples</h1>
+            <h2>石龙镇危险化学品安全监管信息化管理系统</h2>
+        </div>
+        <div id="search">
+            <form onsubmit="javascript:onSearch();">
+                <input type="text" name="item" id="s"/>
+                <input type="button" id="x" value=" 查 找 "/>
+            </form>
+        </div>
 
-    <div class="entry">
-        <table>
-            <!--<caption>用户列表</caption>-->
-            <thead>
-            <tr class="title">
-                <th>序号</th>
-                <th>用户名</th>
-                <th>权限</th>
-            </tr>
-            </thead>
-            <tbody>
-            @Repeat(items=pagedUsers, var="user")
-            <tr>
-                <td>${user.id}</td>
-                <td><a href="useradmin/edit/${user.id}">${user.name}</a></td>
-                <td>${user.role.name}</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            </tfoot>
-        </table>
-    </div>
-    @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
-    <div>pager here</div>
+    </header>
+    <nav id="menu">
+        <ul>
+            <li>
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="/guestbook">留言簿</a>
+            </li>
+            <li>
+                <a href="/useradmin/create">创建新用户</a>
+            </li>
+            <li>
+                <a href="/hello">测试页面</a>
+            </li>
+            <li>
+                <a href="/about">关于</a>
+            </li>
+        </ul>
+    </nav>
+    <section id="page">
+        <!-- start contents -->
+        <div id="content">
+            <div class="post">
+                <h1 class="title">Examples</h1>
+
+                <div class="entry">
+                    <table>
+                        <!--<caption>用户列表</caption>-->
+                        <thead>
+                        <tr class="title">
+                            <th>序号</th>
+                            <th>用户名</th>
+                            <th>权限</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @Repeat(items=pagedUsers, var="user")
+                        <tr>
+                            <td>${user.id}</td>
+                            <td><a href="useradmin/edit/${user.id}">${user.name}</a></td>
+                            <td>${user.role.name}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+                @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
+                <div>pager here</div>
+            </div>
+        </div>
+
+        <nav id="sidebar">
+            <ul>
+
+
+                <li>
+                    <h2>OTHER</h2>
+                    <ul>
+                        <li>
+                            <a href="http://www.benmccann.com/dev-blog/">Blog</a>
+                        </li>
+                        <li>
+                            <a href="http://www.benmccann.com/">Homepage</a>
+                        </li>
+                        <li>
+                            <a href="http://angel.co/ben-mccann/">AngelList</a>
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <footer id="footer">
+        <div id="legal">COPYRIGHT &COPY;
+            2012 NORTHSTAR STUDIO. ALL RIGHTS RESERVED. DESIGN BY NORTHSTAR.
+        </div>
+    </footer>
 </div>
 </body>
 </html>

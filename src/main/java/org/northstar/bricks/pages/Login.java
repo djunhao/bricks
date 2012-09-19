@@ -1,6 +1,8 @@
 package org.northstar.bricks.pages;
 
+import com.google.inject.Inject;
 import com.google.sitebricks.rendering.Decorated;
+import org.northstar.bricks.auth.CurrentUser;
 import org.northstar.bricks.components.Decorator;
 
 /**
@@ -10,12 +12,20 @@ import org.northstar.bricks.components.Decorator;
  * Time: 下午4:34
  * To change this template use File | Settings | File Templates.
  */
-@Decorated
-public class Login extends Decorator {
+public class Login {
 
-    @Override
+    @Inject
+    private CurrentUser currentUser;
+
     public String getPageTitle() {
         return "Bricks - 用户登录";
     }
 
+    public CurrentUser getCurrentUser() {
+        return currentUser;
+    }
+
+    public boolean isUserExists() {
+        return currentUser.isAuthenticated();
+    }
 }

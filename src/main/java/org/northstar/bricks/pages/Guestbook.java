@@ -18,16 +18,13 @@ import java.util.List;
  *
  * @author David Linsin - linsin@synyx.de
  */
-@Decorated
-@Singleton
-public class Guestbook extends Decorator {
+public class Guestbook {
 
     private List<Entry> entries;
     private Entry newEntry = new Entry();
     @Inject
     private EntryDao entryDao;
 
-    @Override
     public String getPageTitle() {
         return "Guestbook Demo";
     }

@@ -1,74 +1,143 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>none</title>
+    <title>bricks - ${pageTitle}</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/static/default.css" />
     @Require
     <script type="text/javascript" charset="UTF-8" src="static/js/jquery-1.7.2.min.js"></script>
     @Require
     <script type="text/javascript" charset="UTF-8" src="static/js/jquery.form.js"></script>
 </head>
 <body>
-<script type="text/javascript">
-    $(document).ready(function () {
-                $('#msg').hide();
-                var options = {
-                    //target: '#msg',
-                    url:'loginAction', //提交给哪个执行
-                    type:'POST',
-                    beforeSubmit:validate,
-                    //replaceTarget: true,
-                    //dataType:'json',
-                    success:showErr//显示操作提示
-                };
-                $('#loginform').ajaxForm(options);
-            }
-    );
-    function validate(formData, jqForm, options) {
-        for (var i = 0; i < formData.length; i++) {
-            if (!formData[i].value) {
-                $('#msg').html('请输入用户名和密码！');
-                $('#msg').show();
-                return false;
-            }
-        }
-    }
-    function showErr(data) {
-        if(data.info=="success"){
-            window.location = "/";
-        } else {
-            $('#msg').html(data.info);
-            $('#msg').show();
-            return false;
-        }
-    }
-</script>
-<div class="login_container" id="login">
-    <div id="msg" style="border: 1px solid red;"></div>
-    <div class="login_box">
-        <div class="logo_title">
-            <h1><img src="/static/images/login_title.gif"/>用户登录</h1>
+<div id="wrapper">
+    <header id="header">
+        <div id="logo">
+            <h1>龙城危险化学品监管</h1>
+
+            <h2>石龙镇危险化学品安全监管信息化管理系统</h2>
         </div>
-        <div class="login_operate">
-            <form id="loginform" method="post" name="loginform">
-                <div class="username">
-                    <label class="txt_default" for="name">用户名</label>
-                    <input class="txt alias" id="name" name="name" type="text" tabindex="1"/>
-                </div>
-                <div class="password">
-                    <label class="txt_default" for="password">密&nbsp;&nbsp;&nbsp;码</label>
-                    <input class="txt password" id="password" name="password" type="password" tabindex="2"/>
-                </div>
-                <div class="about_password">
-                    <input class="remerber_password" id="remerber_password" type="checkbox" disabled/>
-                    <label for="remerber_password">记住登录状态</label>
-                    <a class="forgetPassword" href="" target="_blank">忘记密码？</a>
-                </div>
-                <div class="login_submit">
-                    <a class="login_btn_wrapper" href=""><input class="login_btn" type="submit" value="登录"/></a>
-                </div>
+        <div id="search">
+            <form onsubmit="javascript:onSearch();">
+                <input type="text" name="item" id="s"/>
+                <input type="button" id="x" value=" 查 找 "/>
             </form>
         </div>
-    </div>
+
+    </header>
+    <nav id="menu">
+        <ul>
+            <li>
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="/guestbook">留言簿</a>
+            </li>
+            <li>
+                <a href="/useradmin/create">创建新用户</a>
+            </li>
+            <li>
+                <a href="/hello">测试页面</a>
+            </li>
+            <li>
+                <a href="/about">关于</a>
+            </li>
+        </ul>
+    </nav>
+    <section id="page">
+        <!-- start contents -->
+        <div id="content">
+            <script type="text/javascript">
+                $(document).ready(function () {
+                            $('#msg').hide();
+                            var options = {
+                                //target: '#msg',
+                                url:'loginAction', //提交给哪个执行
+                                type:'POST',
+                                beforeSubmit:validate,
+                                //replaceTarget: true,
+                                //dataType:'json',
+                                success:showErr//显示操作提示
+                            };
+                            $('#loginform').ajaxForm(options);
+                        }
+                );
+                function validate(formData, jqForm, options) {
+                    for (var i = 0; i < formData.length; i++) {
+                        if (!formData[i].value) {
+                            $('#msg').html('请输入用户名和密码！');
+                            $('#msg').show();
+                            return false;
+                        }
+                    }
+                }
+                function showErr(data) {
+                    if (data.info == "success") {
+                        window.location = "/";
+                    } else {
+                        $('#msg').html(data.info);
+                        $('#msg').show();
+                        return false;
+                    }
+                }
+            </script>
+            <div class="login_container" id="login">
+                <div id="msg" style="border: 1px solid red;"></div>
+                <div class="login_box">
+                    <div class="logo_title">
+                        <h1><img src="/static/images/login_title.gif"/>用户登录</h1>
+                    </div>
+                    <div class="login_operate">
+                        <form id="loginform" method="post" name="loginform">
+                            <div class="username">
+                                <label class="txt_default" for="name">用户名</label>
+                                <input class="txt alias" id="name" name="name" type="text" tabindex="1"/>
+                            </div>
+                            <div class="password">
+                                <label class="txt_default" for="password">密&nbsp;&nbsp;&nbsp;码</label>
+                                <input class="txt password" id="password" name="password" type="password" tabindex="2"/>
+                            </div>
+                            <div class="about_password">
+                                <input class="remerber_password" id="remerber_password" type="checkbox" disabled/>
+                                <label for="remerber_password">记住登录状态</label>
+                                <a class="forgetPassword" href="" target="_blank">忘记密码？</a>
+                            </div>
+                            <div class="login_submit">
+                                <a class="login_btn_wrapper" href=""><input class="login_btn" type="submit" value="登录"/></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav id="sidebar">
+            <ul>
+
+                <li>
+                    <h2>OTHER</h2>
+                    <ul>
+                        <li>
+                            <a href="http://www.benmccann.com/dev-blog/">Blog</a>
+                        </li>
+                        <li>
+                            <a href="http://www.benmccann.com/">Homepage</a>
+                        </li>
+                        <li>
+                            <a href="http://angel.co/ben-mccann/">AngelList</a>
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <footer id="footer">
+        <div id="legal">COPYRIGHT &COPY;
+            2012 NORTHSTAR STUDIO. ALL RIGHTS RESERVED. DESIGN BY NORTHSTAR.
+        </div>
+    </footer>
 </div>
 </body>
 </html>

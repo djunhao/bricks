@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Decorated
 public class Home extends Decorator {
 
     private List<User> pagedUsers;

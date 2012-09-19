@@ -23,16 +23,15 @@ import java.util.List;
  * Time: 上午11:14
  * To change this template use File | Settings | File Templates.
  */
-@Decorated
-@Singleton
-public class EditUser extends Decorator {
-    private User user;
-    private Role role;
+public class EditUser {
+    private User user = new User();
+    private Role role = new Role();
     private List<Role> roleList;
 
     private UserDao userDao;
     private RoleDao roleDao;
-
+    @Inject
+    private CurrentUser currentUser;
 
     @Get
     String load(@Named("id") Long id) {
@@ -46,10 +45,9 @@ public class EditUser extends Decorator {
     }
     @Post
     String update(@Named("id") Long id){
-        load(id);
-        Role saveRold = roleDao.getRoleByName(role.getName());
-        user.setRole(saveRold);
-        userDao.saveOrUpdate(user);
+        Role aRole = roleDao.getRoleByName(role.getName());
+        user.setRole(aRole);
+        userDao.save(user);
         return "/";
     }
 
@@ -73,7 +71,6 @@ public class EditUser extends Decorator {
         this.role = role;
     }
 
-    @Override
     public String getPageTitle() {
         return "编辑用户信息";
     }
@@ -88,5 +85,12 @@ public class EditUser extends Decorator {
     @Inject
     public void setRoleDao(RoleDao roleDao) {
         this.roleDao = roleDao;
+    }
+    public boolean isUserExists() {
+        return currentUser.isAuthenticated();
+    }
+
+    public CurrentUser getCurrentUser() {
+        return currentUser;
     }
 }

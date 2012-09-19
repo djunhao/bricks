@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
+import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.core.tx.OTransaction;
@@ -24,10 +25,33 @@ public class OrientUserDao implements UserDao {
     public OrientUserDao() {
     }
 
-    public void saveOrUpdate(User user) {
+    public void save(User user) {
             database = getConnection();
-            //database.newInstance(User.class);
+        database.newInstance(User.class);
+
+        //try{
+         //   database.begin();
             database.save(user);
+           // database.commit();
+        //} catch (Exception e) {
+          //  database.rollback();
+       // }
+
+    }
+
+    public void update(User user, Long id) {
+        database = getConnection();
+        final ORecordId rid;
+        try{
+            database.begin();
+            OClass cls = database.getMetadata().getSchema().getClass(User.class);
+            if (cls == null)
+                throw new IllegalArgumentException("Class 'User.class' is not configured in the database");
+            rid = new ORecordId(cls.getDefaultClusterId(), ((Number) id).longValue());
+            database.save(user);
+        } catch (Exception e) {
+            database.rollback();
+        }
     }
 
     public int getUserCounts() {

@@ -1,11 +1,15 @@
 package org.northstar.bricks.pages;
 
+import com.google.inject.Inject;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.rendering.Decorated;
+import org.northstar.bricks.auth.CurrentUser;
 import org.northstar.bricks.components.Decorator;
 
-@Decorated
-public class Flow extends Decorator {
+public class Flow {
+
+    @Inject
+    private CurrentUser currentUser;
 
     @Get
     public String get() {
@@ -18,9 +22,15 @@ public class Flow extends Decorator {
         return getCurrentUser().getUser().getName();
     }
 
-    @Override
     public String getPageTitle() {
         return "需密码访问页面";
     }
 
+    public CurrentUser getCurrentUser() {
+        return currentUser;
+    }
+
+    boolean isUserExists() {
+        return currentUser.isAuthenticated();
+    }
 }
