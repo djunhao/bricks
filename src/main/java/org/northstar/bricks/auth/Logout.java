@@ -3,8 +3,6 @@ package org.northstar.bricks.auth;
 import com.google.inject.Inject;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Get;
-import org.northstar.bricks.auth.CurrentUser;
-import org.northstar.bricks.domain.User;
 
 /**
  * Created with IntelliJ IDEA.

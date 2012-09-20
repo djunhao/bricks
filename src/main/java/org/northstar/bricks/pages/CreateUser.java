@@ -1,12 +1,9 @@
 package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
-import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.auth.CurrentUser;
-import org.northstar.bricks.components.Decorator;
 import org.northstar.bricks.dao.RoleDao;
 import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.domain.Role;

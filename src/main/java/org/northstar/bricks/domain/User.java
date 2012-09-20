@@ -1,8 +1,5 @@
 package org.northstar.bricks.domain;
 
-import com.google.inject.servlet.SessionScoped;
-import com.orientechnologies.orient.core.annotation.OId;
-
 import javax.persistence.Id;
 import javax.persistence.Version;
 

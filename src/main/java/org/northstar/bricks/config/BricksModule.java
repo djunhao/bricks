@@ -1,6 +1,8 @@
 package org.northstar.bricks.config;
 
 import com.google.sitebricks.SitebricksModule;
+import org.northstar.bricks.auth.LoginAction;
+import org.northstar.bricks.auth.Logout;
 import org.northstar.bricks.components.GuestbookNavigation;
 import org.northstar.bricks.components.NewCard;
 import org.northstar.bricks.components.Pager;
@@ -8,8 +10,6 @@ import org.northstar.bricks.dao.*;
 import org.northstar.bricks.pages.*;
 import org.northstar.bricks.test.Forms;
 import org.northstar.bricks.test.Hello;
-import org.northstar.bricks.auth.LoginAction;
-import org.northstar.bricks.auth.Logout;
 
 /**
  * Configures a Sitebrick Module

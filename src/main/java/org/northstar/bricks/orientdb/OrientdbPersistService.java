@@ -46,7 +46,7 @@ public class OrientdbPersistService implements PersistService {
     }
 
     OObjectDatabaseTx getDatabaseConnection() {
-        final  OObjectDatabaseTx databaseTx = null != managedDatabase ? managedDatabase : localDatabase;
+        final OObjectDatabaseTx databaseTx = null != managedDatabase ? managedDatabase : localDatabase;
         return databaseTx;
     }
 

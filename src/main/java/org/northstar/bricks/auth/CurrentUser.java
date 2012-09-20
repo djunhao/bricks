@@ -1,14 +1,8 @@
 package org.northstar.bricks.auth;
 
-import com.google.inject.Inject;
-import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.SessionScoped;
 import net.jcip.annotations.ThreadSafe;
 import org.northstar.bricks.domain.User;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import java.util.UUID;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,7 +29,7 @@ public class CurrentUser {
         this.user = user;
     }
 
-   /* public String newSessionId() {
+    /* public String newSessionId() {
         return UUID.randomUUID().toString();
     }*/
 

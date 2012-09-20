@@ -1,7 +1,5 @@
 package org.northstar.bricks.auth;
 
-import com.google.inject.name.Named;
-import org.northstar.bricks.auth.CurrentUser;
 import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.domain.User;
 

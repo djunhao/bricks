@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface RoleDao {
     Role getRoleById(Object rid);
+
     Role getRoleByName(String name);
+
     List<Role> findAll();
 }

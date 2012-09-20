@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.google.sitebricks.Show;
 import com.google.sitebricks.http.Get;
 import org.northstar.bricks.auth.CurrentUser;
-import org.northstar.bricks.domain.User;
 
 import java.util.Arrays;
 import java.util.List;

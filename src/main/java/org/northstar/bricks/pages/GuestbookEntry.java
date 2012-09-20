@@ -1,7 +1,6 @@
 package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;

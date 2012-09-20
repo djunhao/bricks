@@ -1,16 +1,10 @@
 package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
-import com.google.sitebricks.http.Get;
-import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.components.Decorator;
-import org.northstar.bricks.dao.RoleDao;
 import org.northstar.bricks.dao.UserDao;
-import org.northstar.bricks.domain.Role;
 import org.northstar.bricks.domain.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -20,8 +14,8 @@ public class Home extends Decorator {
     private int page;
     private Integer maxPerPage = 5;
     private final UserDao dao;
-   /* @Inject
-    private RoleDao roleDao;*/
+    /* @Inject
+  private RoleDao roleDao;*/
     @Inject
     private Logger logger;
 
@@ -40,7 +34,7 @@ public class Home extends Decorator {
 
     public List<User> getPagedUsers() {
         long startIndex = 0;
-        if(page < 1) {
+        if (page < 1) {
             page = 1;
         }
         startIndex = (page - 1) * maxPerPage - 1;
@@ -57,7 +51,7 @@ public class Home extends Decorator {
         return maxPerPage;
     }
 
-    public int getMaxPages(){
+    public int getMaxPages() {
         int userCounts = dao.getUserCounts();
         return (userCounts - 1) / maxPerPage + 1;
     }

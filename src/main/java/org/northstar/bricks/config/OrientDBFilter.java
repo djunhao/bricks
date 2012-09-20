@@ -19,6 +19,7 @@ import java.io.IOException;
 public class OrientDBFilter implements Filter {
     private final PersistService persistService;
     private final UnitOfWork unitOfWork;
+
     @Inject
     public OrientDBFilter(PersistService persistService, UnitOfWork unitOfWork) {
         this.persistService = persistService;
@@ -32,7 +33,7 @@ public class OrientDBFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
         unitOfWork.begin();
-        try{
+        try {
             filterChain.doFilter(servletRequest, servletResponse);
         } finally {
             unitOfWork.end();

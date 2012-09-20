@@ -7,7 +7,6 @@ import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import com.orientechnologies.orient.core.tx.OTransaction;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.config.BricksConstants;
 import org.northstar.bricks.domain.User;
@@ -35,7 +34,7 @@ public class OrientUserDao implements UserDao {
             database.commit();
         } catch (Exception e) {
             database.rollback();
-            logger.warning(">>> user "+ user.getName() +" is not saved.");
+            logger.warning(">>> user " + user.getName() + " is not saved.");
         }
 
     }
@@ -123,6 +122,7 @@ public class OrientUserDao implements UserDao {
         //database.close();
         return user;
     }
+
     public User findById(String id) {
         database = getConnection();
         ORID rid = new ORecordId(id);

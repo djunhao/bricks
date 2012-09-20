@@ -42,6 +42,7 @@ public class Forms extends Decorator {
     public void setChosen(String chosen) {
         this.chosen = chosen;
     }
+
     @Override
     public String getPageTitle() {
         return "form tests";

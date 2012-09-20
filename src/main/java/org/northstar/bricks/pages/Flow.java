@@ -2,9 +2,7 @@ package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.http.Get;
-import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.auth.CurrentUser;
-import org.northstar.bricks.components.Decorator;
 
 public class Flow {
 

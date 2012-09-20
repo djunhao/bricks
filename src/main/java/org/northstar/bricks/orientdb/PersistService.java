@@ -9,5 +9,6 @@ package org.northstar.bricks.orientdb;
  */
 public interface PersistService {
     boolean start();
+
     void stop();
 }
