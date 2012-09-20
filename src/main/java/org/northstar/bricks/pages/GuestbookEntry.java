@@ -15,9 +15,10 @@ import org.northstar.bricks.domain.Entry;
  *
  * @author David Linsin - linsin@synyx.de
  */
-public class GuestbookEntry {
+@Decorated
+public class GuestbookEntry extends Decorator {
 
-    private Entry entry;
+    private Entry entry = new Entry();
     @Inject
     private EntryDao entryDao;
 

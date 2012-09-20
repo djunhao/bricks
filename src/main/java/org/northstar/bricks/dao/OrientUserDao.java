@@ -26,23 +26,24 @@ public class OrientUserDao implements UserDao {
     }
 
     public void save(User user) {
-            database = getConnection();
-        database.newInstance(User.class);
-
-        //try{
-         //   database.begin();
+        database = getConnection();
+        try {
+            database.begin();
+            //database.newInstance(User.class);
+            logger.info(">>> saving user id: " + user.getId() + " and name: " + user.getName());
             database.save(user);
-           // database.commit();
-        //} catch (Exception e) {
-          //  database.rollback();
-       // }
+            database.commit();
+        } catch (Exception e) {
+            database.rollback();
+            logger.warning(">>> user "+ user.getName() +" is not saved.");
+        }
 
     }
 
     public void update(User user, Long id) {
         database = getConnection();
         final ORecordId rid;
-        try{
+        try {
             database.begin();
             OClass cls = database.getMetadata().getSchema().getClass(User.class);
             if (cls == null)
@@ -65,7 +66,7 @@ public class OrientUserDao implements UserDao {
         String queryString = "select from User where name = ?";
         OQuery<User> command = new OSQLSynchQuery<User>(queryString);
 
-        List<User> result = database.query(command, name);
+        List<User> result = database.command(command).execute(name);
         User user = new User();
         for (User u : result) {
             user = u;
@@ -104,8 +105,8 @@ public class OrientUserDao implements UserDao {
      List<User> result = db.command(query).execute(params);*/
         database = getConnection();
         String queryString = "select from User where name = ? and password = ?";
-        OQuery<User> command =  new OSQLSynchQuery<User>(queryString);
-        List<User> result = database.command(command).execute(name, password);
+        OQuery<User> command = new OSQLSynchQuery<User>(queryString);
+        List<User> result = database.query(command, name, password);
         /*User user = new User();
         for (User u : result) {
             user = u;
@@ -122,8 +123,13 @@ public class OrientUserDao implements UserDao {
         //database.close();
         return user;
     }
+    public User findById(String id) {
+        database = getConnection();
+        ORID rid = new ORecordId(id);
+        return database.load(rid);
+    }
 
-    final OObjectDatabaseTx getConnection() {
+    public final OObjectDatabaseTx getConnection() {
         final OObjectDatabaseTx databaseTx = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL);
         databaseTx.open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
         databaseTx.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);

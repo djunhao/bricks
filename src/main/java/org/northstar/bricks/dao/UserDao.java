@@ -1,5 +1,6 @@
 package org.northstar.bricks.dao;
 
+import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.domain.User;
 
 import java.util.List;
@@ -28,4 +29,7 @@ public interface UserDao {
     List<User> authenticated(String name, String password);
 
     User findById(Long id);
+    User findById(String id);
+
+    OObjectDatabaseTx getConnection();
 }

@@ -10,6 +10,7 @@ import org.northstar.bricks.dao.EntryDao;
 import org.northstar.bricks.domain.Entry;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,9 +19,10 @@ import java.util.List;
  *
  * @author David Linsin - linsin@synyx.de
  */
-public class Guestbook {
+@Decorated
+public class Guestbook extends Decorator {
 
-    private List<Entry> entries;
+    private List<Entry> entries = new ArrayList<>();
     private Entry newEntry = new Entry();
     @Inject
     private EntryDao entryDao;

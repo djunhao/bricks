@@ -42,7 +42,8 @@
     <section id="page">
         <!-- start contents -->
         <div id="content">
-            <form action="/useradmin/edit/${user.id}" method="post">
+            <form action="/useradmin/edit" method="post">
+                <input name="user.id" type="hidden" value="${user.id}">
                 <table>
                     <thead>
                     <tr class="title">

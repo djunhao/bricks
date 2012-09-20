@@ -35,7 +35,7 @@ public class BricksModule extends SitebricksModule {
         at("/").show(Home.class);
         at("/login").show(Login.class);
         at("/loginAction").serve(LoginAction.class);
-        at("/useradmin/edit/:id").show(EditUser.class);
+        at("/useradmin/edit").show(EditUser.class);
         at("/useradmin/create").show(CreateUser.class);
         at("/about").show(About.class);
 

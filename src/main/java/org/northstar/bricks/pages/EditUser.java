@@ -14,6 +14,7 @@ import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.domain.Role;
 import org.northstar.bricks.domain.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,27 +25,36 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class EditUser {
-    private User user = new User();
     private Role role = new Role();
-    private List<Role> roleList;
+    private User user = new User();
+    private List<Role> roleList = new ArrayList<>();
+
+    private String name;
 
     private UserDao userDao;
     private RoleDao roleDao;
+
+
     @Inject
     private CurrentUser currentUser;
 
+    public EditUser() {
+        super();
+
+    }
+
     @Get
-    String load(@Named("id") Long id) {
+    String load() {
         if(!isUserExists()) {
             return "/login";
         } else {
-            user = userDao.findById(id);
+            user = userDao.findByName(name);
             roleList = roleDao.findAll();
             return null;
         }
     }
     @Post
-    String update(@Named("id") Long id){
+    String update(){
         Role aRole = roleDao.getRoleByName(role.getName());
         user.setRole(aRole);
         userDao.save(user);
@@ -92,5 +102,13 @@ public class EditUser {
 
     public CurrentUser getCurrentUser() {
         return currentUser;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

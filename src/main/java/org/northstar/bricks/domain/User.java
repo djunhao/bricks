@@ -4,12 +4,13 @@ import com.google.inject.servlet.SessionScoped;
 import com.orientechnologies.orient.core.annotation.OId;
 
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 public class User {
     @Id
-    private Long id;
-    /*@OId
-    private Object rid;*/
+    private Object id;
+    @Version
+    private Object version;
 
     private String name;
     private String password;
@@ -23,8 +24,12 @@ public class User {
         this.role = role;
     }
 
-    public Long getId() {
+    public Object getId() {
         return id;
+    }
+
+    public void setId(Object id) {
+        this.id = id;
     }
 
     public String getName() {

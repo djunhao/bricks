@@ -48,7 +48,6 @@
 
                 <div class="entry">
                     <table>
-                        <!--<caption>用户列表</caption>-->
                         <thead>
                         <tr class="title">
                             <th>序号</th>
@@ -60,11 +59,14 @@
                         @Repeat(items=pagedUsers, var="user")
                         <tr>
                             <td>${user.id}</td>
-                            <td><a href="useradmin/edit/${user.id}">${user.name}</a></td>
+                            <td><a href="useradmin/edit?name=${user.name}">${user.name}</a></td>
                             <td>${user.role.name}</td>
                         </tr>
                         </tbody>
                         <tfoot>
+                        <tr class="title">
+                            <td colspan="3">用户列表</td>
+                        </tr>
                         </tfoot>
                     </table>
                 </div>
