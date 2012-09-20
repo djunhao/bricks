@@ -18,8 +18,7 @@ import java.util.List;
  *
  * @author David Linsin - linsin@synyx.de
  */
-@Decorated
-public class Guestbook extends Decorator {
+public class Guestbook {
 
     private List<Entry> entries = new ArrayList<>();
     private Entry newEntry = new Entry();

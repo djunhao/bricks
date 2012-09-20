@@ -8,7 +8,7 @@ import org.northstar.bricks.domain.User;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class Home extends Decorator {
+public class Home {
 
     private List<User> pagedUsers;
     private int page;
@@ -42,7 +42,6 @@ public class Home extends Decorator {
         //return dao.findAll();
     }
 
-    @Override
     public String getPageTitle() {
         return "主页";
     }

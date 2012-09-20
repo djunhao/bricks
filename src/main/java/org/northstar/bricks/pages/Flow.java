@@ -3,6 +3,7 @@ package org.northstar.bricks.pages;
 import com.google.inject.Inject;
 import com.google.sitebricks.http.Get;
 import org.northstar.bricks.auth.CurrentUser;
+import org.northstar.bricks.auth.Secure;
 
 public class Flow {
 
@@ -10,10 +11,8 @@ public class Flow {
     private CurrentUser currentUser;
 
     @Get
-    public String get() {
-        if (isUserExists())
-            return null;
-        return "login";
+    @Secure
+    public void get() {
     }
 
     public String getName() {
