@@ -1,8 +1,6 @@
 package org.northstar.bricks.config;
 
 import com.google.sitebricks.SitebricksModule;
-import com.google.sitebricks.SitebricksServletModule;
-import org.northstar.bricks.auth.AuthFilter;
 import org.northstar.bricks.auth.AuthModule;
 import org.northstar.bricks.auth.LoginAction;
 import org.northstar.bricks.auth.Logout;
@@ -37,9 +35,10 @@ public class BricksModule extends SitebricksModule {
 
         /* Project related page, service and widget */
         at("/").show(Home.class);
+        at("/home").show(Home.class);
         at("/login").show(Login.class);
         at("/loginAction").serve(LoginAction.class);
-        at("/useradmin/edit").show(EditUser.class);
+        at("/useradmin/edit/:id").show(EditUser.class);
         at("/useradmin/create").show(CreateUser.class);
         at("/about").show(About.class);
 
@@ -58,6 +57,7 @@ public class BricksModule extends SitebricksModule {
         embed(NewCard.class).as("Card");
         embed(GuestbookNavigation.class).as("navigation");
     }
+    /*
     @Override
     protected SitebricksServletModule servletModule() {
         return new SitebricksServletModule() {
@@ -67,5 +67,5 @@ public class BricksModule extends SitebricksModule {
             }
         };
     }
-
+   */
 }

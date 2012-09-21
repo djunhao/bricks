@@ -18,4 +18,6 @@ public interface EntryDao {
     List<Entry> readAll();
 
     void delete(Entry entry);
+
+    int getListSize();
 }

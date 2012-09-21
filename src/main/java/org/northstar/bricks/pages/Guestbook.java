@@ -3,8 +3,6 @@ package org.northstar.bricks.pages;
 import com.google.inject.Inject;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
-import com.google.sitebricks.rendering.Decorated;
-import org.northstar.bricks.components.Decorator;
 import org.northstar.bricks.dao.EntryDao;
 import org.northstar.bricks.domain.Entry;
 
@@ -56,4 +54,6 @@ public class Guestbook {
     public String getTime() {
         return new SimpleDateFormat().format(new Date());
     }
+
+
 }

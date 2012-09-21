@@ -18,7 +18,7 @@ import java.io.IOException;
 @Singleton
 public class AuthFilter implements Filter {
     @Inject
-    private Provider<CurrentUser> currentUser;
+    private Provider<CurrentUser> currentUserProvider;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -28,8 +28,9 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         // Don't allow the anonymous user to get in to this site.
-        if (currentUser.get().isAuthenticated()) {
-            ((HttpServletResponse)response).sendRedirect("/login");
+        CurrentUser currentUser = currentUserProvider.get();
+        if (!currentUser.isAuthenticated()) {
+            ((HttpServletResponse) response).sendRedirect("/login");
         }
         chain.doFilter(request, response);
     }

@@ -12,7 +12,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface RoleDao {
-    Role getRoleById(Object rid);
+    Role getRoleById(Long rid);
 
     Role getRoleByName(String name);
 

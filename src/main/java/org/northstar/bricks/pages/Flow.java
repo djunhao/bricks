@@ -15,6 +15,7 @@ public class Flow {
     public void get() {
     }
 
+    @Secure
     public String getName() {
         return getCurrentUser().getUser().getName();
     }

@@ -3,6 +3,7 @@ package org.northstar.bricks.auth;
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.sitebricks.headless.Reply;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
@@ -22,8 +23,8 @@ public class AdminMethodInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         CurrentUser user = currentUser.get();
-        if (user.isAuthenticated() || !ADMINS.contains(user.getUser().getName())) {
-            throw new IllegalAccessException("Only admin users may access this function");
+        if (!user.isAuthenticated() || !ADMINS.contains(user.getUser().getName())) {
+            Reply.saying().redirect("/login");
         }
         return invocation.proceed();
     }

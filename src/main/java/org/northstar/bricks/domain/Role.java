@@ -11,7 +11,7 @@ import com.orientechnologies.orient.core.annotation.OId;
  */
 public class Role {
     @OId
-    private Object rid;
+    private Long rid;
 
     private String name;
     private byte mode;
@@ -19,8 +19,12 @@ public class Role {
     public Role() {
     }
 
-    public Object getRid() {
+    public Long getRid() {
         return rid;
+    }
+
+    public void setRid(Long rid) {
+        this.rid = rid;
     }
 
     public String getName() {

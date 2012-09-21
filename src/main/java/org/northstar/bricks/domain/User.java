@@ -5,7 +5,7 @@ import javax.persistence.Version;
 
 public class User {
     @Id
-    private Object id;
+    private Long id;
     @Version
     private Object version;
 
@@ -21,11 +21,11 @@ public class User {
         this.role = role;
     }
 
-    public Object getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

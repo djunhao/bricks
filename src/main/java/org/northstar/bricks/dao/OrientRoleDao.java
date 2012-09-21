@@ -29,9 +29,10 @@ public class OrientRoleDao implements RoleDao {
     public OrientRoleDao() {
     }
 
-    public Role getRoleById(Object id) {
+    public Role getRoleById(Long id) {
         database = getConnection();
-        ORecordId rid = new ORecordId((String) id);
+        int clusterId = database.getClusterIdByName(Role.class.getSimpleName());
+        ORecordId rid = new ORecordId(clusterId, id);
         Role role = database.load(rid);
         //database.close();
         return role;

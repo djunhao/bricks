@@ -2,6 +2,7 @@ package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import org.northstar.bricks.auth.CurrentUser;
@@ -35,20 +36,19 @@ public class EditUser {
     private CurrentUser currentUser;
 
     @Get
-    String load() {
+    String load(@Named("id") Long id) {
         if (!isUserExists()) {
             return "/login";
         }
-        user = userDao.findByName(name);
+        user = userDao.findById(id);
         roleList = roleDao.findAll();
         return null;
 
     }
 
     @Post
-    String update() {
-
-        Role aRole = roleDao.getRoleByName(role.getName());
+    String update(@Named("id") Long id) {
+        Role aRole = roleDao.getRoleById(role.getRid());
         user.setRole(aRole);
         userDao.save(user);
         return "/";

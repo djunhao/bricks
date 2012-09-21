@@ -16,5 +16,8 @@
     <listener>
     	<listener-class>org.northstar.bricks.config.BricksListener</listener-class>
     </listener>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
 </web-app>
       

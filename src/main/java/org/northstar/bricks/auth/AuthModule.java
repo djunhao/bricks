@@ -2,7 +2,6 @@ package org.northstar.bricks.auth;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.matcher.Matchers;
-import com.google.inject.servlet.ServletModule;
 import org.aopalliance.intercept.MethodInterceptor;
 
 import static com.google.inject.matcher.Matchers.any;

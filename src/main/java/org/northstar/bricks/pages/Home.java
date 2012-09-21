@@ -1,7 +1,6 @@
 package org.northstar.bricks.pages;
 
 import com.google.inject.Inject;
-import org.northstar.bricks.components.Decorator;
 import org.northstar.bricks.dao.UserDao;
 import org.northstar.bricks.domain.User;
 

@@ -42,7 +42,7 @@
     <section id="page">
         <!-- start contents -->
         <div id="content">
-            <form action="/useradmin/edit" method="post">
+            <form action="/useradmin/edit/${user.id}" method="post">
                 <input name="user.id" type="hidden" value="${user.id}">
                 <table>
                     <thead>
@@ -56,9 +56,9 @@
                     <tr>
                         <td><input type="text" name="user.name" value="${user.name}"/></td>
                         <td><input type="password" name="user.password" value="${user.password}"/></td>
-                        <td><select  name="role.name">
-                            @Repeat(items=roleList, var="role")
-                            <option value="${role.name}">${role.name}</option>
+                        <td><select  name="role.rid">
+                            @Repeat(items=roleList, var="arole")
+                            <option value="${arole.rid}">${arole.name}</option>
                         </select></td>
                     </tr>
                     </tbody>

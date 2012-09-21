@@ -70,4 +70,9 @@ public class SimpleEntryDao implements EntryDao {
     public void delete(Entry argEntry) {
         entries.remove(argEntry);
     }
+
+    public int getListSize() {
+        return entries.size();
+    }
+
 }
