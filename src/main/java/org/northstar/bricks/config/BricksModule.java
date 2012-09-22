@@ -23,15 +23,15 @@ public class BricksModule extends SitebricksModule {
 
         //install(new JpaPersistModule("myFirstJpaUnit"));
         //install(new OrientdbModule(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD));
-        install(new AuthModule());
+        //install(new AuthModule());
 
         //bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
         bind(EntryDao.class).to(SimpleEntryDao.class);
         bind(UserDao.class).to(OrientUserDao.class);
         bind(RoleDao.class).to(OrientRoleDao.class);
 
-        at("static/default.css").export("bricks.css");
-        at("static/pager.css").export("pager.css");
+        //at("/static/default.css").export("bricks.css");
+        //at("/static/pager.css").export("pager.css");
 
         /* Project related page, service and widget */
         at("/").show(Home.class);

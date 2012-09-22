@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
+import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.config.BricksConstants;
 import org.northstar.bricks.domain.Role;
@@ -30,15 +31,20 @@ public class OrientRoleDao implements RoleDao {
     }
 
     public Role getRoleById(Long id) {
-        database = getConnection();
+        if(database == null || database.isClosed()) {
+            database = getConnection();
+        }
         int clusterId = database.getClusterIdByName(Role.class.getSimpleName());
         ORecordId rid = new ORecordId(clusterId, id);
         Role role = database.load(rid);
-        //database.close();
+        database.close();
         return role;
     }
 
     public Role getRoleByName(String name) {
+        if(database == null || database.isClosed()) {
+            database = getConnection();
+        }
         String queryString = "select from Role where name = ?";
         OQuery<Role> command = new OSQLSynchQuery<Role>(queryString);
         List<Role> roleList = database.command(command).execute(name);
@@ -46,23 +52,27 @@ public class OrientRoleDao implements RoleDao {
         for (Role r : roleList) {
             role = r;
         }
-        //database.close();
+        database.close();
         return role;
     }
 
     public List<Role> findAll() {
-        database = getConnection();
+        if(database == null || database.isClosed()) {
+            database = getConnection();
+        }
         String queryString = "select from Role";
         OQuery<Role> command = new OSQLSynchQuery<Role>(queryString);
         List<Role> result = database.query(command);
-        //database.close();
+        database.close();
         return result;
     }
 
     final OObjectDatabaseTx getConnection() {
-        final OObjectDatabaseTx databaseTx = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL);
-        databaseTx.open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        //final OObjectDatabaseTx databaseTx = new OObjectDatabaseTx(BricksConstants.ORIENTDB_URL);
+        //databaseTx.open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        final OObjectDatabaseTx databaseTx = OObjectDatabasePool.global().acquire(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
         databaseTx.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
+
         return databaseTx;
     }
 }

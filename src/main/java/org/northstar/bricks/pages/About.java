@@ -10,10 +10,8 @@ import org.northstar.bricks.components.Decorator;
  * Time: 上午10:46
  * To change this template use File | Settings | File Templates.
  */
-@Decorated
-public class About extends Decorator {
+public class About {
 
-    @Override
     public String getPageTitle() {
         return "系统介绍";
     }

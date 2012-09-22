@@ -1,7 +1,10 @@
 package org.northstar.bricks.auth;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Scopes;
 import com.google.inject.matcher.Matchers;
+import com.google.inject.servlet.ServletModule;
+import com.google.inject.servlet.SessionScoped;
 import org.aopalliance.intercept.MethodInterceptor;
 
 import static com.google.inject.matcher.Matchers.any;
@@ -24,6 +27,13 @@ public class AuthModule extends AbstractModule {
         requestInjection(interceptor);
         bindInterceptor(any(), Matchers.annotatedWith(AdminOnly.class), interceptor);
 
+        bind(CurrentUser.class).in(SessionScoped.class);
+        /*install(new ServletModule() {
+            @Override
+            protected void configureServlets() {
+                filter("*//*").through(AuthFilter.class);
+            }
 
+        });*/
     }
 }

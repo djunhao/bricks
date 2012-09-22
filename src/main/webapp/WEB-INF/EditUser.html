@@ -10,6 +10,7 @@
     <header id="header">
         <div id="logo">
             <h1>龙城危险化学品监管</h1>
+
             <h2>石龙镇危险化学品安全监管信息化管理系统</h2>
         </div>
         <div id="search">
@@ -43,7 +44,7 @@
         <!-- start contents -->
         <div id="content">
             <form action="/useradmin/edit/${user.id}" method="post">
-                <input name="user.id" type="hidden" value="${user.id}">
+                <!--<input name="user.id" type="hidden" value="${user.id}">-->
                 <table>
                     <thead>
                     <tr class="title">
@@ -56,9 +57,9 @@
                     <tr>
                         <td><input type="text" name="user.name" value="${user.name}"/></td>
                         <td><input type="password" name="user.password" value="${user.password}"/></td>
-                        <td><select  name="role.rid">
+                        <td><select name="role.name">
                             @Repeat(items=roleList, var="arole")
-                            <option value="${arole.rid}">${arole.name}</option>
+                            <option value="${arole.name}">${arole.name}</option>
                         </select></td>
                     </tr>
                     </tbody>

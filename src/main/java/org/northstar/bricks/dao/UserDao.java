@@ -16,7 +16,7 @@ public interface UserDao {
 
     void save(User user);
 
-    void update(User user, Long id);
+    void delete(User user);
 
     int getUserCounts();
 
@@ -30,7 +30,4 @@ public interface UserDao {
 
     User findById(Long id);
 
-    User findById(String id);
-
-    OObjectDatabaseTx getConnection();
 }

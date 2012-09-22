@@ -48,7 +48,7 @@ public class EditUser {
 
     @Post
     String update(@Named("id") Long id) {
-        Role aRole = roleDao.getRoleById(role.getRid());
+        Role aRole = roleDao.getRoleByName(role.getName());
         user.setRole(aRole);
         userDao.save(user);
         return "/";

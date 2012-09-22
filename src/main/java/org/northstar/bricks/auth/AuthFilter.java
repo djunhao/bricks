@@ -5,6 +5,7 @@ import com.google.inject.Provider;
 import com.google.inject.Singleton;
 
 import javax.servlet.*;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -29,6 +30,12 @@ public class AuthFilter implements Filter {
             throws IOException, ServletException {
         // Don't allow the anonymous user to get in to this site.
         CurrentUser currentUser = currentUserProvider.get();
+        // First see if there is a session cookie.
+        Cookie sessionCookie = currentUser.getSessionCookie();
+        if (null == sessionCookie) {
+            // Auth as anonymous.
+            currentUser.setUser(null);
+        }
         if (!currentUser.isAuthenticated()) {
             ((HttpServletResponse) response).sendRedirect("/login");
         }
