@@ -5,5 +5,9 @@
 </head>
 <body>
 关于我〉〉〉
+<ul>
+    @Repeat(items=roles, var="role")
+    <li>${role.name}</li>
+</ul>
 </body>
 </html>

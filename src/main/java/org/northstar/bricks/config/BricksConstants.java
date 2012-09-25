@@ -11,5 +11,5 @@ public class BricksConstants {
     public static final String ORIENTDB_URL = "remote:localhost/bricks";
     public static final String ORIENTDB_USER = "admin";
     public static final String ORIENTDB_PASSWORD = "admin";
-    public static final String ENTITY_PACKAGE = "org.northstar.bricks.domain";
+    public static final String ENTITY_PACKAGE = "org.northstar.bricks.core.domain";
 }

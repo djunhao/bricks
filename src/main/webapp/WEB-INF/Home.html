@@ -53,6 +53,7 @@
                             <th>序号</th>
                             <th>用户名</th>
                             <th>权限</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -61,11 +62,12 @@
                             <td>${user.id}</td>
                             <td><a href="useradmin/edit/${user.id}">${user.name}</a></td>
                             <td>${user.role.name}</td>
+                            <td><a href="useradmin/delete/${user.id}">删除</a></td>
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr class="title">
-                            <td colspan="3">用户列表</td>
+                            <td colspan="4">用户列表</td>
                         </tr>
                         </tfoot>
                     </table>

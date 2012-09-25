@@ -11,8 +11,8 @@
 		<!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
 		<provider>com.orientechnologies.orient.object.jpa.OJPAPersistenceProvider</provider>
 		<!-- JPA entities must be registered here -->
-		<class>org.northstar.bricks.domain.User</class>
-        <class>org.northstar.bricks.domain.Role</class>
+		<class>org.northstar.bricks.core.domain.User</class>
+        <class>org.northstar.bricks.core.domain.Role</class>
 		<properties>
 			<!-- <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" 
 				/> <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" /> 

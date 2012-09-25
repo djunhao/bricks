@@ -1,16 +1,18 @@
 package org.northstar.bricks.config;
 
+import com.google.inject.Scopes;
 import com.google.sitebricks.SitebricksModule;
-import org.northstar.bricks.auth.AuthModule;
-import org.northstar.bricks.auth.LoginAction;
-import org.northstar.bricks.auth.Logout;
-import org.northstar.bricks.components.GuestbookNavigation;
-import org.northstar.bricks.components.NewCard;
-import org.northstar.bricks.components.Pager;
-import org.northstar.bricks.dao.*;
-import org.northstar.bricks.pages.*;
+import com.google.sitebricks.SitebricksServletModule;
+import org.northstar.bricks.web.auth.LoginAction;
+import org.northstar.bricks.web.auth.Logout;
+import org.northstar.bricks.web.components.GuestbookNavigation;
+import org.northstar.bricks.web.components.NewCard;
+import org.northstar.bricks.web.components.Pager;
+import org.northstar.bricks.core.dao.*;
+import org.northstar.bricks.web.pages.*;
 import org.northstar.bricks.test.Forms;
 import org.northstar.bricks.test.Hello;
+import org.northstar.bricks.web.service.DeleteUser;
 
 /**
  * Configures a Sitebrick Module
@@ -22,25 +24,24 @@ public class BricksModule extends SitebricksModule {
     protected void configureSitebricks() {
 
         //install(new JpaPersistModule("myFirstJpaUnit"));
-        //install(new OrientdbModule(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD));
-        //install(new AuthModule());
 
         //bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
-        bind(EntryDao.class).to(SimpleEntryDao.class);
-        bind(UserDao.class).to(OrientUserDao.class);
-        bind(RoleDao.class).to(OrientRoleDao.class);
+        bind(EntryDao.class).to(SimpleEntryDao.class).in(Scopes.SINGLETON);
+        bind(UserDao.class).to(OrientUserDao.class).in(Scopes.SINGLETON);
+        bind(RoleDao.class).to(OrientRoleDao.class).in(Scopes.SINGLETON);
 
-        //at("/static/default.css").export("bricks.css");
-        //at("/static/pager.css").export("pager.css");
+        at("/static/default.css").export("bricks.css");
+        at("/static/pager.css").export("pager.css");
 
         /* Project related page, service and widget */
-        at("/").show(Home.class);
+        at("/").show(Home.class).in(Scopes.SINGLETON);
         at("/home").show(Home.class);
-        at("/login").show(Login.class);
-        at("/loginAction").serve(LoginAction.class);
-        at("/useradmin/edit/:id").show(EditUser.class);
-        at("/useradmin/create").show(CreateUser.class);
-        at("/about").show(About.class);
+        at("/login").show(Login.class).in(Scopes.SINGLETON);
+        at("/loginAction").serve(LoginAction.class).in(Scopes.SINGLETON);
+        at("/useradmin/delete/:id").serve(DeleteUser.class).in(Scopes.SINGLETON);
+        at("/useradmin/edit/:id").show(EditUser.class).in(Scopes.SINGLETON);
+        at("/useradmin/create").show(CreateUser.class).in(Scopes.SINGLETON);
+        at("/about").show(About.class).in(Scopes.SINGLETON);
 
         at("/logout").serve(Logout.class);
 
@@ -56,16 +57,16 @@ public class BricksModule extends SitebricksModule {
 
         embed(NewCard.class).as("Card");
         embed(GuestbookNavigation.class).as("navigation");
+
     }
-    /*
+
     @Override
     protected SitebricksServletModule servletModule() {
         return new SitebricksServletModule() {
             @Override
             protected void configurePreFilters() {
-                filter("/*").through(AuthFilter.class);
+                //filter("/*").through(OrientdbFilter.class);
             }
         };
     }
-   */
 }

@@ -2,7 +2,7 @@ package org.northstar.bricks.test;
 
 import com.google.sitebricks.http.*;
 import com.google.sitebricks.rendering.Decorated;
-import org.northstar.bricks.components.Decorator;
+import org.northstar.bricks.web.components.Decorator;
 
 import java.util.ArrayList;
 import java.util.List;
