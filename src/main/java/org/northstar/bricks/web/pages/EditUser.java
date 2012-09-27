@@ -9,6 +9,7 @@ import org.northstar.bricks.core.dao.RoleDao;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.Role;
 import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.web.auth.Secure;
 
 import java.util.List;
 
@@ -24,8 +25,6 @@ public class EditUser {
     private User user = new User();
     private List<Role> roleList;
 
-    private String name;
-
     private UserDao userDao;
     private RoleDao roleDao;
 
@@ -34,17 +33,16 @@ public class EditUser {
     private CurrentUser currentUser;
 
     @Get
+    @Secure
     String load(@Named("id") Long id) {
-        if (!isUserExists()) {
-            return "/login";
-        }
         user = userDao.findById(id);
         roleList = roleDao.findAll();
-        return null;
+      return null;
 
     }
 
     @Post
+    @Secure
     String update(@Named("id") Long id) {
         Role aRole = roleDao.getRoleByName(role.getName());
         user.setRole(aRole);
@@ -90,19 +88,11 @@ public class EditUser {
         this.roleDao = roleDao;
     }
 
-    public boolean isUserExists() {
+    public boolean isLoggedIn() {
         return currentUser.isAuthenticated();
     }
 
     public CurrentUser getCurrentUser() {
         return currentUser;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

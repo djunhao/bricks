@@ -5,6 +5,7 @@ import com.google.inject.Provider;
 import com.google.sitebricks.headless.Reply;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+import org.northstar.bricks.core.domain.User;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,9 +20,9 @@ class SecureMethodInterceptor implements MethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        CurrentUser currentUser = currentUserProvider.get();
-        if (currentUser.isAuthenticated()) {
-            Reply.saying().redirect("/login");
+        if (!currentUserProvider.get().isAuthenticated()) {
+            //throw new IllegalAccessException("Anonymous users may not access this function");
+            return "/login";
         }
         return invocation.proceed();
     }

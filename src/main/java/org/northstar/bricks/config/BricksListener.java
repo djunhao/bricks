@@ -15,6 +15,6 @@ import org.northstar.bricks.web.auth.AuthModule;
 public class BricksListener extends GuiceServletContextListener {
     protected Injector getInjector() {
         System.out.println("\n>>>[BIRCKS] Sitebricks web application demo started.");
-        return Guice.createInjector(Stage.DEVELOPMENT, new BricksModule(), new OrientdbModule(), new AuthModule());
+        return Guice.createInjector(Stage.DEVELOPMENT, new BricksModule(), new OrientdbModule());
     }
 }

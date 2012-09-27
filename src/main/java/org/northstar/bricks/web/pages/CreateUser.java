@@ -8,6 +8,7 @@ import org.northstar.bricks.core.dao.RoleDao;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.Role;
 import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.web.auth.Secure;
 
 import java.util.List;
 
@@ -40,11 +41,14 @@ public class CreateUser {
     }
 
     @Get
-    void load() {
+    @Secure
+    String load() {
         roleList = roleDao.findAll();
+        return null;
     }
 
     @Post
+    @Secure
     String create() {
         Role aRole = roleDao.getRoleByName(role.getName());
         System.out.println(">>> Selected role name is: " + aRole.getName());

@@ -2,10 +2,9 @@ package org.northstar.bricks.web.auth;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.matcher.Matchers;
+import com.google.inject.servlet.ServletModule;
 import com.google.inject.servlet.SessionScoped;
 import org.aopalliance.intercept.MethodInterceptor;
-
-import static com.google.inject.matcher.Matchers.any;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,19 +18,21 @@ public class AuthModule extends AbstractModule {
     protected void configure() {
         MethodInterceptor interceptor = new SecureMethodInterceptor();
         requestInjection(interceptor);
-        bindInterceptor(any(), Matchers.annotatedWith(Secure.class), interceptor);
-
+        bindInterceptor(Matchers.any(), Matchers.annotatedWith(Secure.class), interceptor);
+        bindInterceptor(Matchers.annotatedWith(Secure.class), Matchers.any(), interceptor);
+/*
         interceptor = new AdminMethodInterceptor();
         requestInjection(interceptor);
-        bindInterceptor(any(), Matchers.annotatedWith(AdminOnly.class), interceptor);
+        bindInterceptor(Matchers.any(), Matchers.annotatedWith(AdminOnly.class), interceptor);*/
 
         bind(CurrentUser.class).in(SessionScoped.class);
-        /*install(new ServletModule() {
+        //bind(UserSession.class);
+        install(new ServletModule() {
             @Override
             protected void configureServlets() {
-                filter("*//*").through(AuthFilter.class);
+                //filter("/useradmin/*").through(AuthFilter.class);
             }
 
-        });*/
+        });
     }
 }

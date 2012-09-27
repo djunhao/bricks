@@ -16,15 +16,6 @@ public abstract class Decorator {
     private final List<String> PAGES;
     @Inject
     private Provider<CurrentUser> currentUser;
-    private boolean logout;
-
-    public boolean isLogout() {
-        return logout;
-    }
-
-    public void setLogout(boolean logout) {
-        this.logout = logout;
-    }
 
     protected Decorator() {
         PAGES = Arrays.asList("Home", "Flow", "About");
@@ -34,7 +25,7 @@ public abstract class Decorator {
         return PAGES;
     }
 
-    public boolean isUserExists() {
+    public boolean isLoggedIn() {
         return getLoginUser().isAuthenticated();
     }
 
@@ -42,11 +33,5 @@ public abstract class Decorator {
 
     public CurrentUser getLoginUser() {
         return currentUser.get();
-    }
-
-    @Get
-    public void logout() {
-        if (logout)
-            getLoginUser().logout();
     }
 }

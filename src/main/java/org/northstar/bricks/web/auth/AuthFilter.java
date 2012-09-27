@@ -3,6 +3,9 @@ package org.northstar.bricks.web.auth;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
+import com.google.sitebricks.headless.Reply;
+import com.google.sitebricks.routing.PageBook;
+import org.northstar.bricks.core.domain.User;
 
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
@@ -28,16 +31,10 @@ public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        // Don't allow the anonymous user to get in to this site.
         CurrentUser currentUser = currentUserProvider.get();
-        // First see if there is a session cookie.
-        Cookie sessionCookie = currentUser.getSessionCookie();
-        if (null == sessionCookie) {
-            // Auth as anonymous.
-            currentUser.setUser(null);
-        }
         if (!currentUser.isAuthenticated()) {
-            ((HttpServletResponse) response).sendRedirect("/login");
+            //((HttpServletResponse)response).sendRedirect("/login");
+            Reply.saying().ok().redirect("/login");
         }
         chain.doFilter(request, response);
     }

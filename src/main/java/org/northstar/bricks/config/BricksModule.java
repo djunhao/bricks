@@ -3,6 +3,8 @@ package org.northstar.bricks.config;
 import com.google.inject.Scopes;
 import com.google.sitebricks.SitebricksModule;
 import com.google.sitebricks.SitebricksServletModule;
+import org.northstar.bricks.web.auth.AuthFilter;
+import org.northstar.bricks.web.auth.AuthModule;
 import org.northstar.bricks.web.auth.LoginAction;
 import org.northstar.bricks.web.auth.Logout;
 import org.northstar.bricks.web.components.GuestbookNavigation;
@@ -30,8 +32,8 @@ public class BricksModule extends SitebricksModule {
         bind(UserDao.class).to(OrientUserDao.class).in(Scopes.SINGLETON);
         bind(RoleDao.class).to(OrientRoleDao.class).in(Scopes.SINGLETON);
 
-        at("/static/default.css").export("bricks.css");
-        at("/static/pager.css").export("pager.css");
+        //at("/static/default.css").export("bricks.css");
+        //at("/static/pager.css").export("pager.css");
 
         /* Project related page, service and widget */
         at("/").show(Home.class).in(Scopes.SINGLETON);
@@ -58,6 +60,7 @@ public class BricksModule extends SitebricksModule {
         embed(NewCard.class).as("Card");
         embed(GuestbookNavigation.class).as("navigation");
 
+        install(new AuthModule());
     }
 
     @Override
@@ -65,7 +68,7 @@ public class BricksModule extends SitebricksModule {
         return new SitebricksServletModule() {
             @Override
             protected void configurePreFilters() {
-                //filter("/*").through(OrientdbFilter.class);
+                //filter("/useradmin/*").through(AuthFilter.class);
             }
         };
     }

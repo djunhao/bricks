@@ -22,6 +22,6 @@ public class Logout {
     @Get
     public Reply logout() {
         currentUser.logout();
-        return Reply.saying().redirect("/bricks");
+        return Reply.saying().redirect("/");
     }
 }

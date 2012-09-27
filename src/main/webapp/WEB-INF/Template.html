@@ -1,21 +1,18 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>bricks - ${pageTitle}</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="/static/default.css"/>
+    <title></title>
 </head>
 <body>
 <div id="wrapper">
     <header id="header">
         <div id="logo">
             <h1>龙城危险化学品监管</h1>
-
             <h2>石龙镇危险化学品安全监管信息化管理系统</h2>
         </div>
         <div id="search">
             <form onsubmit="javascript:onSearch();">
-                <input type="text" name="item" id="s"/>
+                <input type="text" name="item" id="s" />
                 <input type="button" id="x" value=" 查 找 "/>
             </form>
         </div>
@@ -43,44 +40,34 @@
     <section id="page">
         <!-- start contents -->
         <div id="content">
-            <div class="post">
-                <h1 class="title">Examples</h1>
+            @Decorated
+            <div>This should be replaced by the extension</div>
 
-                <div class="entry">
-                    <table>
-                        <thead>
-                        <tr class="title">
-                            <th>序号</th>
-                            <th>用户名</th>
-                            <th>权限</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @Repeat(items=pagedUsers, var="user")
-                        <tr>
-                            <td>${user.id}</td>
-                            <td><a href="useradmin/edit/${user.id}">${user.name}</a></td>
-                            <td>${user.role.name}</td>
-                            <td><a href="useradmin/delete/${user.id}">删除</a></td>
-                        </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr class="title">
-                            <td colspan="4">用户列表</td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
-                <div>pager here</div>
-            </div>
         </div>
 
         <nav id="sidebar">
             <ul>
+                @ShowIf(userExists)
+                <li>
+                    <h2>USERINFO</h2>
+                    <ul>
+                        <li>欢迎您，${loginUser.user.name}！</li>
+                        <li><a href="/logout">注销</a></li>
+                    </ul>
 
+                </li>
+                <li>
+                    <h2>PROFILE</h2>
+                    <ul>
+                        @Repeat(items=pages, var="page")
+                        <li>
+                            @ShowIf(page=="Home")
+                            <a href="/">${page}</a>
+                            @ShowIf(page!="Home")
+                            <a href="/${page.toLowerCase()}">${page}</a></li>
+                    </ul>
 
+                </li>
                 <li>
                     <h2>OTHER</h2>
                     <ul>
