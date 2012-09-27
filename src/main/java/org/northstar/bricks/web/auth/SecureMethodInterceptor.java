@@ -21,7 +21,9 @@ class SecureMethodInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         if (!currentUserProvider.get().isAuthenticated()) {
-            //throw new IllegalAccessException("Anonymous users may not access this function");
+            if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
+                return Reply.saying().redirect("/login");
+            }
             return "/login";
         }
         return invocation.proceed();

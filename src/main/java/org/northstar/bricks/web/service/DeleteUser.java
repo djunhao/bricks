@@ -6,6 +6,7 @@ import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Get;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.web.auth.Secure;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,6 +20,7 @@ public class DeleteUser {
     private UserDao userDao;
 
     @Get
+    @Secure
     public Reply remove(@Named("id") Long id) {
         User user = userDao.findById(id);
         userDao.delete(user);
