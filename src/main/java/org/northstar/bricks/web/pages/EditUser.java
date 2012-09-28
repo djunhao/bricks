@@ -12,6 +12,7 @@ import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.Role;
 import org.northstar.bricks.core.domain.User;
 import org.northstar.bricks.web.auth.Secure;
+import org.northstar.bricks.web.uri.URIContext;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ import java.util.List;
  * Time: 上午11:14
  * To change this template use File | Settings | File Templates.
  */
-@At("/useradmin/edit/:id")
+@At(URIContext.USER_EDIT)
 public class EditUser {
     private Role role = new Role();
     private User user = new User();
@@ -42,16 +43,14 @@ public class EditUser {
         user = userDao.findById(id);
         roleList = roleDao.findAll();
       return null;
-
     }
 
     @Post
-    @Secure
     String update(@Named("id") Long id) {
         Role aRole = roleDao.getRoleByName(role.getName());
         user.setRole(aRole);
         userDao.save(user);
-        return redirect.to(Home.class);
+        return URIContext.HOME;
     }
 
     public List<Role> getRoleList() {

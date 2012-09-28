@@ -3,6 +3,7 @@ package org.northstar.bricks.web.pages;
 import com.google.inject.Inject;
 import com.google.sitebricks.At;
 import org.northstar.bricks.web.auth.CurrentUser;
+import org.northstar.bricks.web.uri.URIContext;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +12,7 @@ import org.northstar.bricks.web.auth.CurrentUser;
  * Time: 下午4:34
  * To change this template use File | Settings | File Templates.
  */
-@At("/login")
+@At(URIContext.LOGIN_PAGE)
 public class Login {
 
     @Inject

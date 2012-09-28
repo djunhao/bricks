@@ -11,6 +11,7 @@ import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.Role;
 import org.northstar.bricks.core.domain.User;
 import org.northstar.bricks.web.auth.Secure;
+import org.northstar.bricks.web.uri.URIContext;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
  * Time: 上午9:01
  * To change this template use File | Settings | File Templates.
  */
-@At("/useradmin/create")
+@At(URIContext.USER_CREATE)
 public class CreateUser {
 
     private UserDao userDao;

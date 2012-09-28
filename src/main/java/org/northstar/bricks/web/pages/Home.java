@@ -4,19 +4,19 @@ import com.google.inject.Inject;
 import com.google.sitebricks.At;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.web.uri.URIContext;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-@At("/")
+@At(URIContext.HOME)
 public class Home {
 
     private List<User> pagedUsers;
     private int page;
     private Integer maxPerPage = 5;
     private final UserDao dao;
-    /* @Inject
-  private RoleDao roleDao;*/
+
     @Inject
     private Logger logger;
 
@@ -40,7 +40,6 @@ public class Home {
         }
         startIndex = (page - 1) * maxPerPage - 1;
         return dao.findPagedUsers(startIndex, maxPerPage);
-        //return dao.findAll();
     }
 
     public String getPageTitle() {
@@ -55,15 +54,5 @@ public class Home {
         int userCounts = dao.getUserCounts();
         return (userCounts - 1) / maxPerPage + 1;
     }
-    /*@Get
-    void load(){
-        User user =
-        Role role = roleDao.getRoleByName("leader");
-        logger.info("get role from: " + role.getName());
-        Role role = new Role();
-        role.setName("leader");
-        role.setMode((byte) 0);
-        user.setRole(role);
-        dao.createNewUser(user);
-    }*/
+
 }

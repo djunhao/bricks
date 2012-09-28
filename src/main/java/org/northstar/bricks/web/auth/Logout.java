@@ -5,7 +5,7 @@ import com.google.sitebricks.At;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.routing.Redirect;
-import org.northstar.bricks.web.pages.Home;
+import org.northstar.bricks.web.uri.URIContext;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +14,7 @@ import org.northstar.bricks.web.pages.Home;
  * Time: 上午10:36
  * To change this template use File | Settings | File Templates.
  */
-@At("/logout")
+@At(URIContext.LOGOUT)
 public class Logout {
     private final CurrentUser currentUser;
     private final Redirect redirect;
@@ -29,6 +29,5 @@ public class Logout {
     public Reply<Object> logout() {
         currentUser.logout();
         return Reply.saying().redirect("/");
-        //return redirect.to(Home.class);
     }
 }
