@@ -1,11 +1,17 @@
 package org.northstar.bricks.web.pages;
 
-import com.google.inject.Inject;
+import com.google.sitebricks.At;
+import com.google.sitebricks.Show;
+import com.google.sitebricks.client.transport.Json;
+import com.google.sitebricks.headless.Reply;
+import com.google.sitebricks.http.Get;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.iterator.ORecordIteratorClass;
 import com.orientechnologies.orient.core.query.OQuery;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
-import org.northstar.bricks.core.domain.Role;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,17 +22,13 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class About {
-    @Inject
-    private OObjectDatabaseTx database;
+
     public String getPageTitle() {
         return "系统介绍";
     }
 
-    public List<Role> getRoles() {
-        String queryString = "select from Role";
-        OQuery<Role> command = new OSQLSynchQuery<Role>(queryString);
-        List<Role> result = database.query(command);
-        database.close();
-        return result;
+    public String getHello(){
+        return "hello world!";
     }
+
 }

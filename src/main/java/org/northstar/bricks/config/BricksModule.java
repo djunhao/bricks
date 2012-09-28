@@ -37,7 +37,7 @@ public class BricksModule extends SitebricksModule {
 
         /* Project related page, service and widget */
         at("/").show(Home.class).in(Scopes.SINGLETON);
-        at("/home").show(Home.class);
+        at("/home.html").show(Home.class);
         at("/login").show(Login.class).in(Scopes.SINGLETON);
         at("/loginAction").serve(LoginAction.class).in(Scopes.SINGLETON);
         at("/useradmin/delete/:id").serve(DeleteUser.class).in(Scopes.SINGLETON);

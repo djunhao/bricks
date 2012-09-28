@@ -1,12 +1,14 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
+import com.google.sitebricks.At;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.User;
 
 import java.util.List;
 import java.util.logging.Logger;
 
+@At("/")
 public class Home {
 
     private List<User> pagedUsers;
