@@ -5,6 +5,7 @@ import com.google.inject.name.Named;
 import com.google.sitebricks.At;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Get;
+import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.User;
 import org.northstar.bricks.web.auth.Secure;
@@ -16,7 +17,6 @@ import org.northstar.bricks.web.auth.Secure;
  * Time: 上午11:03
  * To change this template use File | Settings | File Templates.
  */
-@At("/useradmin/delete")
 public class DeleteUser {
     @Inject
     private UserDao userDao;
@@ -26,6 +26,6 @@ public class DeleteUser {
     public Reply remove(@Named("id") Long id) {
         User user = userDao.findById(id);
         userDao.delete(user);
-        return Reply.saying().redirect("/");
+        return Reply.saying().redirect(URIContext.ROOT);
     }
 }

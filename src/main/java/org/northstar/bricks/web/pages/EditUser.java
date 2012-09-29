@@ -6,6 +6,7 @@ import com.google.sitebricks.At;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.google.sitebricks.routing.Redirect;
+import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.web.auth.CurrentUser;
 import org.northstar.bricks.core.dao.RoleDao;
 import org.northstar.bricks.core.dao.UserDao;
@@ -22,7 +23,6 @@ import java.util.List;
  * Time: 上午11:14
  * To change this template use File | Settings | File Templates.
  */
-@At("/useradmin/edit/:id")
 public class EditUser {
     private Role role = new Role();
     private User user = new User();
@@ -51,7 +51,7 @@ public class EditUser {
         Role aRole = roleDao.getRoleByName(role.getName());
         user.setRole(aRole);
         userDao.save(user);
-        return redirect.to(Home.class);
+        return URIContext.ROOT;
     }
 
     public List<Role> getRoleList() {

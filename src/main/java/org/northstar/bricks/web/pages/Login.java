@@ -11,7 +11,6 @@ import org.northstar.bricks.web.auth.CurrentUser;
  * Time: 下午4:34
  * To change this template use File | Settings | File Templates.
  */
-@At("/login")
 public class Login {
 
     @Inject

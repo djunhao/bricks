@@ -28,5 +28,5 @@ public interface UserDao {
     List<User> authenticated(String name, String password);
 
     User findById(Long id);
-
+    User findById(String id);
 }

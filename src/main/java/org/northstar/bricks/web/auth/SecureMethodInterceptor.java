@@ -6,6 +6,7 @@ import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.routing.Redirect;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.web.pages.Login;
 
 /**
@@ -25,9 +26,9 @@ class SecureMethodInterceptor implements MethodInterceptor {
     public Object invoke(MethodInvocation invocation) throws Throwable {
         if (!currentUserProvider.get().isAuthenticated()) {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
-                return Reply.saying().redirect("/login");
+                return Reply.saying().redirect(URIContext.LOGIN_PAGE);
             }
-            return redirect.to(Login.class);
+            return URIContext.LOGIN_PAGE;
         }
         return invocation.proceed();
     }

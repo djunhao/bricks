@@ -8,7 +8,6 @@ import org.northstar.bricks.web.auth.CurrentUser;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.auth.UserSession;
 
-@At("/flow")
 public class Flow {
 
     @Inject

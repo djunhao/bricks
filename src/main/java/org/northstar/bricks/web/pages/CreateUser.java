@@ -5,6 +5,7 @@ import com.google.sitebricks.At;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.google.sitebricks.routing.Redirect;
+import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.web.auth.CurrentUser;
 import org.northstar.bricks.core.dao.RoleDao;
 import org.northstar.bricks.core.dao.UserDao;
@@ -21,7 +22,6 @@ import java.util.List;
  * Time: 上午9:01
  * To change this template use File | Settings | File Templates.
  */
-@At("/useradmin/create")
 public class CreateUser {
 
     private UserDao userDao;
@@ -59,7 +59,7 @@ public class CreateUser {
         System.out.println(">>> Selected role name is: " + aRole.getName());
         user.setRole(aRole);
         userDao.save(user);
-        return redirect.to(Home.class);
+        return URIContext.ROOT;
     }
 
     public List<Role> getRoleList() {

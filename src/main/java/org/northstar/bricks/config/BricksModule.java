@@ -36,16 +36,16 @@ public class BricksModule extends SitebricksModule {
         //at("/static/pager.css").export("pager.css");
 
         /* Project related page, service and widget */
-        at("/").show(Home.class).in(Scopes.SINGLETON);
-        at("/home.html").show(Home.class);
-        at("/login").show(Login.class).in(Scopes.SINGLETON);
-        at("/loginAction").serve(LoginAction.class).in(Scopes.SINGLETON);
-        at("/useradmin/delete/:id").serve(DeleteUser.class).in(Scopes.SINGLETON);
-        at("/useradmin/edit/:id").show(EditUser.class).in(Scopes.SINGLETON);
-        at("/useradmin/create").show(CreateUser.class).in(Scopes.SINGLETON);
-        at("/about").show(About.class).in(Scopes.SINGLETON);
+        at(URIContext.ROOT).show(Home.class).in(Scopes.SINGLETON);
+        /*at("/home.html").show(Home.class);*/
+        at(URIContext.LOGIN_PAGE).show(Login.class).in(Scopes.SINGLETON);
+        at(URIContext.LOGIN_ACTION).serve(LoginAction.class).in(Scopes.SINGLETON);
+        at(URIContext.USER_DELETE).serve(DeleteUser.class).in(Scopes.SINGLETON);
+        at(URIContext.USER_EDIT).show(EditUser.class).in(Scopes.SINGLETON);
+        at(URIContext.USER_CREATE).show(CreateUser.class).in(Scopes.SINGLETON);
+        at(URIContext.ABOUT).show(About.class).in(Scopes.SINGLETON);
 
-        at("/logout").serve(Logout.class);
+        at(URIContext.LOGOUT).serve(Logout.class);
 
         embed(Pager.class).as("Pager");
 
