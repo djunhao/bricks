@@ -33,7 +33,7 @@ public class OrientdbFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         OObjectDatabaseTx databaseTx = OObjectDatabasePool.global().acquire(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
-        try{
+        try {
             filterChain.doFilter(servletRequest, servletResponse);
         } finally {
             databaseTx.close();

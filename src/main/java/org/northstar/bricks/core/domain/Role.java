@@ -23,7 +23,7 @@ public class Role {
         return rid;
     }
 
-   /* public void setRid(Long rid) {
+    /* public void setRid(Long rid) {
         this.rid = rid;
     }*/
 

@@ -1,16 +1,16 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
-import com.google.sitebricks.At;
+import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.User;
-import org.northstar.bricks.web.uri.URIContext;
+import org.northstar.bricks.web.components.Decorator;
 
 import java.util.List;
 import java.util.logging.Logger;
 
-@At(URIContext.HOME)
-public class Home {
+@Decorated
+public class Home extends Decorator {
 
     private List<User> pagedUsers;
     private int page;

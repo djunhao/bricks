@@ -2,16 +2,19 @@ package org.northstar.bricks.core.dao;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Singleton;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
+import com.orientechnologies.orient.core.tx.OTransaction.TXTYPE;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.core.domain.User;
 
 import java.util.List;
 import java.util.logging.Logger;
 
+@Singleton
 public class OrientUserDao extends AbstractDao implements UserDao {
     @Inject
     private Logger logger;
@@ -23,28 +26,29 @@ public class OrientUserDao extends AbstractDao implements UserDao {
     }
 
     public void save(User user) {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         try {
-            database.begin();
+            database.begin(TXTYPE.OPTIMISTIC);
             logger.info(">>> Saving user id: " + user.getId() + " and name: " + user.getName());
             database.save(user);
             database.commit();
         } catch (Exception e) {
             database.rollback();
-            logger.warning(">>> " + user.getName() + " is not saved.");
+            e.printStackTrace();
+            logger.warning(">>> " + user.getName() + "("+user.getId()+")is not saved.");
         } finally {
             database.close();
         }
     }
 
     public void delete(User user) {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         try {
-            database.begin();
+            database.begin(TXTYPE.OPTIMISTIC);
             database.delete(user);
             database.commit();
         } catch (Exception e) {
@@ -55,7 +59,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
     }
 
     public int getUserCounts() {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         long count = database.countClass(User.class);
@@ -64,7 +68,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
     }
 
     public User findByName(String name) {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         String queryString = "select from User where name = ?";
@@ -80,7 +84,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
     }
 
     public List<User> findAll() {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         String queryString = "select from User";
@@ -91,12 +95,13 @@ public class OrientUserDao extends AbstractDao implements UserDao {
     }
 
     public List<User> findPagedUsers(long startIndex, int maxResults) {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         String queryString = "select from User where @rid > ? limit " + maxResults;
         OQuery<User> command = new OSQLSynchQuery<User>(queryString);
         int clusterId = database.getClusterIdByName(User.class.getSimpleName());
+
         ORID startRid = new ORecordId(clusterId, startIndex);
         //List<User> userList = database.command(query).execute(startRid);
         List<User> userList = database.query(command, startRid);
@@ -105,7 +110,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
     }
 
     public List<User> authenticated(String name, String password) {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         /*
@@ -127,7 +132,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
     }
 
     public User findById(Long id) {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         int clusterId = database.getClusterIdByName(User.class.getSimpleName());
@@ -138,7 +143,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
     }
 
     public User findById(String id) {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         ORID rid = new ORecordId(id);

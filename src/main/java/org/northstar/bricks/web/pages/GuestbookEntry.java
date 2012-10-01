@@ -4,15 +4,18 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
+import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.core.dao.EntryDao;
 import org.northstar.bricks.core.domain.Entry;
+import org.northstar.bricks.web.components.Decorator;
 
 /**
  * Resource which represents a single Entry
  *
  * @author David Linsin - linsin@synyx.de
  */
-public class GuestbookEntry {
+@Decorated
+public class GuestbookEntry extends Decorator {
 
     private Entry entry = new Entry();
     @Inject

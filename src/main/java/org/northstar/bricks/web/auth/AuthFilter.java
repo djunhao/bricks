@@ -4,12 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.google.sitebricks.headless.Reply;
-import com.google.sitebricks.routing.PageBook;
-import org.northstar.bricks.core.domain.User;
 
 import javax.servlet.*;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**

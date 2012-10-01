@@ -3,6 +3,7 @@ package org.northstar.bricks.core.orientdb;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.orientechnologies.orient.core.exception.ORecordNotFoundException;
+import com.orientechnologies.orient.core.index.OIndexes;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.config.BricksConstants;
@@ -28,9 +29,12 @@ public class OrientdbProvider implements Provider<OObjectDatabaseTx> {
         int maxRetry = 100; // give it up to approx 10 seconds to recover
         int retryCount = 0;
         OObjectDatabaseTx databaseTx = null;
+        ClassLoader origClassLoader = Thread.currentThread().getContextClassLoader();
         while (databaseTx == null && retryCount < maxRetry) {
             retryCount++;
             try {
+                ClassLoader orientClassLoader = OIndexes.class.getClassLoader();
+                Thread.currentThread().setContextClassLoader(orientClassLoader);
                 databaseTx = OObjectDatabasePool.global().acquire(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
                 if (retryCount > 1) {
                     logger.info("Succeeded in acquiring connection from pool in retry attempt " + retryCount);
@@ -47,10 +51,13 @@ public class OrientdbProvider implements Provider<OObjectDatabaseTx> {
                         // ignore that sleep was interrupted
                     }
                 }
+            } finally {
+                Thread.currentThread().setContextClassLoader(origClassLoader);
             }
 
         }
         databaseTx.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
+        //databaseTx.setMVCC(false);
         return databaseTx;
     }
 }

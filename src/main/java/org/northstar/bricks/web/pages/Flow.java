@@ -1,15 +1,15 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
-import com.google.sitebricks.At;
 import com.google.sitebricks.http.Get;
+import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.core.domain.User;
 import org.northstar.bricks.web.auth.CurrentUser;
 import org.northstar.bricks.web.auth.Secure;
-import org.northstar.bricks.web.auth.UserSession;
+import org.northstar.bricks.web.components.Decorator;
 
-@At("/flow")
-public class Flow {
+@Decorated
+public class Flow extends Decorator {
 
     @Inject
     private CurrentUser currentUser;

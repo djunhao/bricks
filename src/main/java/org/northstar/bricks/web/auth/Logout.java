@@ -1,11 +1,9 @@
 package org.northstar.bricks.web.auth;
 
 import com.google.inject.Inject;
-import com.google.sitebricks.At;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Get;
-import com.google.sitebricks.routing.Redirect;
-import org.northstar.bricks.web.uri.URIContext;
+import org.northstar.bricks.config.URIContext;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,20 +12,17 @@ import org.northstar.bricks.web.uri.URIContext;
  * Time: 上午10:36
  * To change this template use File | Settings | File Templates.
  */
-@At(URIContext.LOGOUT)
 public class Logout {
     private final CurrentUser currentUser;
-    private final Redirect redirect;
 
     @Inject
-    protected Logout(final CurrentUser currentUser, Redirect redirect) {
+    protected Logout(final CurrentUser currentUser) {
         this.currentUser = currentUser;
-        this.redirect = redirect;
     }
 
     @Get
     public Reply<Object> logout() {
         currentUser.logout();
-        return Reply.saying().redirect("/");
+        return Reply.saying().redirect(URIContext.ROOT);
     }
 }

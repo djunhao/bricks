@@ -2,6 +2,7 @@ package org.northstar.bricks.core.dao;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Singleton;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
  * Time: 下午1:40
  * To change this template use File | Settings | File Templates.
  */
+@Singleton
 public class OrientRoleDao extends AbstractDao implements RoleDao {
     @Inject
     Logger logger;
@@ -30,7 +32,7 @@ public class OrientRoleDao extends AbstractDao implements RoleDao {
     }
 
     public Role getRoleById(Long id) {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         int clusterId = database.getClusterIdByName(Role.class.getSimpleName());
@@ -41,7 +43,7 @@ public class OrientRoleDao extends AbstractDao implements RoleDao {
     }
 
     public Role getRoleByName(String name) {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         String queryString = "select from Role where name = ?";
@@ -56,7 +58,7 @@ public class OrientRoleDao extends AbstractDao implements RoleDao {
     }
 
     public List<Role> findAll() {
-        if(database == null || database.isClosed()) {
+        if (database == null || database.isClosed()) {
             database = getConnection();
         }
         String queryString = "select from Role";

@@ -1,19 +1,21 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
-import com.google.sitebricks.At;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
+import com.google.sitebricks.rendering.Decorated;
 import com.google.sitebricks.routing.Redirect;
-import org.northstar.bricks.web.auth.CurrentUser;
+import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.core.dao.RoleDao;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.Role;
 import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.web.auth.CurrentUser;
 import org.northstar.bricks.web.auth.Secure;
-import org.northstar.bricks.web.uri.URIContext;
+import org.northstar.bricks.web.components.Decorator;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,8 +24,8 @@ import java.util.List;
  * Time: 上午9:01
  * To change this template use File | Settings | File Templates.
  */
-@At(URIContext.USER_CREATE)
-public class CreateUser {
+@Decorated
+public class CreateUser extends Decorator {
 
     private UserDao userDao;
     private RoleDao roleDao;
@@ -31,21 +33,15 @@ public class CreateUser {
     private User user = new User();
     private Role role = new Role();
     private List<Role> roleList;
-    @Inject
-    private CurrentUser currentUser;
-    @Inject
-    private Redirect redirect;
 
     @Inject
-    void setUserDao(UserDao userDao) {
+    private Logger logger;
+
+    @Inject
+    CreateUser(UserDao userDao, UserDao userDao1, RoleDao roleDao) {
         this.userDao = userDao;
-    }
-
-    @Inject
-    void setRoleDao(RoleDao roleDao) {
         this.roleDao = roleDao;
     }
-
     @Get
     @Secure
     String load() {
@@ -57,10 +53,10 @@ public class CreateUser {
     @Secure
     String create() {
         Role aRole = roleDao.getRoleByName(role.getName());
-        System.out.println(">>> Selected role name is: " + aRole.getName());
+        logger.info(">>> Selected role name is: " + aRole.getName());
         user.setRole(aRole);
         userDao.save(user);
-        return redirect.to(Home.class);
+        return URIContext.ROOT;
     }
 
     public List<Role> getRoleList() {
@@ -87,16 +83,11 @@ public class CreateUser {
         this.role = role;
     }
 
-    public CurrentUser getCurrentUser() {
-        return currentUser;
-    }
 
+    @Override
     public String getPageTitle() {
         return "创建用户";
 
     }
 
-    boolean isUserExists() {
-        return currentUser.isAuthenticated();
-    }
 }

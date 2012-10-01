@@ -7,11 +7,13 @@ public class User {
     @Id
     private Long id;
     @Version
-    private Object version;
+    private Object version; //This field with @Version is for database transaction operation.
 
     private String name;
     private String password;
     private Role role;
+
+    public User(){}
 
     public Role getRole() {
         return role;
@@ -25,7 +27,7 @@ public class User {
         return id;
     }
 
-   /* public void setId(Long id) {
+    /*public void setId(Long id) {
         this.id = id;
     }*/
 

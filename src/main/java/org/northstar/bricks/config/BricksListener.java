@@ -5,7 +5,6 @@ import com.google.inject.Injector;
 import com.google.inject.Stage;
 import com.google.inject.servlet.GuiceServletContextListener;
 import org.northstar.bricks.core.orientdb.OrientdbModule;
-import org.northstar.bricks.web.auth.AuthModule;
 
 /**
  * Configures Guice injector

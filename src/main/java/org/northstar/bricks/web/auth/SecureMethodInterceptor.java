@@ -5,7 +5,7 @@ import com.google.inject.Provider;
 import com.google.sitebricks.headless.Reply;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.northstar.bricks.web.uri.URIContext;
+import org.northstar.bricks.config.URIContext;
 
 /**
  * Created with IntelliJ IDEA.

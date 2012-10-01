@@ -1,9 +1,9 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
-import com.google.sitebricks.At;
+import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.web.auth.CurrentUser;
-import org.northstar.bricks.web.uri.URIContext;
+import org.northstar.bricks.web.components.Decorator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,8 +12,8 @@ import org.northstar.bricks.web.uri.URIContext;
  * Time: 下午4:34
  * To change this template use File | Settings | File Templates.
  */
-@At(URIContext.LOGIN_PAGE)
-public class Login {
+@Decorated
+public class Login extends Decorator {
 
     @Inject
     private CurrentUser currentUser;
