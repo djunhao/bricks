@@ -1,6 +1,7 @@
 package org.northstar.bricks.web.service;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Get;
@@ -16,6 +17,7 @@ import org.northstar.bricks.web.auth.Secure;
  * Time: 上午11:03
  * To change this template use File | Settings | File Templates.
  */
+@Singleton
 public class DeleteUser {
     @Inject
     private UserDao userDao;

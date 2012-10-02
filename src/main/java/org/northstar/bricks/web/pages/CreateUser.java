@@ -1,6 +1,7 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.google.sitebricks.rendering.Decorated;
@@ -25,6 +26,7 @@ import java.util.logging.Logger;
  * To change this template use File | Settings | File Templates.
  */
 @Decorated
+@Singleton
 public class CreateUser extends Decorator {
 
     private UserDao userDao;

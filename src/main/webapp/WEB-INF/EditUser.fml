@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>user edit</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<form action="/useradmin/edit/${user.id}" method="post">
+    <table>
+        <thead>
+        <tr class="title">
+            <th>用户名</th>
+            <th>密码</th>
+            <th>权限</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input type="text" name="user.name" value="${user.name}"/></td>
+            <td><input type="password" name="user.password" value="${user.password}"/></td>
+            <td>
+                <select name="role.name">
+                <#list roleList as arole>
+                    <#if arole.name == user.role.name>
+                    <option value="${arole.name}" selected>${arole.name}</option>
+                    <#else>
+                    <option value="${arole.name}">${arole.name}</option>
+                    </#if>
+                </#list>
+                </select>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3"><input type="submit" value="更新用户"/></td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
+
+</body>
+</html>

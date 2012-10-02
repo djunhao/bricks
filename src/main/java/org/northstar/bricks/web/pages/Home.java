@@ -1,6 +1,7 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.User;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Decorated
+@Singleton
 public class Home extends Decorator {
 
     private List<User> pagedUsers;

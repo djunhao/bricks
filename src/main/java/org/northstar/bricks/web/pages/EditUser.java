@@ -3,6 +3,7 @@ package org.northstar.bricks.web.pages;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+import com.google.sitebricks.Show;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.google.sitebricks.rendering.Decorated;
@@ -27,6 +28,7 @@ import java.util.List;
  */
 @Decorated
 @Singleton  //必须是单例模式才能保证user实例不变，以便更新到数据库
+@Show("EditUser.fml")
 public class EditUser extends Decorator {
     private Role role = new Role();
     private User user = new User();
@@ -34,13 +36,12 @@ public class EditUser extends Decorator {
     private List<Role> roleList;
 
     private UserDao userDao;
-    private RoleDao roleDao;;
+    private RoleDao roleDao;
+
     @Inject
     public EditUser(UserDao userDao, RoleDao roleDao) {
         this.userDao = userDao;
         this.roleDao = roleDao;
-        //this.user = user;
-        //this.role = role;
     }
 
     @Get

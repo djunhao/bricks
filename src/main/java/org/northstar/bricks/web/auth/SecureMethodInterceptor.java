@@ -20,7 +20,8 @@ class SecureMethodInterceptor implements MethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        if (!currentUserProvider.get().isAuthenticated()) {
+        CurrentUser currentUser = currentUserProvider.get();
+        if (!currentUser.isAuthenticated()) {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
                 return Reply.saying().redirect(URIContext.LOGIN_PAGE);
             }

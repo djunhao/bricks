@@ -4,14 +4,17 @@ import com.google.inject.Scopes;
 import com.google.sitebricks.SitebricksModule;
 import com.google.sitebricks.SitebricksServletModule;
 import org.northstar.bricks.core.dao.*;
+import org.northstar.bricks.core.orientdb.OrientdbFilter;
 import org.northstar.bricks.test.Forms;
 import org.northstar.bricks.test.Hello;
+import org.northstar.bricks.test.Test;
 import org.northstar.bricks.web.auth.AuthModule;
-import org.northstar.bricks.web.auth.LoginAction;
+import org.northstar.bricks.web.auth.Login;
 import org.northstar.bricks.web.auth.Logout;
 import org.northstar.bricks.web.components.GuestbookNavigation;
 import org.northstar.bricks.web.components.NewCard;
 import org.northstar.bricks.web.components.Pager;
+import org.northstar.bricks.web.components.SelectWidget;
 import org.northstar.bricks.web.pages.*;
 import org.northstar.bricks.web.service.DeleteUser;
 
@@ -35,16 +38,16 @@ public class BricksModule extends SitebricksModule {
         //at("/static/pager.css").export("pager.css");
 
         /* Project related page, service and widget */
-        at(URIContext.ROOT).show(Home.class).in(Scopes.SINGLETON);
+        at(URIContext.ROOT).show(Home.class);
         /*at("/home.html").show(Home.class);*/
-        at(URIContext.LOGIN_PAGE).show(Login.class).in(Scopes.SINGLETON);
-        at(URIContext.LOGIN_ACTION).serve(LoginAction.class);
-        at(URIContext.USER_DELETE).serve(DeleteUser.class);
+        at(URIContext.LOGIN_PAGE).show(LoginPage.class);
         at(URIContext.USER_EDIT).show(EditUser.class);
-        at(URIContext.USER_CREATE).show(CreateUser.class).in(Scopes.SINGLETON);
-        at(URIContext.ABOUT).show(About.class).in(Scopes.SINGLETON);
+        at(URIContext.USER_CREATE).show(CreateUser.class);
+        at(URIContext.ABOUT).show(About.class);
 
-        at(URIContext.LOGOUT).serve(Logout.class);
+        at(URIContext.USER_DELETE).serve(DeleteUser.class);
+        at(URIContext.LOGIN_ACTION).serve(Login.class);
+        at(URIContext.LOGOUT_ACTION).serve(Logout.class);
 
         embed(Pager.class).as("Pager");
 
@@ -55,9 +58,11 @@ public class BricksModule extends SitebricksModule {
         at("/hello").show(Hello.class);
         at("/count").show(Count.class);
         at("/forms").show(Forms.class);
+        at("/test").show(Test.class);
 
         embed(NewCard.class).as("Card");
         embed(GuestbookNavigation.class).as("navigation");
+        embed(SelectWidget.class).as("Select");
 
         install(new AuthModule());
     }
@@ -67,7 +72,7 @@ public class BricksModule extends SitebricksModule {
         return new SitebricksServletModule() {
             @Override
             protected void configurePreFilters() {
-                //filter("/useradmin/*").through(AuthFilter.class);
+                filter("/*").through(OrientdbFilter.class);
             }
         };
     }

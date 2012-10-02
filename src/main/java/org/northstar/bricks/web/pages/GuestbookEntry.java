@@ -1,6 +1,7 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
@@ -14,6 +15,7 @@ import org.northstar.bricks.web.components.Decorator;
  *
  * @author David Linsin - linsin@synyx.de
  */
+@Singleton
 @Decorated
 public class GuestbookEntry extends Decorator {
 

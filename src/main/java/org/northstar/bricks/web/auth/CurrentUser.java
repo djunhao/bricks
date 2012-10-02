@@ -1,6 +1,7 @@
 package org.northstar.bricks.web.auth;
 
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import org.northstar.bricks.core.domain.User;
 
 import javax.servlet.http.Cookie;

@@ -1,5 +1,6 @@
 package org.northstar.bricks.web.pages;
 
+import com.google.inject.Singleton;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.web.components.Decorator;
 
@@ -11,6 +12,7 @@ import org.northstar.bricks.web.components.Decorator;
  * To change this template use File | Settings | File Templates.
  */
 @Decorated
+@Singleton
 public class About extends Decorator{
 
     public String getPageTitle() {

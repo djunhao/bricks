@@ -15,7 +15,7 @@ import java.util.Map;
  * Time: 下午5:51
  * To change this template use File | Settings | File Templates.
  */
-public class LoginAction {
+public class Login {
 
     private String name;
     private String password;
@@ -24,7 +24,7 @@ public class LoginAction {
     private Authentication auth;
 
     @Inject
-    public LoginAction(CurrentUser login, Authentication auth) {
+    public Login(CurrentUser login, Authentication auth) {
         this.login = login;
         this.auth = auth;
     }

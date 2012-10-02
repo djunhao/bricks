@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1>${message}</h1>
+<p>${user.name} - ${user.role.name}</p>
+<select>
+<#list roles as arole>
+<#if arole.name == user.role.name>
+<option value="${arole.name}" selected>${arole.name}</option>
+<#else>
+<option value="${arole.name}">${arole.name}</option>
+</#if>
+</#list>
+</select>
+</body>
+</html>

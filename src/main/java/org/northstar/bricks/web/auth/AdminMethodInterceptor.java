@@ -6,6 +6,7 @@ import com.google.inject.Provider;
 import com.google.sitebricks.headless.Reply;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+import org.northstar.bricks.config.URIContext;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,13 +19,16 @@ public class AdminMethodInterceptor implements MethodInterceptor {
     private static final ImmutableSet<String> ADMINS = ImmutableSet.of("northstar", "djh",
             "djunhao");
     @Inject
-    private Provider<CurrentUser> currentUser;
+    private Provider<CurrentUser> currentUserProvider;
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        CurrentUser user = currentUser.get();
-        if (user.isAuthenticated() || !ADMINS.contains(user.getUser().getName())) {
-            Reply.saying().redirect("/login");
+        CurrentUser currentUser = currentUserProvider.get();
+        if (currentUser.isAuthenticated() || !ADMINS.contains(currentUser.getUser().getName())) {
+            if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
+                return Reply.saying().redirect(URIContext.LOGIN_PAGE);
+            }
+            return URIContext.LOGIN_PAGE;
         }
         return invocation.proceed();
     }

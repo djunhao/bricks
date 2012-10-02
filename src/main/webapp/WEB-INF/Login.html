@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>bricks - ${pageTitle}</title>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     @Require
     <script type="text/javascript" charset="UTF-8" src="static/js/jquery-1.7.2.min.js"></script>
     @Require
@@ -10,68 +10,68 @@
 </head>
 <body>
 
-            <script type="text/javascript">
-                $(document).ready(function () {
-                            $('#msg').hide();
-                            var options = {
-                                //target: '#msg',
-                                url:'loginAction', //提交给哪个执行
-                                type:'POST',
-                                beforeSubmit:validate,
-                                //replaceTarget: true,
-                                //dataType:'json',
-                                success:showErr//显示操作提示
-                            };
-                            $('#loginform').ajaxForm(options);
-                        }
-                );
-                function validate(formData, jqForm, options) {
-                    for (var i = 0; i < formData.length; i++) {
-                        if (!formData[i].value) {
-                            $('#msg').html('请输入用户名和密码！');
-                            $('#msg').show();
-                            return false;
-                        }
-                    }
-                }
-                function showErr(data) {
-                    if (data.info == "success") {
-                        window.location = "/";
-                    } else {
-                        $('#msg').html(data.info);
-                        $('#msg').show();
-                        return false;
-                    }
-                }
-            </script>
-            <div class="login_container" id="login">
-                <div id="msg" style="border: 1px solid red;"></div>
-                <div class="login_box">
-                    <div class="logo_title">
-                        <h1><img src="/static/images/login_title.gif"/>用户登录</h1>
-                    </div>
-                    <div class="login_operate">
-                        <form id="loginform" method="post" name="loginform">
-                            <div class="username">
-                                <label class="txt_default" for="name">用户名</label>
-                                <input class="txt alias" id="name" name="name" type="text" tabindex="1"/>
-                            </div>
-                            <div class="password">
-                                <label class="txt_default" for="password">密&nbsp;&nbsp;&nbsp;码</label>
-                                <input class="txt password" id="password" name="password" type="password" tabindex="2"/>
-                            </div>
-                            <div class="about_password">
-                                <input class="remerber_password" id="remerber_password" type="checkbox" disabled/>
-                                <label for="remerber_password">记住登录状态</label>
-                                <a class="forgetPassword" href="" target="_blank">忘记密码？</a>
-                            </div>
-                            <div class="login_submit">
-                                <a class="login_btn_wrapper" href=""><input class="login_btn" type="submit" value="登录"/></a>
-                            </div>
-                        </form>
-                    </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+                $('#msg').hide();
+                var options = {
+                    //target: '#msg',
+                    url:'login', //提交给哪个执行
+                    type:'POST',
+                    beforeSubmit:validate,
+                    //replaceTarget: true,
+                    //dataType:'json',
+                    success:showErr//显示操作提示
+                };
+                $('#loginform').ajaxForm(options);
+            }
+    );
+    function validate(formData, jqForm, options) {
+        for (var i = 0; i < formData.length; i++) {
+            if (!formData[i].value) {
+                $('#msg').html('请输入用户名和密码！');
+                $('#msg').show();
+                return false;
+            }
+        }
+    }
+    function showErr(data) {
+        if (data.info == "success") {
+            window.location = "/";
+        } else {
+            $('#msg').html(data.info);
+            $('#msg').show();
+            return false;
+        }
+    }
+</script>
+<div class="login_container" id="login">
+    <div id="msg" style="border: 1px solid red;"></div>
+    <div class="login_box">
+        <div class="logo_title">
+            <h1><img src="/static/images/login_title.gif"/>用户登录</h1>
+        </div>
+        <div class="login_operate">
+            <form id="loginform" method="post" name="loginform">
+                <div class="username">
+                    <label class="txt_default" for="name">用户名</label>
+                    <input class="txt alias" id="name" name="name" type="text" tabindex="1"/>
                 </div>
-            </div>
+                <div class="password">
+                    <label class="txt_default" for="password">密&nbsp;&nbsp;&nbsp;码</label>
+                    <input class="txt password" id="password" name="password" type="password" tabindex="2"/>
+                </div>
+                <div class="about_password">
+                    <input class="remerber_password" id="remerber_password" type="checkbox" disabled/>
+                    <label for="remerber_password">记住登录状态</label>
+                    <a class="forgetPassword" href="" target="_blank">忘记密码？</a>
+                </div>
+                <div class="login_submit">
+                    <a class="login_btn_wrapper" href=""><input class="login_btn" type="submit" value="登录"/></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

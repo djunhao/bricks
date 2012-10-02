@@ -1,6 +1,8 @@
 package org.northstar.bricks.core.orientdb;
 
 import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
@@ -18,21 +20,20 @@ import java.io.IOException;
  */
 @Singleton
 public class OrientdbFilter implements Filter {
-    private final PersistService persistService;
+    private final Provider<OObjectDatabaseTx> connectionProvider;
 
     @Inject
-    public OrientdbFilter(PersistService persistService) {
-        this.persistService = persistService;
+    public OrientdbFilter(Provider<OObjectDatabaseTx> connectionProvider) {
+        this.connectionProvider = connectionProvider;
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        OObjectDatabaseTx databaseTx = OObjectDatabasePool.global().acquire(BricksConstants.ORIENTDB_URL, BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        final OObjectDatabaseTx databaseTx = connectionProvider.get();
         try {
             filterChain.doFilter(servletRequest, servletResponse);
         } finally {

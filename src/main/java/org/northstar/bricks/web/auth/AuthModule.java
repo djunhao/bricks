@@ -20,19 +20,12 @@ public class AuthModule extends AbstractModule {
         requestInjection(interceptor);
         bindInterceptor(Matchers.any(), Matchers.annotatedWith(Secure.class), interceptor);
         bindInterceptor(Matchers.annotatedWith(Secure.class), Matchers.any(), interceptor);
-/*
         interceptor = new AdminMethodInterceptor();
         requestInjection(interceptor);
-        bindInterceptor(Matchers.any(), Matchers.annotatedWith(AdminOnly.class), interceptor);*/
+        bindInterceptor(Matchers.any(), Matchers.annotatedWith(AdminOnly.class), interceptor);
+        bindInterceptor(Matchers.annotatedWith(AdminOnly.class), Matchers.any(), interceptor);
 
         bind(CurrentUser.class).in(SessionScoped.class);
-        //bind(UserSession.class);
-        install(new ServletModule() {
-            @Override
-            protected void configureServlets() {
-                //filter("/useradmin/*").through(AuthFilter.class);
-            }
 
-        });
     }
 }
