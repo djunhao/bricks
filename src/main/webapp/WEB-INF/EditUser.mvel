@@ -5,8 +5,7 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-
-<form action="/useradmin/edit/${user.id}" method="post">
+<form action="/useradmin/edit/@{user.id}" method="post">
     <table>
         <thead>
         <tr class="title">
@@ -17,17 +16,17 @@
         </thead>
         <tbody>
         <tr>
-            <td><input type="text" name="user.name" value="${user.name}"/></td>
-            <td><input type="password" name="user.password" value="${user.password}"/></td>
+            <td><input type="text" name="user.name" value="@{user.name}"/></td>
+            <td><input type="password" name="user.password" value="@{user.password}"/></td>
             <td>
                 <select name="role.name">
-                <#list roleList as arole>
-                    <#if arole.name == user.role.name>
-                    <option value="${arole.name}" selected>${arole.name}</option>
-                    <#else>
-                    <option value="${arole.name}">${arole.name}</option>
-                    </#if>
-                </#list>
+                @foreach{arole : roleList}
+                    @if{arole.name == user.role.name}
+                    <option value="@{arole.name}" selected>@{arole.name}</option>
+                    @else{}
+                    <option value="@{arole.name}">@{arole.name}</option>
+                    @end{}
+                @end{}
                 </select>
             </td>
         </tr>
@@ -39,6 +38,5 @@
         </tfoot>
     </table>
 </form>
-
 </body>
 </html>
