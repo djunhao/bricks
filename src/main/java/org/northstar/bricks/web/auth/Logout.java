@@ -13,16 +13,16 @@ import org.northstar.bricks.config.URIContext;
  * To change this template use File | Settings | File Templates.
  */
 public class Logout {
-    private final CurrentUser currentUser;
+    private final Identity identity;
 
     @Inject
-    protected Logout(final CurrentUser currentUser) {
-        this.currentUser = currentUser;
+    protected Logout(final Identity identity) {
+        this.identity = identity;
     }
 
     @Get
     public Reply<Object> logout() {
-        currentUser.logout();
+        identity.logout();
         return Reply.saying().redirect(URIContext.ROOT);
     }
 }

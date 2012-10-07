@@ -1,12 +1,10 @@
 package org.northstar.bricks.core.orientdb;
 
 import com.google.inject.Inject;
-import com.google.inject.Injector;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.orientechnologies.orient.object.db.OObjectDatabasePool;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
-import org.northstar.bricks.config.BricksConstants;
 
 import javax.servlet.*;
 import java.io.IOException;

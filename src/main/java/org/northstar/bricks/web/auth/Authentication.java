@@ -14,20 +14,20 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Authentication {
-    private final CurrentUser currentUser;
+    private final Identity identity;
     private final UserDao dao;
 
     @Inject
-    public Authentication(UserDao dao, CurrentUser currentUser) {
+    public Authentication(UserDao dao, Identity identity) {
         this.dao = dao;
-        this.currentUser = currentUser;
+        this.identity = identity;
     }
 
-    public CurrentUser authenticate(String login, String password) {
+    public Identity authenticate(String login, String password) {
         List<User> userSet = dao.authenticated(login, password);
         for (User u : userSet) {
-            currentUser.setUser(u);
+            identity.setUser(u);
         }
-        return currentUser;
+        return identity;
     }
 }

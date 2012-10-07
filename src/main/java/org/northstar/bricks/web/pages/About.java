@@ -13,7 +13,7 @@ import org.northstar.bricks.web.components.Decorator;
  */
 @Decorated
 @Singleton
-public class About extends Decorator{
+public class About extends Decorator {
 
     public String getPageTitle() {
         return "系统介绍";

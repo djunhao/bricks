@@ -2,7 +2,6 @@ package org.northstar.bricks.web.auth;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.matcher.Matchers;
-import com.google.inject.servlet.ServletModule;
 import com.google.inject.servlet.SessionScoped;
 import org.aopalliance.intercept.MethodInterceptor;
 
@@ -25,7 +24,7 @@ public class AuthModule extends AbstractModule {
         bindInterceptor(Matchers.any(), Matchers.annotatedWith(AdminOnly.class), interceptor);
         bindInterceptor(Matchers.annotatedWith(AdminOnly.class), Matchers.any(), interceptor);
 
-        bind(CurrentUser.class).in(SessionScoped.class);
+        bind(Identity.class).in(SessionScoped.class);
 
     }
 }

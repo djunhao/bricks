@@ -24,7 +24,7 @@ public class DeleteUser {
 
     @Get
     @Secure
-    public Reply remove(@Named("id") Long id) {
+    public Reply<?> load(@Named("id") Long id) {
         User user = userDao.findById(id);
         userDao.delete(user);
         return Reply.saying().redirect(URIContext.ROOT);

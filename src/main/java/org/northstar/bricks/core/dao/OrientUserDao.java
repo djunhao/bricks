@@ -37,7 +37,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
         } catch (Exception e) {
             database.rollback();
             e.printStackTrace();
-            logger.warning(">>> " + user.getName() + "("+user.getId()+")is not saved.");
+            logger.warning(">>> " + user.getName() + "(" + user.getId() + ")is not saved.");
         } finally {
             database.close();
         }

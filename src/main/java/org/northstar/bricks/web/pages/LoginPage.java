@@ -1,10 +1,8 @@
 package org.northstar.bricks.web.pages;
 
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.sitebricks.Show;
 import com.google.sitebricks.rendering.Decorated;
-import org.northstar.bricks.web.auth.CurrentUser;
 import org.northstar.bricks.web.components.Decorator;
 
 /**

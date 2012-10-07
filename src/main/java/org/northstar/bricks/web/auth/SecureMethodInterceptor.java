@@ -16,12 +16,12 @@ import org.northstar.bricks.config.URIContext;
  */
 class SecureMethodInterceptor implements MethodInterceptor {
     @Inject
-    private Provider<CurrentUser> currentUserProvider;
+    private Provider<Identity> identityProvider;
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        CurrentUser currentUser = currentUserProvider.get();
-        if (!currentUser.isAuthenticated()) {
+        Identity identity = identityProvider.get();
+        if (!identity.isAuthenticated()) {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
                 return Reply.saying().redirect(URIContext.LOGIN_PAGE);
             }

@@ -45,15 +45,18 @@ public class Test extends Decorator {
     public String getMessage() {
         return message;
     }
+
     @Get
     public String load() {
         user = userDao.findById(new Long(5));
 
         return null;
     }
+
     public List<Role> getRoles() {
         return roleDao.findAll();
     }
+
     @Override
     public String getPageTitle() {
         return "Testing Page for mvel template";

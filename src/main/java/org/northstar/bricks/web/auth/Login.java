@@ -20,12 +20,12 @@ public class Login {
     private String name;
     private String password;
 
-    private CurrentUser login;
+    private Identity identity;
     private Authentication auth;
 
     @Inject
-    public Login(CurrentUser login, Authentication auth) {
-        this.login = login;
+    public Login(Identity identity, Authentication auth) {
+        this.identity = identity;
         this.auth = auth;
     }
 
@@ -48,9 +48,9 @@ public class Login {
     @Post
     public Reply login() {
         System.out.println("loginAction excuted ...");
-        login = auth.authenticate(name, password);
+        identity = auth.authenticate(name, password);
         Map<String, String> result = new HashMap<String, String>();
-        if (login.isAuthenticated()) {
+        if (identity.isAuthenticated()) {
             result.put("info", "success");
         } else {
             result.put("info", "您输入的用户名或密码不正确！");

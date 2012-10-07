@@ -19,12 +19,12 @@ public class AdminMethodInterceptor implements MethodInterceptor {
     private static final ImmutableSet<String> ADMINS = ImmutableSet.of("northstar", "djh",
             "djunhao");
     @Inject
-    private Provider<CurrentUser> currentUserProvider;
+    private Provider<Identity> identityProvider;
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        CurrentUser currentUser = currentUserProvider.get();
-        if (currentUser.isAuthenticated() || !ADMINS.contains(currentUser.getUser().getName())) {
+        Identity identity = identityProvider.get();
+        if (identity.isAuthenticated() || !ADMINS.contains(identity.getUser().getName())) {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
                 return Reply.saying().redirect(URIContext.LOGIN_PAGE);
             }

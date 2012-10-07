@@ -5,7 +5,8 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-<form action="/useradmin/edit/@{user.id}" method="post">
+<form name="edit" action="/useradmin/edit/@{user.id}" method="post">
+    <input type="hidden" name="__sitebricks__action" value="put"/>
     <table>
         <thead>
         <tr class="title">

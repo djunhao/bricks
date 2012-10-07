@@ -4,7 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.google.sitebricks.Show;
-import org.northstar.bricks.web.auth.CurrentUser;
+import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.web.auth.Identity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public abstract class Decorator {
     private final List<String> PAGES;
     @Inject
-    private Provider<CurrentUser> currentUser;
+    private Provider<Identity> identityProvider;
 
     protected Decorator() {
         PAGES = Arrays.asList("Home", "Flow", "About");
@@ -25,12 +26,12 @@ public abstract class Decorator {
     }
 
     public boolean isLoggedIn() {
-        return getLoginUser().isAuthenticated();
+        return identityProvider.get().isAuthenticated();
     }
 
     public abstract String getPageTitle();
 
-    public CurrentUser getLoginUser() {
-        return currentUser.get();
+    public User getLoginUser() {
+        return identityProvider.get().getUser();
     }
 }

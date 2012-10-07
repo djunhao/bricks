@@ -1,11 +1,8 @@
 package org.northstar.bricks.web.pages;
 
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.rendering.Decorated;
-import org.northstar.bricks.core.domain.User;
-import org.northstar.bricks.web.auth.CurrentUser;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.components.Decorator;
 
@@ -20,7 +17,7 @@ public class Flow extends Decorator {
     }
 
     public String getName() {
-        return getLoginUser().getUser().getName();
+        return getLoginUser().getName();
     }
 
     public String getPageTitle() {

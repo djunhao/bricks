@@ -1,7 +1,8 @@
 package org.northstar.bricks.web.auth;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
+import com.google.inject.servlet.SessionScoped;
+import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.User;
 
 import javax.servlet.http.Cookie;
@@ -15,11 +16,14 @@ import java.util.UUID;
  * Time: 下午5:02
  * To change this template use File | Settings | File Templates.
  */
-public class CurrentUser {
+@SessionScoped
+public class Identity {
     public static final String SESSION_COOKIE_NAME = "x-bricks-session-id";
 
     @Inject
     private HttpServletRequest request;
+    @Inject
+    private UserDao userDao;
 
     private User user;
 
@@ -56,4 +60,5 @@ public class CurrentUser {
         }
         return null;
     }
+
 }
