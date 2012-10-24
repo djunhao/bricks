@@ -2,18 +2,18 @@
 <html lang="en" class="login_page">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>用户登录 - 危险化学品企业信息管理</title>
 
     <!-- Bootstrap framework -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" />
 
     <!-- main styles -->
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/style.css" />
 
     <!--[if lt IE 9]>
-    <script src="js/ie/html5.js"></script>
+    <script src="js/ie/html5shiv.min.js"></script>
     <script src="js/ie/respond.min.js"></script>
     <![endif]-->
 
@@ -23,27 +23,22 @@
     <form method="post" id="login_form">
         <div class="top_b">用户登录</div>
         <div class="alert alert-info alert-login">
-            请输入用户名和密码。
-            <div id="msg"></div>
+            请输入用户名和密码
         </div>
         <div class="cnt_b">
             <div class="formRow">
                 <div class="input-prepend">
-                    <span class="add-on"><i class="icon-user"></i></span>
-                    <input type="text" id="name" name="name"
-                           placeholder="用户名"/>
+                    <span class="add-on"><i class="icon-user"></i></span><input type="text" id="name" name="name" placeholder="用户名" />
                 </div>
             </div>
             <div class="formRow">
                 <div class="input-prepend">
-                    <span class="add-on"><i class="icon-lock"></i></span>
-                    <input type="password" id="password"
-                           name="password" placeholder="密   码"/>
+                    <span class="add-on"><i class="icon-lock"></i></span><input type="password" id="password" name="password" placeholder="密   码" />
                 </div>
             </div>
 
             <div class="formRow clearfix">
-                <label class="checkbox"><input type="checkbox"/> 记住我</label>
+                <label class="checkbox"><input type="checkbox" /> 记住我</label>
             </div>
         </div>
         <div class="btm_b clearfix">
@@ -60,7 +55,7 @@
         <div class="cnt_b">
             <div class="formRow clearfix">
                 <div class="input-prepend">
-                    <span class="add-on">@</span><input type="text" placeholder="您的e-mail地址"/>
+                    <span class="add-on">@</span><input type="text" placeholder="您的e-mail地址" />
                 </div>
             </div>
         </div>
@@ -77,7 +72,6 @@
         <div id="terms" class="modal hide fade" style="display:none">
             <div class="modal-header">
                 <a class="close" data-dismiss="modal">&times;</a>
-
                 <h3>条款和条件</h3>
             </div>
             <div class="modal-body">
@@ -91,17 +85,17 @@
 
             <div class="formRow">
                 <div class="input-prepend">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="用户名"/>
+                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="用户名" />
                 </div>
             </div>
             <div class="formRow">
                 <div class="input-prepend">
-                    <span class="add-on"><i class="icon-lock"></i></span><input type="text" placeholder="密   码"/>
+                    <span class="add-on"><i class="icon-lock"></i></span><input type="text" placeholder="密   码" />
                 </div>
             </div>
             <div class="formRow">
                 <div class="input-prepend">
-                    <span class="add-on">@</span><input type="text" placeholder="E-Mail"/>
+                    <span class="add-on">@</span><input type="text" placeholder="E-Mail" />
                 </div>
                 <small>此e-mail地址不会被公开，且该地址仅在您希望收到新密码时被使用。</small>
             </div>
@@ -125,28 +119,28 @@
 <script src="lib/validation/messages_zh.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function(){
         //* boxes animation
         form_wrapper = $('.login_box');
         function boxHeight() {
-            form_wrapper.animate({ marginTop:( -( form_wrapper.height() / 2) - 24) }, 400);
-        }
-        form_wrapper.css({ marginTop:( -( form_wrapper.height() / 2) - 24) });
-        $('.linkform a,.link_reg a').on('click', function (e) {
-            var target = $(this).attr('href'),
+            form_wrapper.animate({ marginTop : ( - ( form_wrapper.height() / 2) - 24) },400);
+        };
+        form_wrapper.css({ marginTop : ( - ( form_wrapper.height() / 2) - 24) });
+        $('.linkform a,.link_reg a').on('click',function(e){
+            var target	= $(this).attr('href'),
                     target_height = $(target).actual('height');
             $(form_wrapper).css({
-                'height':form_wrapper.height()
+                'height'		: form_wrapper.height()
             });
-            $(form_wrapper.find('form:visible')).fadeOut(400, function () {
+            $(form_wrapper.find('form:visible')).fadeOut(400,function(){
                 form_wrapper.stop().animate({
-                    height:target_height,
-                    marginTop:( -(target_height / 2) - 24)
-                }, 500, function () {
+                    height	 : target_height,
+                    marginTop: ( - (target_height/2) - 24)
+                },500,function(){
                     $(target).fadeIn(400);
                     $('.links_btm .linkform').toggle();
                     $(form_wrapper).css({
-                        'height':''
+                        'height'		: ''
                     });
                 });
             });
@@ -155,49 +149,34 @@
 
         //* validation
         $('#login_form').validate({
-            onkeyup:false,
-            errorClass:'error',
-            validClass:'valid',
-            rules:{
-                name:{ required:true, minlength:3 },
-                password:{ required:true, minlength:3 }
+            onkeyup: false,
+            errorClass: 'error',
+            validClass: 'valid',
+            rules: {
+                name: { required: true, minlength: 3 },
+                password: { required: true, minlength: 3 }
             },
-            highlight:function (element) {
+            highlight: function(element) {
                 $(element).closest('div').addClass("f_error");
-                setTimeout(function () {
+                setTimeout(function() {
                     boxHeight()
                 }, 200)
             },
-            unhighlight:function (element) {
+            unhighlight: function(element) {
                 $(element).closest('div').removeClass("f_error");
-                setTimeout(function () {
+                setTimeout(function() {
                     boxHeight()
                 }, 200)
             },
-            errorPlacement:function (error, element) {
+            errorPlacement: function(error, element) {
                 $(element).closest('div').append(error);
             },
-            submitHandler: LoginSuccess
+            // success: function(valid, element) {
+            //	element.closest('.formRow').addClass('success');
+            //}
         });
+        $("#login_form").submit(function(e){alert("表单已提交！")});
     });
-    function LoginSuccess() {
-        $.ajax({
-            type:"POST",
-            url:"login",
-            dataType: "json",
-            data:{name:$("#name").val(), password:$("#password").val()},
-            success:show
-        });
-    }
-    function show(data) {
-        if (data.info == "success") {
-            window.location = "/";
-        } else {
-            $('#msg').html(data.info);
-            $('#msg').show();
-            return false;
-        }
-    }
 </script>
 
 </body>

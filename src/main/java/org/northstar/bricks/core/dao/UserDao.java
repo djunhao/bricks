@@ -21,7 +21,7 @@ public interface UserDao {
 
     User findByName(String name);
 
-    List findAll();
+    List<User> findAll();
 
     List<User> findPagedUsers(long startIndex, int maxResults);
 

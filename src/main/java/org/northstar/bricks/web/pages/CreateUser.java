@@ -12,6 +12,7 @@ import org.northstar.bricks.core.domain.Role;
 import org.northstar.bricks.core.domain.User;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.components.Decorator;
+import org.northstar.bricks.web.components.Layout;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ import java.util.logging.Logger;
  */
 @Decorated
 @Singleton
-public class CreateUser extends Decorator {
+public class CreateUser extends Layout {
 
     private UserDao userDao;
     private RoleDao roleDao;

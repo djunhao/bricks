@@ -8,7 +8,7 @@ p.pager_container {
 .pager_container .pager {
     margin-right: 15px;
     padding: 4px;
-    background: #ECECEC url(images/login_btn.png) repeat-x left bottom;
+    background: #ECECEC url(img/login_btn.png) repeat-x left bottom;
     background-position: 0 -1px;
     text-transform: lowercase;
     border: 0;

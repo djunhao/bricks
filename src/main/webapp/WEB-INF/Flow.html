@@ -1,16 +1,39 @@
 <!DOCTYPE HTML>
 <html>
 <head><title>bricks - sitebricks web application demo</title>
-<meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
 </head>
 <body>
-<div class="post">
-    <h1 class="title">Examples</h1>
-    <div class="entry">
-        @ShowIf(loggedIn)
-        <p>您的名字是: ${name}.</p>
+<article class="module width_full">
+    <header><h3>用户管理</h3></header>
+    <div class="module_content">
+        <table class="tablesorter" cellspacing="0">
+            <thead>
+            <tr>
+                <th></th>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>权限</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            @Repeat(items=pagedUsers, var="user")
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.role.name}</td>
+                <td><input type="image" src="static/images/icn_edit.png" title="Edit"
+                           onclick="location.href='useradmin/edit/${user.id}'"> <input type="image"
+                                                                                       src="static/images/icn_trash.png"
+                                                                                       title="Trash"
+                                                                                       onclick="location.href='useradmin/delete/${user.id}'">
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-
+</article>
 </body>
 </html>

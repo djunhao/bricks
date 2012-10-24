@@ -13,11 +13,11 @@ import org.northstar.bricks.web.components.Decorator;
  * To change this template use File | Settings | File Templates.
  */
 @Singleton
-@Decorated
+//@Decorated
 @Show("Login.html")
-public class LoginPage extends Decorator {
+public class LoginPage {
 
     public String getPageTitle() {
-        return "Bricks - 用户登录";
+        return "用户登录";
     }
 }

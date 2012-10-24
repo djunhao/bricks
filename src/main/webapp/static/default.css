@@ -252,7 +252,7 @@ td+td, th+th {
 .post .title {
     margin-bottom: 20px;
     padding-bottom: 5px;
-    background: url(images/img11.gif) no-repeat right 50%;
+    background: url(img/img11.gif) no-repeat right 50%;
     border-bottom: 1px dotted #D1D1D1;
 }
 
@@ -269,7 +269,7 @@ td+td, th+th {
 
 .post .meta {
     padding: 15px 0 60px 0;
-    background: url(images/img03.gif) repeat-x;
+    background: url(img/img03.gif) repeat-x;
 }
 
 .post .meta p {
@@ -288,17 +288,17 @@ td+td, th+th {
 
 .post .meta .more {
     padding: 0 20px 0 18px;
-    background: url(images/img06.gif) no-repeat left center;
+    background: url(img/img06.gif) no-repeat left center;
 }
 
 .comments {
     padding-left: 22px;
-    background: url(images/img07.gif) no-repeat left center;
+    background: url(img/img07.gif) no-repeat left center;
 }
 
 .post .meta .comments {
     padding-left: 22px;
-    background: url(images/img07.gif) no-repeat left center;
+    background: url(img/img07.gif) no-repeat left center;
 }
 
 .post .meta b {
@@ -335,7 +335,7 @@ td+td, th+th {
 #sidebar li li {
     margin: 0;
     padding-left: 12px;
-    background: url(images/img12.gif) no-repeat left 50%;
+    background: url(img/img12.gif) no-repeat left 50%;
 }
 
 #sidebar h2 {
@@ -367,7 +367,7 @@ td+td, th+th {
     border: 1px solid #9DADC5;
     background: transparent;
     outline: none;
-    background: url(images/login_btn.png) no-repeat scroll -1px -97px white;
+    background: url(img/login_btn.png) no-repeat scroll -1px -97px white;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -383,7 +383,7 @@ td+td, th+th {
 
 #x {
     padding: 3px;
-    background: #ECECEC url(images/login_btn.png) repeat-x left bottom;
+    background: #ECECEC url(img/login_btn.png) repeat-x left bottom;
     background-position: 0 -1px;
     text-transform: lowercase;
     border: 0;
@@ -412,7 +412,7 @@ td+td, th+th {
 
 .box1 {
     padding: 20px;
-    background: url(images/img05.gif) no-repeat;
+    background: url(img/img05.gif) no-repeat;
 }
 
 .box2 {
@@ -421,7 +421,7 @@ td+td, th+th {
 
 .box2 h2 {
     margin-bottom: 15px;
-    background: url(images/img10.gif) repeat-x left bottom;
+    background: url(img/img10.gif) repeat-x left bottom;
     font-size: 16px;
     color: #FFFFFF;
 }
@@ -443,7 +443,7 @@ td+td, th+th {
     width: 850px;
     height: 400px;
     min-height: 74px;
-    background: #003448 url(images/img09.gif) repeat-x;
+    background: #003448 url(img/img09.gif) repeat-x;
     display: inline-block;
     clear: both;
 }
@@ -543,7 +543,7 @@ html>body #footer {
 
 .login_box .txt {
     line-height: normal;
-    background: url(images/login_btn.png) no-repeat scroll -1px -97px white;
+    background: url(img/login_btn.png) no-repeat scroll -1px -97px white;
     border-radius: 3px;
     -webkit-border-radius: 3px;
 }
@@ -597,7 +597,7 @@ html>body #footer {
     margin-top: 9px;
     border: 1px solid;
     border-color: #6B9F11 #54850A #386601;
-    background: url(images/login_btn.png) repeat-x #67A00D;
+    background: url(img/login_btn.png) repeat-x #67A00D;
     background-position: 0 -1px;
     -webkit-transition: -webkit-box-shadow .1s linear;
     -moz-transition: box-shadow .1s linear;
