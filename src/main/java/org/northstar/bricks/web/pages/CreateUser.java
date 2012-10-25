@@ -2,6 +2,7 @@ package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.google.sitebricks.rendering.Decorated;
@@ -12,7 +13,6 @@ import org.northstar.bricks.core.domain.Role;
 import org.northstar.bricks.core.domain.User;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.components.Decorator;
-import org.northstar.bricks.web.components.Layout;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 @Decorated
 @Singleton
-public class CreateUser extends Layout {
+public class CreateUser extends Decorator {
 
     private UserDao userDao;
     private RoleDao roleDao;
@@ -37,6 +37,8 @@ public class CreateUser extends Layout {
 
     @Inject
     private Logger logger;
+    @Inject
+    private Request request;
 
     @Inject
     CreateUser(UserDao userDao, UserDao userDao1, RoleDao roleDao) {
@@ -58,7 +60,7 @@ public class CreateUser extends Layout {
         logger.info(">>> Selected role name is: " + aRole.getName());
         user.setRole(aRole);
         userDao.save(user);
-        return URIContext.ROOT;
+        return request.context() + URIContext.ROOT;
     }
 
     public List<Role> getRoleList() {

@@ -8,14 +8,13 @@ import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.User;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.components.Decorator;
-import org.northstar.bricks.web.components.Layout;
 
 import java.util.List;
 import java.util.logging.Logger;
 
 @Singleton
 @Decorated
-public class Flow extends Layout {
+public class Flow extends Decorator {
 
     private List<User> pagedUsers;
     private int page;
@@ -37,9 +36,10 @@ public class Flow extends Layout {
     public void setPage(int page) {
         this.page = page;
     }
+
     @Get
-    //@Secure
-    public String load(){
+    @Secure
+    public String load() {
         long startIndex = 0;
         if (page < 1) {
             page = 1;
@@ -49,6 +49,7 @@ public class Flow extends Layout {
         //pagedUsers = dao.findAll();
         return null;
     }
+
     public List<User> getPagedUsers() {
         return pagedUsers;
     }

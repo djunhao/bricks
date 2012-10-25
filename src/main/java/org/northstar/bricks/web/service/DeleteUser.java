@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import com.google.sitebricks.headless.Reply;
+import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
 import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.core.dao.UserDao;
@@ -21,12 +22,14 @@ import org.northstar.bricks.web.auth.Secure;
 public class DeleteUser {
     @Inject
     private UserDao userDao;
+    @Inject
+    private Request request;
 
     @Get
     @Secure
     public Reply<?> load(@Named("id") Long id) {
         User user = userDao.findById(id);
         userDao.delete(user);
-        return Reply.saying().redirect(URIContext.ROOT);
+        return Reply.saying().redirect(request.context() + URIContext.ROOT);
     }
 }

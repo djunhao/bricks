@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import com.google.sitebricks.Show;
+import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Put;
 import com.google.sitebricks.rendering.Decorated;
@@ -37,6 +38,9 @@ public class EditUser extends Decorator {
     private RoleDao roleDao;
 
     @Inject
+    private Request request;
+
+    @Inject
     public EditUser(UserDao userDao, RoleDao roleDao) {
         this.userDao = userDao;
         this.roleDao = roleDao;
@@ -56,7 +60,7 @@ public class EditUser extends Decorator {
         Role aRole = roleDao.getRoleByName(role.getName());
         user.setRole(aRole);
         userDao.save(user);
-        return URIContext.ROOT;
+        return request.context() + URIContext.ROOT;
     }
 
     public List<Role> getRoleList() {

@@ -3,6 +3,7 @@ package org.northstar.bricks.web.auth;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.sitebricks.headless.Reply;
+import com.google.sitebricks.headless.Request;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.northstar.bricks.config.URIContext;
@@ -17,15 +18,18 @@ import org.northstar.bricks.config.URIContext;
 class SecureMethodInterceptor implements MethodInterceptor {
     @Inject
     private Provider<Identity> identityProvider;
+    @Inject
+    private Provider<Request> requestProvider;
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Identity identity = identityProvider.get();
+        String path = requestProvider.get().context();
         if (!identity.isAuthenticated()) {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
-                return Reply.saying().redirect(URIContext.LOGIN_PAGE);
+                return Reply.saying().redirect(path + URIContext.LOGIN_PAGE);
             }
-            return URIContext.LOGIN_PAGE;
+            return path + URIContext.LOGIN_PAGE;
         }
         return invocation.proceed();
     }

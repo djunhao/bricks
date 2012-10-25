@@ -2,6 +2,7 @@ package org.northstar.bricks.web.auth;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.headless.Reply;
+import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
 import org.northstar.bricks.config.URIContext;
 
@@ -14,6 +15,8 @@ import org.northstar.bricks.config.URIContext;
  */
 public class Logout {
     private final Identity identity;
+    @Inject
+    private Request request;
 
     @Inject
     protected Logout(final Identity identity) {
@@ -23,6 +26,6 @@ public class Logout {
     @Get
     public Reply<Object> logout() {
         identity.logout();
-        return Reply.saying().redirect(URIContext.ROOT);
+        return Reply.saying().redirect(request.context() + URIContext.ROOT);
     }
 }

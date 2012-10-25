@@ -7,6 +7,7 @@ import com.google.sitebricks.http.Post;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +23,9 @@ public class Login {
 
     private Identity identity;
     private Authentication auth;
+
+    @Inject
+    private Logger logger;
 
     @Inject
     public Login(Identity identity, Authentication auth) {
@@ -47,15 +51,14 @@ public class Login {
 
     @Post
     public Reply login() {
-        System.out.println("loginAction excuted ...");
         identity = auth.authenticate(name, password);
         Map<String, String> result = new HashMap<String, String>();
         if (identity.isAuthenticated()) {
+            logger.warning("Login success!");
             result.put("info", "success");
         } else {
-            result.put("info", "您输入的用户名或密码不正确！");
+            logger.info("Login failed!");
         }
         return Reply.with(result).as(Json.class);
-
     }
 }
