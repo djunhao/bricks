@@ -3,11 +3,11 @@ package org.northstar.bricks.web.pages;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-import com.google.sitebricks.Show;
 import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Put;
 import com.google.sitebricks.rendering.Decorated;
+import com.google.sitebricks.routing.Redirect;
 import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.core.dao.RoleDao;
 import org.northstar.bricks.core.dao.UserDao;
@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Decorated
 @Singleton  //必须是单例模式才能保证user实例不变，以便更新到数据库
-@Show("EditUser.fml")
+//@Show("EditUser.fml")
 public class EditUser extends Decorator {
     private Role role = new Role();
     private User user = new User();
@@ -39,6 +39,8 @@ public class EditUser extends Decorator {
 
     @Inject
     private Request request;
+    @Inject
+    private Redirect redirect;
 
     @Inject
     public EditUser(UserDao userDao, RoleDao roleDao) {

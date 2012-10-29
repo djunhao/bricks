@@ -7,7 +7,7 @@ package org.northstar.bricks.config;
  * Time: 下午5:12
  * To change this template use File | Settings | File Templates.
  */
-public class URIContext {
+public interface URIContext {
     public static final String ROOT = "/";
     public static final String USER_ROOT = ROOT + "useradmin/";
     public static final String USER_CREATE = USER_ROOT + "create";

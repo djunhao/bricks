@@ -6,63 +6,64 @@
 </head>
 <body>
 
-<form class="form-horizontal" action="/bricks/useradmin/edit/@{user.id}" method="post">
+<form class="form-horizontal" action="/useradmin/edit/${user.id}" method="post" id="editUser">
     <legend>更新用户</legend>
     <input type="hidden" name="__sitebricks__action" value="put"/>
     <div class="control-group">
         <label class="control-label" for="inputName">登录名</label>
         <div class="controls">
-            <input type="text" name="user.loginName" value="@{user.loginName}" id="inputName" placeholder="登录名">
+            <input type="text" name="user.loginName" value="${user.loginName}" id="inputName">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputRealName">真实姓名</label>
         <div class="controls">
-            <input type="text" value="@{user.realName}" id="inputRealName" name="user.realName" placeholder="真实姓名">
+            <input type="text" value="${user.realName}" id="inputRealName" name="user.realName">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputPassword">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
         <div class="controls">
-            <input type="password" name="user.password" value="@{user.password}" id="inputPassword" placeholder="密   码">
+            <input type="password" name="user.password" value="${user.password}" id="inputPassword">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputRole">权&nbsp;&nbsp;&nbsp;&nbsp;限</label>
         <div class="controls">
             <select id="inputRole" name="role.name">
-                @foreach{arole : roleList}
-                @if{arole.name == user.role.name}
-                <option value="@{arole.name}" selected>@{arole.name}</option>
-                @else{}
-                <option value="@{arole.name}">@{arole.name}</option>
-                @end{}
-                @end{}
+                <!--<#list roleList as arole>
+                <#if arole.name == user.role.name>
+                <option value="${arole.name}" selected>${arole.name}</option>
+                <#else>-->
+                @Repeat(items=roleList, var="arole")
+                <option value="${arole.name}">${arole.name}</option>
+               <!-- </#if>
+                </#list>-->
             </select>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputEnforcementNumber">执法证号</label>
         <div class="controls">
-            <input type="text" value="@{user.enforcementNumber}" id="inputEnforcementNumber" name="user.enforcementNumber" placeholder="执法证号">
+            <input type="text" value="${user.enforcementNumber}" id="inputEnforcementNumber" name="user.enforcementNumber">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputValidEnforcementDate">执法证有效期</label>
         <div class="controls">
-            <input type="datetime" value="@{user.validEnforcementDate}" id="inputValidEnforcementDate" name="user.validEnforcementDate" placeholder="执法证有效期">
+            <input type="datetime" value="${user.validEnforcementDate}" id="inputValidEnforcementDate" name="user.validEnforcementDate">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputSupervisorNumber">监察员证号</label>
         <div class="controls">
-            <input type="text" value="@{user.supervisorNumber}" id="inputSupervisorNumber" name="user.supervisorNumber" placeholder="监察员证号">
+            <input type="text" value="${user.supervisorNumber}" id="inputSupervisorNumber" name="user.supervisorNumber">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputValidSupervisorDate">监察员证有效期</label>
         <div class="controls">
-            <input type="datetime" value="@{user.validSupervisorDate}" id="inputValidSupervisorDate" name="user.validSupervisorNumber" placeholder="监察员证有效期">
+            <input type="datetime" value="${user.validSupervisorDate}" id="inputValidSupervisorDate" name="user.validSupervisorDate">
         </div>
     </div>
     <div class="control-group">
@@ -92,7 +93,7 @@
             autoclose:true
         });
         //* validation
-        $('#newUser').validate({
+        $('#editUser').validate({
             onkeyup:false,
             errorClass:'error',
             validClass:'valid',

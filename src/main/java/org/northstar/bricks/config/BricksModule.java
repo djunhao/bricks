@@ -17,7 +17,6 @@ import org.northstar.bricks.web.auth.Logout;
 import org.northstar.bricks.web.components.GuestbookNavigation;
 import org.northstar.bricks.web.components.NewCard;
 import org.northstar.bricks.web.components.Pager;
-import org.northstar.bricks.web.components.SelectWidget;
 import org.northstar.bricks.web.pages.*;
 import org.northstar.bricks.web.service.DeleteUser;
 
@@ -65,7 +64,6 @@ public class BricksModule extends SitebricksModule {
 
         embed(NewCard.class).as("Card");
         embed(GuestbookNavigation.class).as("navigation");
-        embed(SelectWidget.class).as("Select");
 
         install(new AuthModule());
 

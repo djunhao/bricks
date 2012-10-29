@@ -14,6 +14,6 @@ import org.northstar.bricks.core.orientdb.OrientdbModule;
 public class BricksListener extends GuiceServletContextListener {
     protected Injector getInjector() {
         System.out.println("\n>>>[BIRCKS] Sitebricks web application demo started.");
-        return Guice.createInjector(Stage.DEVELOPMENT, new BricksModule(), new OrientdbModule());
+        return Guice.createInjector(Stage.PRODUCTION, new BricksModule(), new OrientdbModule());
     }
 }

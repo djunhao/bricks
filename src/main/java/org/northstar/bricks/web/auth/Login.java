@@ -54,10 +54,10 @@ public class Login {
         identity = auth.authenticate(name, password);
         Map<String, String> result = new HashMap<String, String>();
         if (identity.isAuthenticated()) {
-            logger.warning("Login success!");
+            logger.info("Login success!");
             result.put("info", "success");
         } else {
-            logger.info("Login failed!");
+            logger.warning("Login failed!");
         }
         return Reply.with(result).as(Json.class);
     }

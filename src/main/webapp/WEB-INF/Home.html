@@ -12,8 +12,10 @@
                         <thead>
                         <tr class="info">
                             <th>序号</th>
-                            <th>用户名</th>
+                            <th>姓名</th>
                             <th>权限</th>
+                            <th>执法证</th>
+                            <th>执法证有效期</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -21,16 +23,13 @@
                     @Repeat(items=pagedUsers, var="user")
                         <tr>
                             <td>${user.id}</td>
-                            <td>${user.loginName}</td>
+                            <td>${user.realName}</td>
                             <td>${user.role.name}</td>
+                            <td>${user.enforcementNumber}</td>
+                            <td>${user.validEnforcementDate}</td>
                             <td><a href="useradmin/edit/${user.id}">编辑</a> | <a href="useradmin/delete/${user.id}">删除</a></td>
                         </tr>
                         </tbody>
-                        <tfoot>
-                        <tr class="info">
-                            <td colspan="4">用户列表</td>
-                        </tr>
-                        </tfoot>
                     </table>
                 @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
                 <div>pager here</div>
