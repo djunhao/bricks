@@ -24,7 +24,7 @@ public class AdminMethodInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Identity identity = identityProvider.get();
-        if (identity.isAuthenticated() || !ADMINS.contains(identity.getUser().getName())) {
+        if (identity.isAuthenticated() || !ADMINS.contains(identity.getUser().getLoginName())) {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
                 return Reply.saying().redirect(URIContext.LOGIN_PAGE);
             }

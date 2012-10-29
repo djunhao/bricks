@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Decorated
 @Singleton  //必须是单例模式才能保证user实例不变，以便更新到数据库
-@Show("EditUser.mvel")
+@Show("EditUser.fml")
 public class EditUser extends Decorator {
     private Role role = new Role();
     private User user = new User();

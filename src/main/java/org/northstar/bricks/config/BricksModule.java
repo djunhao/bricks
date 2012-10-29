@@ -1,8 +1,11 @@
 package org.northstar.bricks.config;
 
 import com.google.inject.Scopes;
+import com.google.inject.multibindings.Multibinder;
 import com.google.sitebricks.SitebricksModule;
 import com.google.sitebricks.SitebricksServletModule;
+import com.google.sitebricks.conversion.Converter;
+import com.google.sitebricks.conversion.DateConverters;
 import org.northstar.bricks.core.dao.*;
 import org.northstar.bricks.core.orientdb.OrientdbFilter;
 import org.northstar.bricks.test.Forms;
@@ -65,6 +68,9 @@ public class BricksModule extends SitebricksModule {
         embed(SelectWidget.class).as("Select");
 
         install(new AuthModule());
+
+        Multibinder<Converter> converters = Multibinder.newSetBinder(binder(), Converter.class);
+        converters.addBinding().toInstance(new DateConverters.DateStringConverter("yyyy-MM-dd"));
     }
 
     @Override

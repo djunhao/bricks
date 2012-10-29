@@ -3,7 +3,17 @@
 	<head>
 		<title>bricks - ${pageTitle}</title>
 		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- Bootstrap framework -->
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css"/>
+
+        <link rel="stylesheet" href="/lib/datepicker/css/datepicker.css">
+
 		<link rel="stylesheet" href="/static/default.css" />
+        <style>
+
+        </style>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -53,7 +63,7 @@
                         <li>
                             <h2>USERINFO</h2>
                             <ul>
-                                <li>欢迎您，${loginUser.name}！</li>
+                                <li>欢迎您，${loginUser.loginName}！</li>
                                 <li><a href="/logout">注销</a></li>
                             </ul>
 

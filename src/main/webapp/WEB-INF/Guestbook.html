@@ -7,20 +7,16 @@
 </head>
 <body>
 
-            <div class="post">
-                <h1 class="title">Guestbook Demo</h1>
+                <h1>Guestbook Demo</h1>
 
-                <div class="entry">
                     <strong>Welcome to my guestbook, the time is now ${time}.</strong>
-                    <table>
-                        <thead>
-                        <tr class="title">
-                            <th>序号</th>
-                            <th>标题</th>
-                            <th>时间</th>
-                        </tr>
-                        </thead>
+                    <table class="table table-bordered table-condensed">
                         <tbody>
+                        <tr class="success">
+                            <td>序号</td>
+                            <td>标题</td>
+                            <td>时间</td>
+                        </tr>
                         @Repeat(items=entries, var="entry")
                         <tr>
                             <td>${entry.id}</td>
@@ -28,24 +24,29 @@
                             <td>${entry.date}</td>
                         </tr>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="3">Entry Lists</td>
-                        </tr>
-                        </tfoot>
                     </table>
                     Add a new entry:
                     <br/>
 
-                    <form action="/guestbook" method="post">
-                        <div><label for="name"> 姓名:</label> <input id="name" name="newEntry.name" type="text"/></div>
-                        <div><label for="text"> 留言：</label></div>
-                        <textarea id="text" rows="10" cols="50" name="newEntry.text"></textarea>
-
-                        <div><input type="submit" value="保存" name="save"/></div>
+                    <form class="form-horizontal" action="/guestbook" method="post">
+                        <div class="control-group">
+                            <label class="control-label" for="name">姓名</label>
+                            <div class="controls">
+                                <input id="name" name="newEntry.name" type="text"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="text"> 留言</label>
+                            <div class="controls">
+                                <textarea id="text" name="newEntry.text"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="btn btn-success" type="submit">保存</button>
+                            </div>
+                        </div>
                     </form>
-                </div>
-            </div>
 
 </body>
 </html>

@@ -6,7 +6,6 @@ import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.google.sitebricks.rendering.Decorated;
-import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.core.dao.RoleDao;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.Role;
@@ -55,12 +54,12 @@ public class CreateUser extends Decorator {
 
     @Post
     @Secure
-    String create() {
+    Object create() {
         Role aRole = roleDao.getRoleByName(role.getName());
         logger.info(">>> Selected role name is: " + aRole.getName());
         user.setRole(aRole);
         userDao.save(user);
-        return request.context() + URIContext.ROOT;
+        return Home.class;
     }
 
     public List<Role> getRoleList() {

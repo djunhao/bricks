@@ -25,7 +25,7 @@
         <div class="alert alert-info alert-login">
             请输入用户名和密码。
         </div>
-        <div class="alert alert-error alert-login hide fade in" id="msg">
+        <div class="alert alert-error alert-login hide fade in" id="error_msg">
             <a class="close" data-dismiss="alert" href="#">&times;</a>
             您输入的用户名或密码不正确！
         </div>
@@ -203,14 +203,14 @@
             dataType:'json'
         }
         $('#login_form').ajaxSubmit(options);
+        return false;
     }
     function showResult(data) {
         if (data.info == "success") {
             window.location = "./";
         } else {
-            //$('#msg').html('<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>您输入的用户名或密码不正确！');
-            $('#msg').alert();
-            $('#msg').fadeIn();
+            $('#error_msg').alert();
+            $('#error_msg').fadeIn();
             return false;
         }
     }

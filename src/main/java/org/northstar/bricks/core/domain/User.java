@@ -10,12 +10,12 @@ public class User {
     @Version
     private Object version; //This field with @Version is for database transaction operation.
 
-    private String name;
+    private String loginName;
     private String password;
     private String realName;
     private Role role;
-    private String enforceMentNumber;
-    private Date validEnforceMentDate;
+    private String enforcementNumber;
+    private Date validEnforcementDate;
     private String supervisorNumber;
     private Date validSupervisorDate;
 
@@ -38,12 +38,12 @@ public class User {
         this.id = id;
     }*/
 
-    public String getName() {
-        return name;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
     public String getPassword() {
@@ -62,20 +62,20 @@ public class User {
         this.realName = realName;
     }
 
-    public String getEnforceMentNumber() {
-        return enforceMentNumber;
+    public String getEnforcementNumber() {
+        return enforcementNumber;
     }
 
-    public void setEnforceMentNumber(String enforceMentNumber) {
-        this.enforceMentNumber = enforceMentNumber;
+    public void setEnforcementNumber(String enforcementNumber) {
+        this.enforcementNumber = enforcementNumber;
     }
 
-    public Date getValidEnforceMentDate() {
-        return validEnforceMentDate;
+    public Date getValidEnforcementDate() {
+        return validEnforcementDate;
     }
 
-    public void setValidEnforceMentDate(Date validEnforceMentDate) {
-        this.validEnforceMentDate = validEnforceMentDate;
+    public void setValidEnforcementDate(Date validEnforcementDate) {
+        this.validEnforcementDate = validEnforcementDate;
     }
 
     public String getSupervisorNumber() {

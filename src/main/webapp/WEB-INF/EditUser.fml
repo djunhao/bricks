@@ -1,69 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>user create</title>
+    <title>user edit</title>
     <meta charset="UTF-8"/>
 </head>
 <body>
-<form id="newUser" class="form-horizontal" action="/useradmin/create" method="post">
-    <legend>创建新用户</legend>
-    <div class="control-group">
-        <label class="control-label" for="loginName">登录名</label>
 
+<form class="form-horizontal" action="/bricks/useradmin/edit/@{user.id}" method="post">
+    <legend>更新用户</legend>
+    <input type="hidden" name="__sitebricks__action" value="put"/>
+    <div class="control-group">
+        <label class="control-label" for="inputName">登录名</label>
         <div class="controls">
-            <input type="text" id="loginName" name="user.loginName">
+            <input type="text" name="user.loginName" value="@{user.loginName}" id="inputName" placeholder="登录名">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="realName">真实姓名</label>
-
+        <label class="control-label" for="inputRealName">真实姓名</label>
         <div class="controls">
-            <input type="text" id="realName" name="user.realName">
+            <input type="text" value="@{user.realName}" id="inputRealName" name="user.realName" placeholder="真实姓名">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-
+        <label class="control-label" for="inputPassword">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
         <div class="controls">
-            <input type="password" id="password" name="user.password">
+            <input type="password" name="user.password" value="@{user.password}" id="inputPassword" placeholder="密   码">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="role">权&nbsp;&nbsp;&nbsp;&nbsp;限</label>
+        <label class="control-label" for="inputRole">权&nbsp;&nbsp;&nbsp;&nbsp;限</label>
         <div class="controls">
-            <select id="role" name="role.name">
-                @Repeat(items=roleList, var="userRole")
-                <option value="${userRole.name}">${userRole.name}</option>
+            <select id="inputRole" name="role.name">
+                @foreach{arole : roleList}
+                @if{arole.name == user.role.name}
+                <option value="@{arole.name}" selected>@{arole.name}</option>
+                @else{}
+                <option value="@{arole.name}">@{arole.name}</option>
+                @end{}
+                @end{}
             </select>
         </div>
     </div>
-
     <div class="control-group">
-        <label class="control-label" for="enforcementNumber">执法证号</label>
-
+        <label class="control-label" for="inputEnforcementNumber">执法证号</label>
         <div class="controls">
-            <input type="text" id="enforcementNumber" name="user.enforcementNumber">
+            <input type="text" value="@{user.enforcementNumber}" id="inputEnforcementNumber" name="user.enforcementNumber" placeholder="执法证号">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="validEnforcementDate">执法证有效期</label>
-
+        <label class="control-label" for="inputValidEnforcementDate">执法证有效期</label>
         <div class="controls">
-            <input type="datetime" id="validEnforcementDate" name="user.validEnforcementDate">
+            <input type="datetime" value="@{user.validEnforcementDate}" id="inputValidEnforcementDate" name="user.validEnforcementDate" placeholder="执法证有效期">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="supervisorNumber">监察员证号</label>
-
+        <label class="control-label" for="inputSupervisorNumber">监察员证号</label>
         <div class="controls">
-            <input type="text" id="supervisorNumber" name="user.supervisorNumber">
+            <input type="text" value="@{user.supervisorNumber}" id="inputSupervisorNumber" name="user.supervisorNumber" placeholder="监察员证号">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="validSupervisorDate">监察员证有效期</label>
-
+        <label class="control-label" for="inputValidSupervisorDate">监察员证有效期</label>
         <div class="controls">
-            <input type="datetime" id="validSupervisorDate" name="user.validSupervisorDate">
+            <input type="datetime" value="@{user.validSupervisorDate}" id="inputValidSupervisorDate" name="user.validSupervisorNumber" placeholder="监察员证有效期">
         </div>
     </div>
     <div class="control-group">
@@ -72,6 +71,7 @@
         </div>
     </div>
 </form>
+
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.actual.min.js"></script>
 <script src="/js/jquery.form.js"></script>
@@ -81,12 +81,12 @@
 <script src="/lib/datepicker/js/bootstrap-datepicker.zh-CN.js"></script>
 <script>
     $(document).ready(function () {
-        $('#validEnforcementDate').datepicker({
-             format:'yyyy-mm-dd',
-             language:'zh-CN',
-             autoclose:true
+        $('#inputValidEnforcementDate').datepicker({
+            format:'yyyy-mm-dd',
+            language:'zh-CN',
+            autoclose:true
         });
-        $('#validSupervisorDate').datepicker({
+        $('#inputValidSupervisorDate').datepicker({
             format:'yyyy-mm-dd',
             language:'zh-CN',
             autoclose:true
@@ -97,7 +97,7 @@
             errorClass:'error',
             validClass:'valid',
             rules:{
-                loginName:{ required:true, minlength:3 },
+                name:{ required:true, minlength:3 },
                 realName:{ required:true, minlength:2},
                 password:{ required:true, minlength:3 },
                 enforcementNumber:{required:true, minlength:7},

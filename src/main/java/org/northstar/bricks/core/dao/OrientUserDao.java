@@ -31,13 +31,13 @@ public class OrientUserDao extends AbstractDao implements UserDao {
         }
         try {
             database.begin(TXTYPE.OPTIMISTIC);
-            logger.info(">>> Saving user id: " + user.getId() + " and name: " + user.getName());
+            logger.info(">>> Saving user id: " + user.getId() + " and name: " + user.getLoginName());
             database.save(user);
             database.commit();
         } catch (Exception e) {
             database.rollback();
             e.printStackTrace();
-            logger.warning(">>> " + user.getName() + "(" + user.getId() + ")is not saved.");
+            logger.warning(">>> " + user.getLoginName() + "(" + user.getId() + ")is not saved.");
         } finally {
             database.close();
         }
@@ -109,7 +109,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
         return userList;
     }
 
-    public List<User> authenticated(String name, String password) {
+    public List<User> authenticated(String loginName, String password) {
         if (database == null || database.isClosed()) {
             database = getConnection();
         }
@@ -120,9 +120,9 @@ public class OrientUserDao extends AbstractDao implements UserDao {
      params.put("name", name);
      params.put("password", password);
      List<User> result = db.command(query).execute(params);*/
-        String queryString = "select from User where name = ? and password = ?";
+        String queryString = "select from User where loginName = ? and password = ?";
         OQuery<User> command = new OSQLSynchQuery<User>(queryString);
-        List<User> result = database.query(command, name, password);
+        List<User> result = database.query(command, loginName, password);
         /*User user = new User();
         for (User u : result) {
             user = u;

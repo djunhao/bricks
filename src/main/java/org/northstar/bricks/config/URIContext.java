@@ -17,6 +17,4 @@ public class URIContext {
     public static final String LOGIN_ACTION = ROOT + "login";
     public static final String LOGOUT_ACTION = ROOT + "logout";
     public static final String ABOUT = ROOT + "about";
-
-
 }

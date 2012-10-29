@@ -1,19 +1,16 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
     <title>bricks - ${pageTitle}</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="/static/default.css"/>
 </head>
-<body>
-             ${path}
-            <div class="post">
-                <h1 class="title">Examples</h1>
 
-                <div class="entry">
-                    <table>
+<body>
+                <h1>Examples</h1>
+
+                    <table class="table table-bordered table-condensed table-hover">
                         <thead>
-                        <tr class="title">
+                        <tr class="info">
                             <th>序号</th>
                             <th>用户名</th>
                             <th>权限</th>
@@ -21,23 +18,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @Repeat(items=pagedUsers, var="user")
+                    @Repeat(items=pagedUsers, var="user")
                         <tr>
                             <td>${user.id}</td>
-                            <td><a href="useradmin/edit/${user.id}">${user.name}</a></td>
+                            <td>${user.loginName}</td>
                             <td>${user.role.name}</td>
-                            <td><a href="useradmin/delete/${user.id}">删除</a></td>
+                            <td><a href="useradmin/edit/${user.id}">编辑</a> | <a href="useradmin/delete/${user.id}">删除</a></td>
                         </tr>
                         </tbody>
                         <tfoot>
-                        <tr class="title">
+                        <tr class="info">
                             <td colspan="4">用户列表</td>
                         </tr>
                         </tfoot>
                     </table>
-                </div>
                 @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
                 <div>pager here</div>
-            </div>
 </body>
 </html>
