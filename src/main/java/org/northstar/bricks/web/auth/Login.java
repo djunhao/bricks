@@ -4,10 +4,10 @@ import com.google.inject.Inject;
 import com.google.sitebricks.client.transport.Json;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Post;
+import org.slf4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,14 +17,13 @@ import java.util.logging.Logger;
  * To change this template use File | Settings | File Templates.
  */
 public class Login {
-
     private String name;
     private String password;
 
     private Identity identity;
     private Authentication auth;
 
-    @Inject
+    //@Inject
     private Logger logger;
 
     @Inject
@@ -57,7 +56,7 @@ public class Login {
             logger.info("Login success!");
             result.put("info", "success");
         } else {
-            logger.warning("Login failed!");
+            logger.warn("Login failed!");
         }
         return Reply.with(result).as(Json.class);
     }

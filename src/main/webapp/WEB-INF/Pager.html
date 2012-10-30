@@ -2,15 +2,13 @@
 <html>
 <head>
     <title>none</title>
-    <link rel="stylesheet" href="./static/pager.css"/>
 </head>
 <body>
-
 <ul class="pager pull-left">
     @ShowIf(prevExists)
-    <li><a href="?page=${page-1}">&lt;&lt;上一页</a></li>
+    <li><a href="?page=${page-1}">上一页</a></li>
     @ShowIf(nextExists)
-    <li><a href="?page=${page+1}">下一页&gt;&gt;</a></li>
+    <li><a href="?page=${page+1}">下一页</a></li>
 </ul>
 </body>
 </html>

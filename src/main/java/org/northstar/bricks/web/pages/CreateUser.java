@@ -12,9 +12,9 @@ import org.northstar.bricks.core.domain.Role;
 import org.northstar.bricks.core.domain.User;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.components.Decorator;
+import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,7 +34,7 @@ public class CreateUser extends Decorator {
     private Role role = new Role();
     private List<Role> roleList;
 
-    @Inject
+    //@Inject
     private Logger logger;
     @Inject
     private Request request;
@@ -47,7 +47,7 @@ public class CreateUser extends Decorator {
 
     @Get
     @Secure
-    String load() {
+    Object load() {
         roleList = roleDao.findAll();
         return null;
     }

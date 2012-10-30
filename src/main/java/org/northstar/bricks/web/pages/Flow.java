@@ -39,7 +39,7 @@ public class Flow extends Decorator {
 
     @Get
     @Secure
-    public String load() {
+    public Object load() {
         long startIndex = 0;
         if (page < 1) {
             page = 1;

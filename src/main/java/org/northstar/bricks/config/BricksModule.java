@@ -55,12 +55,12 @@ public class BricksModule extends SitebricksModule {
 
         /** Testing page, service and widget */
         at("/flow").show(Flow.class);
-        at("/guestbook").show(Guestbook.class);
-        at("/guestbook/:id").show(GuestbookEntry.class);
+        at("/more/guestbook").show(Guestbook.class);
+        at("/more/guestbook/:id").show(GuestbookEntry.class);
         at("/hello").show(Hello.class);
         at("/count").show(Count.class);
         at("/forms").show(Forms.class);
-        at("/test").show(Test.class);
+        at("/more/test").show(Test.class);
 
         embed(NewCard.class).as("Card");
         embed(GuestbookNavigation.class).as("navigation");

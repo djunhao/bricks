@@ -7,6 +7,7 @@ import com.google.sitebricks.headless.Request;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.northstar.bricks.config.URIContext;
+import org.northstar.bricks.web.pages.LoginPage;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,12 +25,12 @@ class SecureMethodInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Identity identity = identityProvider.get();
-        String path = requestProvider.get().context();
+        String contextPath = requestProvider.get().context();
         if (!identity.isAuthenticated()) {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
-                return Reply.saying().redirect(path + URIContext.LOGIN_PAGE);
+                return Reply.saying().redirect(contextPath + URIContext.LOGIN_PAGE);
             }
-            return path + URIContext.LOGIN_PAGE;
+            return LoginPage.class;
         }
         return invocation.proceed();
     }

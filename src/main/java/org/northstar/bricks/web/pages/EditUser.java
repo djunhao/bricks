@@ -8,7 +8,6 @@ import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Put;
 import com.google.sitebricks.rendering.Decorated;
 import com.google.sitebricks.routing.Redirect;
-import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.core.dao.RoleDao;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.Role;
@@ -50,7 +49,7 @@ public class EditUser extends Decorator {
 
     @Get
     @Secure
-    String load(@Named("id") Long id) {
+    Object load(@Named("id") Long id) {
         this.user = userDao.findById(id);
         this.roleList = roleDao.findAll();
         return null;
@@ -58,11 +57,11 @@ public class EditUser extends Decorator {
 
     @Secure
     @Put
-    String update(@Named("id") Long id) {
+    Object update(@Named("id") Long id) {
         Role aRole = roleDao.getRoleByName(role.getName());
         user.setRole(aRole);
         userDao.save(user);
-        return request.context() + URIContext.ROOT;
+        return Home.class;
     }
 
     public List<Role> getRoleList() {

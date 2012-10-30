@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>some more testing</title>
+    <meta charset="utf-8"/>
+    <link type="text/css" href="/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
 <h1>${message}</h1>
-<p>${user.name} - ${user.role.name}</p>
+<p>${user.realName} - ${user.role.name}</p>
 <select>
 <#list roles as arole>
 <#if arole.name == user.role.name>
@@ -15,5 +17,6 @@
 </#if>
 </#list>
 </select>
+<script type="text/javascript" charset="utf-8" src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

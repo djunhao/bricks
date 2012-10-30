@@ -2,10 +2,10 @@
 <body>
     <p>
     @ShowIf(previousExists)
-    <a href="/guestbook/${previous.id}">&lt;&lt; ${previous.name}</a>
+    <a href="/more/guestbook/${previous.id}">&lt;&lt; ${previous.name}</a>
         || 
     @ShowIf(nextExists)
-    <a href="/guestbook/${next.id}">${next.name} &gt;&gt;</a>
+    <a href="/more/guestbook/${next.id}">${next.name} &gt;&gt;</a>
     </p>
 </body>
 </html>

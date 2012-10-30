@@ -3,7 +3,8 @@
 <head>
     <title>Guestbook</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="/static/default.css"/>
+    @Require
+    <link rel="stylesheet" href="/static/pager.css"/>
 </head>
 <body>
 
@@ -14,13 +15,14 @@
 
                     <p>${entry.text}</p>
 
-                    <form action="/guestbook/${entry.id}" method="post">
+                    <form action="/more/guestbook/${entry.id}" method="post">
                         <button class="btn btn-success" type="submit" name="delete">Delete this entry</button>
                     </form>
-                    <form action="/guestbook" method="get">
+                    <form action="/more/guestbook" method="get">
                         <button class="btn btn-inverse" type="submit" name="back">Go Back</button>
                     </form>
                     @Navigation(current=entry)
+                    <div/>
                 </div>
             </div>
 
