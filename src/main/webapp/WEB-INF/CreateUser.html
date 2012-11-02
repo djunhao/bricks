@@ -9,21 +9,19 @@
     <legend>创建新用户</legend>
     <div class="control-group">
         <label class="control-label" for="loginName">登录名</label>
-
         <div class="controls">
             <input type="text" id="loginName" name="user.loginName">
+            <span class="help-inline f_reg">*</span>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="realName">真实姓名</label>
-
         <div class="controls">
             <input type="text" id="realName" name="user.realName">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-
         <div class="controls">
             <input type="password" id="password" name="user.password">
         </div>
@@ -37,10 +35,8 @@
             </select>
         </div>
     </div>
-
     <div class="control-group">
         <label class="control-label" for="enforcementNumber">执法证号</label>
-
         <div class="controls">
             <input type="text" id="enforcementNumber" name="user.enforcementNumber">
         </div>
@@ -54,14 +50,12 @@
     </div>
     <div class="control-group">
         <label class="control-label" for="supervisorNumber">监察员证号</label>
-
         <div class="controls">
             <input type="text" id="supervisorNumber" name="user.supervisorNumber">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="validSupervisorDate">监察员证有效期</label>
-
         <div class="controls">
             <input type="datetime" id="validSupervisorDate" name="user.validSupervisorDate">
         </div>
@@ -72,6 +66,7 @@
         </div>
     </div>
 </form>
+<!-- Placed at the end of the document so the pages load faster -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.actual.min.js"></script>
 <script src="/js/jquery.form.js"></script>
@@ -93,34 +88,25 @@
         });
         //* validation
         $('#newUser').validate({
-            onkeyup:false,
+            //onkeyup:false,
+            onfocusout:true,
             errorClass:'error',
             validClass:'valid',
             rules:{
-                loginName:{ required:true, minlength:3 },
-                realName:{ required:true, minlength:2},
-                password:{ required:true, minlength:3 },
-                enforcementNumber:{required:true, minlength:7},
-                validEnforcementDate:{required:true}
-            },
-            messages:{
-                loginName:{
-                    required:'请输入您的登录名！',
-                    minlength:'登录名不能少于3个字符！'
-                },
-                password:{
-                    required:'请输入您的密码！',
-                    minlength:'密码不能少于3个字符！'
-                }
+                'user.loginName':{ required:true, minlength:3 },
+                'user.realName':{ required:true, minlength:2},
+                'user.password':{ required:true, minlength:3 },
+                'user.enforcementNumber':{required:true, minlength:7},
+                'user.validEnforcementDate':{required:true}
             },
             highlight:function (element) {
-                $(element).closest('div').addClass("f_error");
+                $(element).parents('div').addClass("error");
             },
             unhighlight:function (element) {
-                $(element).closest('div').removeClass("f_error");
+                $(element).parents('div').removeClass("error");
             },
             errorPlacement:function (error, element) {
-                $(element).closest('div').append(error);
+                $(element).parents('div').append(error);
             }
             //submitHandler:formSubmit
         });
