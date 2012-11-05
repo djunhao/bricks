@@ -13,7 +13,7 @@ import org.northstar.bricks.web.auth.Identity;
  * Time: 上午11:54
  * To change this template use File | Settings | File Templates.
  */
-@Show("Layout.html")
+@Show("Layout1.html")
 public abstract class Layout {
     @Inject
     private Provider<Identity> identityProvider;

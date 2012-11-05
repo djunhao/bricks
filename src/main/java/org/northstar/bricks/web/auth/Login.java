@@ -23,7 +23,6 @@ public class Login {
     private Identity identity;
     private Authentication auth;
 
-    //@Inject
     private Logger logger;
 
     @Inject
@@ -57,6 +56,7 @@ public class Login {
             result.put("info", "success");
         } else {
             logger.warn("Login failed!");
+            result.put("info", "failed");
         }
         return Reply.with(result).as(Json.class);
     }

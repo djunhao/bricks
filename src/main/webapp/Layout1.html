@@ -6,12 +6,12 @@
     <title>危险化学品企业信息管理</title>
 
     <!-- Bootstrap framework -->
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css"/>
 
     <!--[if lte IE 8]>
-    <script src="/js/ie/html5.js"></script>
-    <script src="/js/ie//respond.min.js"></script>
+    <script src="js/ie/html5.js"></script>
+    <script src="js/ie/respond.min.js"></script>
 
     <![endif]-->
 
@@ -115,16 +115,16 @@
                     @ShowIf(loggedIn)
                     <div class="btn-group pull-right">
                         <button type="button" class="btn disabled">
-                            <i class="icon-user"></i> ${loginUser.realName}
+                            <i class="icon-user"></i> 邓俊浩
                         </button>
                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="/useradmin/show/${loginUser.id}">我的信息</a></li>
+                            <li><a href="user_profile">我的信息</a></li>
                             <li><a href="">其他操作</a></li>
                             <li class="divider"></li>
-                            <li><a href="/logout">登出</a></li>
+                            <li><a href="index.php">登出</a></li>
                         </ul>
                     </div>
             </div>
@@ -147,14 +147,17 @@
 
     <ul class="breadcrumb">
         <li><i class="icon-home"></i> 主页</a> <span class="divider">></span></li>
-        <li><a href="#">信息</a> <span class="divider">></span></li>
+        <li><a href="#">企业信息</a> <span class="divider">></span></li>
         <li class="active">添加企业信息</li>
     </ul>
     <div class="row">
         <!-- Main content Start -->
         <div class="span9">
-                @Decorated
-                <div>This should be replaced by the extension</div>
+            <div class="well">
+                <blockquote><h3>危险化学品安全监管</h3>
+                    <small>东莞市安全生产监督管理局石龙分局</small>
+                </blockquote>
+            </div>
         </div>
         <!-- Main content End -->
 
@@ -222,7 +225,7 @@
                     <div id="member" class="accordion-body collapse">
                         <div class="accordion-inner">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="/">成员列表</a></li>
+                                <li><a href="#">成员列表</a></li>
                                 <li><a href="/useradmin/create">添加成员</a></li>
                                 <li><a href="#">成员操作</a></li>
                             </ul>
@@ -236,8 +239,8 @@
     <!-- Row End -->
 </div>
 <!-- Page End -->
-<script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 <script>
     $('#login_form_help').tooltip();
 
