@@ -4,19 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>用户登录 - 危险化学品企业信息管理</title>
-
     <!-- Bootstrap framework -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css"/>
-
     <!-- main styles -->
     <link rel="stylesheet" href="/css/style.css"/>
-
     <!--[if lt IE 9]>
     <script src="/js/ie/html5.js"></script>
     <script src="/js/ie/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body>
 <div class="login_box">
@@ -44,9 +40,11 @@
                            name="password" placeholder="密   码"/>
                 </div>
             </div>
-
             <div class="formRow clearfix">
-                <label class="checkbox"><input type="checkbox"/> 记住我</label>
+                <label class="checkbox"><input type="checkbox"/> 记住我
+                    <i id="login_form_help" class="icon-question-sign" rel="tooltip" data-placement="top"
+                       title="勾选并成功登录后，一周内免登录"></i>
+                </label>
             </div>
         </div>
         <div class="btm_b clearfix">
@@ -77,10 +75,9 @@
         <div class="alert alert-login">
             如果您同意并接受<a data-toggle="modal" href="#terms">服务条款</a>，请填写下面的表单并点击“注册”按钮。
         </div>
-        <div id="terms" class="modal hide fade" style="display:none">
+        <div id="terms" class="modal hide fade">
             <div class="modal-header">
                 <a class="close" data-dismiss="modal">&times;</a>
-
                 <h3>条款和条件</h3>
             </div>
             <div class="modal-body">
@@ -91,7 +88,6 @@
             </div>
         </div>
         <div class="cnt_b">
-
             <div class="formRow">
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="用户名" autofocus/>
@@ -108,7 +104,6 @@
                 </div>
                 <small>此e-mail地址不会被公开，且该地址仅在您希望收到新密码时被使用。</small>
             </div>
-
         </div>
         <div class="btm_b tac">
             <button class="btn btn-primary" type="submit">注 册</button>
@@ -129,6 +124,7 @@
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
+        $('#login_form_help').tooltip();
         //* boxes animation
         form_wrapper = $('.login_box');
         function boxHeight() {
@@ -159,7 +155,7 @@
 
         //* validation
         $('#login_form').validate({
-            //onkeyup:false,
+            onkeyup:false,
             errorClass:'error',
             validClass:'valid',
             rules:{
@@ -211,7 +207,6 @@
         } else {
             $('#error_msg').alert();
             $('#error_msg').fadeIn();
-            return false;
         }
     }
 

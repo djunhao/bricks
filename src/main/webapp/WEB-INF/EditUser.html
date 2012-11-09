@@ -5,79 +5,95 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-
+<ul class="breadcrumb">
+    <li><i class="icon-home"></i> <a href="/">主页</a> <span class="divider">></span></li>
+    <li><a href="/useradmin/list">分局成员登记</a> <span class="divider">></span></li>
+    <li class="active">更新成员信息</li>
+</ul>
 <form id="editUser" class="form-horizontal" action="/useradmin/edit/${user.id}" method="post">
-    <legend>更新用户</legend>
-    <input type="hidden" name="__sitebricks__action" value="put"/>
-    <div class="control-group">
-        <label class="control-label" for="inputName">登录名</label>
-        <div class="controls">
-            <input type="text" name="user.loginName" value="${user.loginName}" id="inputName">
+    <fieldset>
+        <legend>更新成员信息</legend>
+        <input type="hidden" name="__sitebricks__action" value="put"/>
+
+        <div class="control-group">
+            <label class="control-label" for="inputName">登录名</label>
+
+            <div class="controls">
+                <input type="text" name="user.loginName" value="${user.loginName}" id="inputName">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputRealName">真实姓名</label>
-        <div class="controls">
-            <input type="text" value="${user.realName}" id="inputRealName" name="user.realName">
+        <div class="control-group">
+            <label class="control-label" for="inputRealName">真实姓名</label>
+
+            <div class="controls">
+                <input type="text" value="${user.realName}" id="inputRealName" name="user.realName">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-        <div class="controls">
-            <input type="password" name="user.password" value="${user.password}" id="inputPassword">
+        <div class="control-group">
+            <label class="control-label" for="inputPassword">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+
+            <div class="controls">
+                <input type="password" name="user.password" value="${user.password}" id="inputPassword">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputRole">权&nbsp;&nbsp;&nbsp;&nbsp;限</label>
-        <div class="controls">
-            <select id="inputRole" name="role.name">
-                <!--<#list roleList as arole>
-                <#if arole.name == user.role.name>
-                <option value="${arole.name}" selected>${arole.name}</option>
-                <#else>-->
-                @Repeat(items=roleList, var="arole")
-                <option value="${arole.name}">${arole.name}</option>
-               <!-- </#if>
-                </#list>-->
-            </select>
+        <div class="control-group">
+            <label class="control-label" for="inputRole">权&nbsp;&nbsp;&nbsp;&nbsp;限</label>
+            <div class="controls">
+                <select id="inputRole" name="role.name">
+                    <!--<#list roleList as arole>
+                    <#if arole.name == user.role.name>
+                    <option value="${arole.name}" selected>${arole.name}</option>
+                    <#else>-->
+                    @Repeat(items=roleList, var="arole")
+                    <option value="${arole.name}">${arole.name}</option>
+                    <!-- </#if>
+                    </#list>-->
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputEnforcementNumber">执法证号</label>
-        <div class="controls">
-            <input type="text" value="${user.enforcementNumber}" id="inputEnforcementNumber" name="user.enforcementNumber">
+        <div class="control-group">
+            <label class="control-label" for="inputEnforcementNumber">执法证号</label>
+
+            <div class="controls">
+                <input type="text" value="${user.enforcementNumber}" id="inputEnforcementNumber"
+                       name="user.enforcementNumber">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputValidEnforcementDate">执法证有效期</label>
-        <div class="controls">
-            <input type="datetime" value="${user.validEnforcementDate}" id="inputValidEnforcementDate" name="user.validEnforcementDate">
+        <div class="control-group">
+            <label class="control-label" for="inputValidEnforcementDate">执法证有效期</label>
+
+            <div class="controls">
+                <input type="datetime" value="${user.validEnforcementDate}" id="inputValidEnforcementDate"
+                       name="user.validEnforcementDate">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputSupervisorNumber">监察员证号</label>
-        <div class="controls">
-            <input type="text" value="${user.supervisorNumber}" id="inputSupervisorNumber" name="user.supervisorNumber">
+        <div class="control-group">
+            <label class="control-label" for="inputSupervisorNumber">监察员证号</label>
+
+            <div class="controls">
+                <input type="text" value="${user.supervisorNumber}" id="inputSupervisorNumber"
+                       name="user.supervisorNumber">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputValidSupervisorDate">监察员证有效期</label>
-        <div class="controls">
-            <input type="datetime" value="${user.validSupervisorDate}" id="inputValidSupervisorDate" name="user.validSupervisorDate">
+        <div class="control-group">
+            <label class="control-label" for="inputValidSupervisorDate">监察员证有效期</label>
+
+            <div class="controls">
+                <input type="datetime" value="${user.validSupervisorDate}" id="inputValidSupervisorDate"
+                       name="user.validSupervisorDate">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <div class="controls">
-            <button type="submit" class="btn btn-inverse">保存</button>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-inverse">保存</button>
+            </div>
         </div>
-    </div>
+    </fieldset>
 </form>
 
-<script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.actual.min.js"></script>
 <script src="/js/jquery.form.js"></script>
 <script src="/lib/validation/jquery.validate.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/lib/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="/lib/datepicker/js/bootstrap-datepicker.zh-CN.js"></script>
 <script>

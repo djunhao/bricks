@@ -6,31 +6,33 @@
 </head>
 
 <body>
-                <h4 class="center">分局人员一览表</h4>
-                    <table class="table table-bordered table-condensed table-hover">
-                        <thead>
-                        <tr class="info">
-                            <th>姓名</th>
-                            <th>执法证</th>
-                            <th>执法证有效期</th>
-                            <th>监察员证</th>
-                            <th>监察员证有效期</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                    @Repeat(items=pagedUsers, var="user")
-                        <tr>
-                            <td>${user.realName}</td>
-                            <td>${user.enforcementNumber}</td>
-                            <td>${user.validEnforcementDate}</td>
-                            <td>${user.supervisorNumber}</td>
-                            <td>${user.validSupervisorDate}</td>
-                            <td><a href="useradmin/edit/${user.id}">编辑</a> | <a href="useradmin/delete/${user.id}">删除</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
-                <div>pager here</div>
+<ul class="breadcrumb">
+    <li><i class="icon-home"></i> <a href="/">主页</a> <span class="divider">></span></li>
+    <li class="active">分局成员列表（测试）</li>
+</ul>
+<h4 class="center">分局人员一览表</h4>
+<table class="table table-bordered table-condensed table-hover">
+    <tbody>
+    <tr class="info">
+        <td>姓名</td>
+        <td>执法证</td>
+        <td>执法证有效期</td>
+        <td>监察员证</td>
+        <td>监察员证有效期</td>
+        <td>操作</td>
+    </tr>
+    @Repeat(items=pagedUsers, var="user")
+    <tr>
+        <td>${user.realName}</td>
+        <td>${user.enforcementNumber}</td>
+        <td>${user.validEnforcementDate}</td>
+        <td>${user.supervisorNumber}</td>
+        <td>${user.validSupervisorDate}</td>
+        <td><a href="useradmin/edit/${user.id}">编辑</a> | <a href="useradmin/delete/${user.id}">删除</a></td>
+    </tr>
+    </tbody>
+</table>
+@Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
+<div>pager here</div>
 </body>
 </html>

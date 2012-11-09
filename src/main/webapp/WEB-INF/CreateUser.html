@@ -5,81 +5,93 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
+<ul class="breadcrumb">
+    <li><i class="icon-home"></i> <a href="/">主页</a> <span class="divider">></span></li>
+    <li><a href="/useradmin/list">分局成员登记</a> <span class="divider">></span></li>
+    <li class="active">添加新成员</li>
+</ul>
 <form id="newUser" class="form-horizontal" action="/useradmin/create" method="post">
-    <legend>创建新用户</legend>
-    <div class="control-group">
-        <label class="control-label" for="loginName">登录名</label>
-        <div class="controls">
-            <input type="text" id="loginName" name="user.loginName">
-            <span class="help-inline f_reg">*</span>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="realName">真实姓名</label>
-        <div class="controls">
-            <input type="text" id="realName" name="user.realName">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-        <div class="controls">
-            <input type="password" id="password" name="user.password">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="role">权&nbsp;&nbsp;&nbsp;&nbsp;限</label>
-        <div class="controls">
-            <select id="role" name="role.name">
-                @Repeat(items=roleList, var="userRole")
-                <option value="${userRole.name}">${userRole.name}</option>
-            </select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="enforcementNumber">执法证号</label>
-        <div class="controls">
-            <input type="text" id="enforcementNumber" name="user.enforcementNumber">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="validEnforcementDate">执法证有效期</label>
+    <fieldset>
+        <legend>添加新成员</legend>
+        <div class="control-group">
+            <label class="control-label" for="loginName">登录名</label>
 
-        <div class="controls">
-            <input type="datetime" id="validEnforcementDate" name="user.validEnforcementDate">
+            <div class="controls">
+                <input type="text" id="loginName" name="user.loginName">
+                <span class="help-inline f_reg">*</span>
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="supervisorNumber">监察员证号</label>
-        <div class="controls">
-            <input type="text" id="supervisorNumber" name="user.supervisorNumber">
+        <div class="control-group">
+            <label class="control-label" for="realName">真实姓名</label>
+
+            <div class="controls">
+                <input type="text" id="realName" name="user.realName">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="validSupervisorDate">监察员证有效期</label>
-        <div class="controls">
-            <input type="datetime" id="validSupervisorDate" name="user.validSupervisorDate">
+        <div class="control-group">
+            <label class="control-label" for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+
+            <div class="controls">
+                <input type="password" id="password" name="user.password">
+            </div>
         </div>
-    </div>
-    <div class="control-group">
-        <div class="controls">
-            <button type="submit" class="btn btn-inverse">保存</button>
+        <div class="control-group">
+            <label class="control-label" for="role">权&nbsp;&nbsp;&nbsp;&nbsp;限</label>
+
+            <div class="controls">
+                <select id="role" name="role.name">
+                    @Repeat(items=roleList, var="userRole")
+                    <option value="${userRole.name}">${userRole.name}</option>
+                </select>
+            </div>
         </div>
-    </div>
+        <div class="control-group">
+            <label class="control-label" for="enforcementNumber">执法证号</label>
+
+            <div class="controls">
+                <input type="text" id="enforcementNumber" name="user.enforcementNumber">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="validEnforcementDate">执法证有效期</label>
+
+            <div class="controls">
+                <input type="datetime" id="validEnforcementDate" name="user.validEnforcementDate">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="supervisorNumber">监察员证号</label>
+
+            <div class="controls">
+                <input type="text" id="supervisorNumber" name="user.supervisorNumber">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="validSupervisorDate">监察员证有效期</label>
+
+            <div class="controls">
+                <input type="datetime" id="validSupervisorDate" name="user.validSupervisorDate">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-inverse">保存</button>
+            </div>
+        </div>
+    </fieldset>
 </form>
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.actual.min.js"></script>
 <script src="/js/jquery.form.js"></script>
 <script src="/lib/validation/jquery.validate.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/lib/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="/lib/datepicker/js/bootstrap-datepicker.zh-CN.js"></script>
 <script>
     $(document).ready(function () {
         $('#validEnforcementDate').datepicker({
-             format:'yyyy-mm-dd',
-             language:'zh-CN',
-             autoclose:true
+            format:'yyyy-mm-dd',
+            language:'zh-CN',
+            autoclose:true
         });
         $('#validSupervisorDate').datepicker({
             format:'yyyy-mm-dd',

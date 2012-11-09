@@ -3,51 +3,54 @@
 <head>
     <title>Guestbook</title>
     <meta charset="UTF-8"/>
-    @Require
-    <link rel="stylesheet" href="/static/default.css"/>
 </head>
 <body>
+<ul class="breadcrumb">
+    <li><i class="icon-home"></i> <a href="/">主页</a> <span class="divider">></span></li>
+    <li class="active">留言簿Demo</li>
+</ul>
+<h1>Guestbook Demo</h1>
 
-                <h1>Guestbook Demo</h1>
+<strong>Welcome to my guestbook, the time is now ${time}.</strong>
+<table class="table table-bordered table-condensed">
+    <tbody>
+    <tr class="success">
+        <td>序号</td>
+        <td>标题</td>
+        <td>时间</td>
+    </tr>
+    @Repeat(items=entries, var="entry")
+    <tr>
+        <td>${entry.id}</td>
+        <td><a href="/guestbook/${entry.id}">${entry.name}</a></td>
+        <td>${entry.date}</td>
+    </tr>
+    </tbody>
+</table>
+添加新留言:
+<br/>
 
-                    <strong>Welcome to my guestbook, the time is now ${time}.</strong>
-                    <table class="table table-bordered table-condensed">
-                        <tbody>
-                        <tr class="success">
-                            <td>序号</td>
-                            <td>标题</td>
-                            <td>时间</td>
-                        </tr>
-                        @Repeat(items=entries, var="entry")
-                        <tr>
-                            <td>${entry.id}</td>
-                            <td><a href="/guestbook/${entry.id}">${entry.name}</a></td>
-                            <td>${entry.date}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    添加新留言:
-                    <br/>
+<form class="form-horizontal" action="/more/guestbook" method="post">
+    <div class="control-group">
+        <label class="control-label" for="name">姓名</label>
 
-                    <form class="form-horizontal" action="/more/guestbook" method="post">
-                        <div class="control-group">
-                            <label class="control-label" for="name">姓名</label>
-                            <div class="controls">
-                                <input id="name" name="newEntry.name" type="text"/>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="text"> 留言</label>
-                            <div class="controls">
-                                <textarea id="text" name="newEntry.text"></textarea>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls">
-                                <button class="btn btn-success" type="submit">保存</button>
-                            </div>
-                        </div>
-                    </form>
+        <div class="controls">
+            <input id="name" name="newEntry.name" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="text"> 留言</label>
+
+        <div class="controls">
+            <textarea id="text" name="newEntry.text"></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button class="btn btn-success" type="submit">保存</button>
+        </div>
+    </div>
+</form>
 
 </body>
 </html>

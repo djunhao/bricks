@@ -7,19 +7,36 @@
 
     <!-- Bootstrap framework -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css"/>
-
     <!--[if lte IE 8]>
     <script src="/js/ie/html5.js"></script>
     <script src="/js/ie//respond.min.js"></script>
-
     <![endif]-->
 
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
     <style>
         body {
-            position: relative;
-            padding-top: 60px;
-            background: url("img/bg_e.png") repeat;
+            /*position: relative;
+            padding-top: 60px;*/
+            background: url("/img/bg_e.png") repeat;
+        }
+
+        .subhead {
+            margin-top: 60px;
+            margin-bottom: 10px;
+        }
+        .subhead h1 {
+            font-size: 40px;
+            color:#FF6600;
+        }
+        .subhead p {
+            font-size: 18px;
+            font-weight: 200;
+            line-height: 28px;
+        }
+        .modal.fade.in {
+            margin-top: -25%;
+            top: 50%;
         }
 
         .navbar, .navbar .btn {
@@ -27,65 +44,28 @@
         }
 
         body > .container .breadcrumb {
-            /*
-           border: 1px solid #b0c4de;
-           border-top: 0;*/
             background: #b0c4de;
-            /*
-  -webkit-box-shadow: inset 0 0 2px 1px #313131, 0 1px 5px #0f0f0f;
-  -moz-box-shadow: inset 0 0 2px 1px #313131, 0 1px 5px #0f0f0f;
-  box-shadow: inset 0 0 2px 1px #313131, 0 1px 5px #0f0f0f;*/
         }
 
-    </style>
+        #footer {
+            height: 60px;
+        }
 
+        .container .credit {
+            margin: 20px 0;
+        }
+    </style>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css"/>
 </head>
 <body>
-<!-- Login Modal Start -->
-<div id="login_modal" class="modal fade hide">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>用户登录</h3>
+<!-- Subhead
+================================================== -->
+<header class="subhead">
+    <div class="container">
+        <h1>石龙镇危险化学品安全监管</h1>
+        <p class="lead">东莞市安全生产监督管理局石龙分局</p>
     </div>
-    <div class="modal-body">
-        <form class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="loginName">登录名</label>
-
-                <div class="controls">
-                    <div class="input-prepend">
-                        <span class="add-on"><i class="icon-user"></i></span>
-                        <input type="text" id="loginName" name="loginName" autofocus/>
-                    </div>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-
-                <div class="controls">
-                    <div class="input-prepend">
-                        <span class="add-on"><i class="icon-lock"></i></span>
-                        <input type="password" id="password" name="password"/>
-                    </div>
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <label class="checkbox">
-                        <input type="checkbox"> 记住我
-                        <i id="login_form_help" class="icon-question-sign" rel="tooltip" data-placement="top"
-                           title="测试tooltips"></i>
-                    </label>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">关闭</a>
-        <a href="#" class="btn btn-primary">登录</a>
-    </div>
-</div>
-<!-- Login Modal End -->
+</header>
 <!-- Navbar Start -->
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
@@ -98,7 +78,7 @@
             <!--<a class="brand" href="#">危险化学品安全监管</a>-->
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="active"><a href="/">主页</a></li>
+                    <li><a href="/">主页</a></li>
                     <li>
                         <a href="/more/guestbook">留言簿</a>
                     </li>
@@ -108,124 +88,118 @@
                     <li><a href="/about">关于</a></li>
 
                 </ul>
-                    @ShowIf(!loggedIn)
-                    <div class="btn-group pull-right">
-                        <a class="btn pull-right" href="#login_modal" data-toggle="modal">请登录</a>
-                    </div>
-                    @ShowIf(loggedIn)
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn disabled">
-                            <i class="icon-user"></i> ${loginUser.realName}
-                        </button>
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="/useradmin/show/${loginUser.id}">我的信息</a></li>
-                            <li><a href="">其他操作</a></li>
-                            <li class="divider"></li>
-                            <li><a href="/logout">登出</a></li>
-                        </ul>
-                    </div>
+                <form class="navbar-search pull-left">
+                    <input type="text" class="search-query" placeholder="Search">
+                </form>
+                @ShowIf(!loggedIn)
+                <div class="btn-group pull-right">
+                    <a class="btn pull-right" href="/signin">请登录</a>
+                </div>
+                @ShowIf(loggedIn)
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn disabled">
+                        <i class="icon-user"></i> ${loginUser.realName}
+                    </button>
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/useradmin/show/${loginUser.id}">我的信息</a></li>
+                        <li><a href="">其他操作</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/logout">登出</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Navbar End -->
-<!-- Subhead
-================================================== -->
-<header class="jumbotron subhead" id="overview">
-    <div class="container">
 
-        <h1>石龙镇危险化学品安全监管</h1>
 
-        <p class="lead">东莞市安全生产监督管理局石龙分局</p>
-    </div>
-</header>
 <!-- Page Start -->
 <div class="container">
-
-    <ul class="breadcrumb">
-        <li><i class="icon-home"></i> 主页</a> <span class="divider">></span></li>
-        <li><a href="#">信息</a> <span class="divider">></span></li>
-        <li class="active">添加企业信息</li>
-    </ul>
     <div class="row">
         <!-- Main content Start -->
         <div class="span9">
-                @Decorated
-                <div>This should be replaced by the extension</div>
+            @Decorated
+            <div>This should be replaced by the extension</div>
         </div>
         <!-- Main content End -->
-
         <!-- Sidebar Start -->
-        <div class="span3 sidenav">
-            <div class="accordion" id="sidebar_menu">
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <button type="button" class="btn btn-block" data-toggle="collapse" data-parent="#sidebar_menu"
-                                data-target="#enterprise">
-                            危化企业登记
-                        </button>
-                    </div>
-                    <div id="enterprise" class="accordion-body collapse in">
-                        <div class="accordion-inner">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li class="active"><a href="#">企业列表</a></li>
-                                <li><a href="#">添加企业</a></li>
-                                <li><a href="#">其他操作</a></li>
-                            </ul>
+        <div class="span3">
+            <div data-spy="affix" class="span3">
+                <div class="accordion" id="sidebar_menu">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <button type="button" class="btn btn-block" data-toggle="collapse"
+                                    data-parent="#sidebar_menu"
+                                    data-target="#enterprise">
+                                危化企业登记
+                            </button>
+                        </div>
+                        <div id="enterprise" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li class="active"><a href="#">企业列表</a></li>
+                                    <li><a href="#">添加企业</a></li>
+                                    <li><a href="#">其他操作</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <button type="button" class="btn btn-block" data-toggle="collapse" data-parent="#sidebar_menu"
-                                data-target="#license">
-                            行政许可登记
-                        </button>
-                    </div>
-                    <div id="license" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">许可列表</a></li>
-                                <li><a href="#">添加许可</a></li>
-                                <li><a href="#">其他操作</a></li>
-                            </ul>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <button type="button" class="btn btn-block" data-toggle="collapse"
+                                    data-parent="#sidebar_menu"
+                                    data-target="#license">
+                                行政许可登记
+                            </button>
+                        </div>
+                        <div id="license" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">许可列表</a></li>
+                                    <li><a href="#">添加许可</a></li>
+                                    <li><a href="#">其他操作</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <button type="button" class="btn btn-block" data-toggle="collapse" data-parent="#sidebar_menu"
-                                data-target="#enforcement">
-                            巡查执法记录
-                        </button>
-                    </div>
-                    <div id="enforcement" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">记录列表</a></li>
-                                <li><a href="#">添加记录</a></li>
-                                <li><a href="#">其他操作</a></li>
-                            </ul>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <button type="button" class="btn btn-block" data-toggle="collapse"
+                                    data-parent="#sidebar_menu"
+                                    data-target="#enforcement">
+                                巡查执法记录
+                            </button>
+                        </div>
+                        <div id="enforcement" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="#">记录列表</a></li>
+                                    <li><a href="#">添加记录</a></li>
+                                    <li><a href="#">其他操作</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <button type="button" class="btn btn-block" data-toggle="collapse" data-parent="#sidebar_menu"
-                                data-target="#member">
-                            分局成员信息
-                        </button>
-                    </div>
-                    <div id="member" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="/">成员列表</a></li>
-                                <li><a href="/useradmin/create">添加成员</a></li>
-                                <li><a href="#">成员操作</a></li>
-                            </ul>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <button type="button" class="btn btn-block" data-toggle="collapse"
+                                    data-parent="#sidebar_menu"
+                                    data-target="#member"><i class="icon-book"></i>
+                                分局成员信息
+                            </button>
+                        </div>
+                        <div id="member" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="/">成员列表</a></li>
+                                    <li><a href="/useradmin/create">添加成员</a></li>
+                                    <li><a href="#">成员操作</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -236,19 +210,11 @@
     <!-- Row End -->
 </div>
 <!-- Page End -->
-<script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
-<script>
-    $('#login_form_help').tooltip();
-
-    // side bar
-    $('.sidenav').affix({
-        offset:{
-            top:function () {
-                return $window.width() <= 980 ? 290 : 210
-            }, bottom:270
-        }
-    })
-</script>
+<footer id="footer">
+    <div class="container">
+        <p class="muted credit">Based on <a href="http://twitter.github.com/bootstrap" target="_blank">Bootstrap
+            Framework</a> &copy; 2012 northstar's studio. All rights reserved.</p>
+    </div>
+</footer>
 </body>
 </html>
