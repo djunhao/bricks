@@ -124,12 +124,7 @@
 		.dropdown-menu li {padding:0 5px}
 		.dropdown-menu li a {padding:3px 20px 3px 8px;position:relative}
 		
-		.modal-footer {padding:7px 15px 8px}
-		.modal {border:8px solid rgba(0, 0, 0, 0.5);-webkit-box-shadow: none;-moz-box-shadow: none;-ms-box-shadow: none;box-shadow: none}
-		.modal-header {background:#e4e4e4;border-color:#d4d4d4;padding:5px 15px}
-		.modal-header .close {margin-top:5px}
-		.modal-body{padding:20px 15px}
-		.modal-backdrop, .modal-backdrop.fade.in {opacity:.1;background:#777}
+
 	
 		.main_content .accordion-heading .accordion-toggle {background-color:#f5f5f5;color:#222;text-decoration:none;background-image: url(../img/acc_icons.png);background-position: 98% 12px;background-repeat:no-repeat}
 		.main_content .accordion-heading .accordion-toggle:hover {background-color:#e5e5e5}
@@ -683,7 +678,7 @@
 		.ptrn_b .main_content {background-image: url(../img/bg_b.png)}
 		.ptrn_c .main_content {background-image: url(../img/bg_c.png)}
 		.ptrn_d .main_content {background-image: url(../img/bg_d.png)}
-		.ptrn_e .main_content {background-image: url(../img/bg_e.png)}
+		.ptrn_e .main_content {background-image: url(../assets/img/bg_e.png)}
 
 	/* Style switcher */
 		.ssw_trigger{position:fixed;top:62px;right:-1px;z-index:1001;text-decoration: none;font-size: 12px;color:#fff;width:15px;padding: 2px 3px;background:#333;display: block;-webkit-border-top-left-radius: 8px;-webkit-border-bottom-left-radius: 8px;-moz-border-radius-topleft: 8px;-moz-border-radius-bottomleft: 8px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;border:1px solid transparent}
@@ -697,7 +692,7 @@
 		.style_switcher .ssw_ptrn_b {background: #fff url(../img/bg_b.png)}
 		.style_switcher .ssw_ptrn_c {background: #fff url(../img/bg_c.png)}
 		.style_switcher .ssw_ptrn_d {background: #fff url(../img/bg_d.png)}
-		.style_switcher .ssw_ptrn_e {background: #fff url(../img/bg_e.png)}
+		.style_switcher .ssw_ptrn_e {background: #fff url(../assets/img/bg_e.png)}
 		
 		.style_switcher .dark_theme {background:#000}
 		.style_switcher .blue_theme {background:#067ead}

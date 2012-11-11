@@ -1,23 +1,58 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>危险化学品企业信息管理</title>
+    <title>危险化学品企业信息管理 - ${pageTitle}</title>
 
     <!-- Bootstrap framework -->
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/assets/css/default.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="/lib/datepicker/css/datepicker.css" />
 
     <!--[if lte IE 8]>
-    <script src="/js/ie/html5.js"></script>
-    <script src="/js/ie//respond.min.js"></script>
+    <script src="/assets/js/ie/html5.js"></script>
+    <script src="/assets/js/ie//respond.min.js"></script>
     <![endif]-->
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <style>
+        label{
+            font-weight: bold;
+        }
+        .breadcrumb {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+        }
+        .navbar-inner{
+            padding-top:5px;
+            padding-bottom:5px;
+        }
+        .sidebar-nav{
+            min-height:0;
+            box-shadow: 0 0 10px #BDBDBD;
+            -webkit-box-shadow: 0 0 10px #BDBDBD;
+            -moz-box-shadow: 0 0 10px #BDBDBD;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            margin-bottom: 0;
+            padding-bottom:0;
+        }
+        .accordion {
+            margin-bottom: 0
+        }
+        .accordion-heading {
+            background-color: #fafafa;
+        }
+        .accordion-group, .accordion-heading.btn {
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+        }
+    </style>
 </head>
 <body>
 <!-- Navbar Start -->
@@ -51,15 +86,12 @@
                 </div>
                 @ShowIf(loggedIn)
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn disabled">
+                    <a href="*" class="btn dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-user"></i> ${loginUser.realName}
-                    </button>
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                         <span class="caret"></span>
-                    </button>
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a href="/useradmin/show/${loginUser.id}">我的信息</a></li>
-                        <li><a href="">其他操作</a></li>
+                        <li><a href="/useradmin/edit/${loginUser.id}">我的信息</a></li>
                         <li class="divider"></li>
                         <li><a href="/logout">登出</a></li>
                     </ul>
@@ -77,7 +109,11 @@
         <header class="subhead">
             <div class="container">
                 <h1>石龙镇危险化学品安全监管</h1>
-                <p class="lead">东莞市安全生产监督管理局石龙分局</p>
+                <blockquote>
+                    <p>危险化学品企业信息登记，执法监察记录，行政许可登记以及分局成员信息等……</p>
+                    <small><cite>东莞市安全生产监督管理局石龙分局</cite></small>
+                </blockquote>
+
             </div>
         </header>
         <!-- Subhead End -->
@@ -90,11 +126,11 @@
             <!-- Main content End -->
             <!-- Sidebar Start -->
             <div class="span3">
-                <div data-spy="affix" class="span3">
+                <div data-spy="affix" class="span3 nav-collapse sidebar-nav">
                     <div class="accordion" id="sidebar_menu">
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <button type="button" class="btn btn-block" data-toggle="collapse"
+                                <button type="button" class="btn btn-link btn-block" data-toggle="collapse"
                                         data-parent="#sidebar_menu"
                                         data-target="#enterprise">
                                     危化企业登记
@@ -112,7 +148,7 @@
                         </div>
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <button type="button" class="btn btn-block" data-toggle="collapse"
+                                <button type="button" class="btn btn-link btn-block" data-toggle="collapse"
                                         data-parent="#sidebar_menu"
                                         data-target="#license">
                                     行政许可登记
@@ -130,7 +166,7 @@
                         </div>
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <button type="button" class="btn btn-block" data-toggle="collapse"
+                                <button type="button" class="btn btn-link btn-block" data-toggle="collapse"
                                         data-parent="#sidebar_menu"
                                         data-target="#enforcement">
                                     巡查执法记录
@@ -148,7 +184,7 @@
                         </div>
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <button type="button" class="btn btn-block" data-toggle="collapse"
+                                <button type="button" class="btn btn-link btn-block" data-toggle="collapse"
                                         data-parent="#sidebar_menu"
                                         data-target="#member"><i class="icon-book"></i>
                                     分局成员信息
