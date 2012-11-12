@@ -7,9 +7,9 @@
 
     <!-- Bootstrap framework -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/assets/css/default.css">
     <link rel="stylesheet" href="/assets/css/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" href="/lib/datepicker/css/datepicker.css" />
+    <link rel="stylesheet" href="/assets/css/default.css">
 
     <!--[if lte IE 8]>
     <script src="/assets/js/ie/html5.js"></script>
@@ -19,43 +19,7 @@
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <style>
-        .sidebar-nav{
-            min-height:0;
-            box-shadow: 0 0 10px #BDBDBD;
-            -webkit-box-shadow: 0 0 10px #BDBDBD;
-            -moz-box-shadow: 0 0 10px #BDBDBD;
-            border-radius: 6px;
-            -webkit-border-radius: 6px;
-            -moz-border-radius: 6px;
-            margin-bottom: 0;
-            padding-bottom:0;
-        }
-        .sidebar-nav .accordion-group {
-            -webkit-border-radius: 0;
-            -moz-border-radius: 0;
-            border-radius: 0;
-        }
-        .sidebar-nav .accordion-group:first-child {
-            -webkit-border-radius: 6px 6px 0 0;
-            -moz-border-radius: 6px 6px 0 0;
-            border-radius: 6px 6px 0 0;
-        }
 
-        /*.sidebar-nav .accordion-group:last-child {
-            -webkit-border-radius: 0 0 6px 6px;
-            -moz-border-radius: 0 0 6px 6px;
-            border-radius: 0 0 6px 6px;
-        }*/
-        .sidebar-nav .accordion-heading {
-            background-color: #fafafa;
-            background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
-            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
-            background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
-            background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
-            background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
-            background-repeat: repeat-x;
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
-        }
 
     </style>
 </head>
@@ -109,7 +73,7 @@
 
 <div id="wrap">
     <!-- Page Start -->
-    <div class="container">
+    <div id="main" class="container">
         <!-- Subhead -->
         <header class="subhead">
             <div class="container">
@@ -131,7 +95,7 @@
             <!-- Main content End -->
             <!-- Sidebar Start -->
             <div class="span3">
-                <div data-spy="affix" class="span3 nav-collapse sidebar-nav">
+                <div data-spy="affix" class="span3 sidebar-nav">
                     <div class="accordion" id="sidebar_menu">
                         <div class="accordion-group">
                             <div class="accordion-heading">
@@ -217,11 +181,10 @@
         <!-- Row End -->
     </div>
     <!-- Page End -->
-    <div id="push"></div>
 </div>
-<footer id="footer">
+<footer>
     <div class="container">
-        <p class="muted credit">Based on <a href="http://twitter.github.com/bootstrap" target="_blank">Bootstrap
+        <p class="credit">Based on <a href="http://twitter.github.com/bootstrap" target="_blank">Bootstrap
             Framework</a> &copy; 2012 northstar's studio. All rights reserved.</p>
     </div>
 </footer>
