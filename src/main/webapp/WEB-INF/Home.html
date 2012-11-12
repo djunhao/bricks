@@ -10,17 +10,18 @@
     <li><i class="icon-home"></i> <a href="/">主页</a> <span class="divider">/</span></li>
     <li class="active">分局成员列表（测试）</li>
 </ul>
-<h4 class="center">分局人员一览表</h4>
 <table class="table table-bordered table-condensed table-hover">
-    <tbody>
+    <thead>
     <tr class="info">
-        <td>姓名</td>
-        <td>执法证</td>
-        <td>执法证有效期</td>
-        <td>监察员证</td>
-        <td>监察员证有效期</td>
-        <td>操作</td>
+        <th>姓名</th>
+        <th>执法证</th>
+        <th>执法证有效期</th>
+        <th>监察员证</th>
+        <th>监察员证有效期</th>
+        <th>操作</th>
     </tr>
+    </thead>
+    <tbody>
     @Repeat(items=pagedUsers, var="user")
     <tr>
         <td>${user.realName}</td>

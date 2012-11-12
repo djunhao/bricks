@@ -12,31 +12,34 @@
 </ul>
 <form id="newUser" class="form-horizontal" action="/useradmin/create" method="post">
     <fieldset>
-        <legend>添加新成员</legend>
+        <legend>添加新成员<small>(带 * 的为必填项)</small></legend>
         <div class="control-group">
-            <label class="control-label" for="loginName">登录名</label>
+            <label class="control-label" for="loginName">
+                <span class="text-error">*</span>
+                登录名</label>
 
             <div class="controls">
                 <input type="text" id="loginName" name="user.loginName">
-                <span class="help-inline f_reg">*</span>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="realName">真实姓名</label>
-
+            <label class="control-label" for="realName">
+                <span class="text-error">*</span>
+                姓&nbsp;&nbsp;&nbsp;&nbsp;名</label>
             <div class="controls">
                 <input type="text" id="realName" name="user.realName">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+            <label class="control-label" for="password"><span class="text-error">*</span>
+                密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 
             <div class="controls">
                 <input type="password" id="password" name="user.password">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="role">权&nbsp;&nbsp;&nbsp;&nbsp;限</label>
+            <label class="control-label" for="role">角&nbsp;&nbsp;&nbsp;&nbsp;色</label>
 
             <div class="controls">
                 <select id="role" name="role.name">
@@ -46,21 +49,23 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="enforcementNumber">执法证号</label>
+            <label class="control-label" for="enforcementNumber"><span class="text-error">*</span>
+                执法证</label>
 
             <div class="controls">
                 <input type="text" id="enforcementNumber" name="user.enforcementNumber">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="validEnforcementDate">执法证有效期</label>
+            <label class="control-label" for="validEnforcementDate"><span class="text-error">*</span>
+                执法证有效期</label>
 
             <div class="controls">
                 <input type="datetime" id="validEnforcementDate" name="user.validEnforcementDate">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="supervisorNumber">监察员证号</label>
+            <label class="control-label" for="supervisorNumber">监察员证</label>
 
             <div class="controls">
                 <input type="text" id="supervisorNumber" name="user.supervisorNumber">
@@ -100,25 +105,42 @@
         });
         //* validation
         $('#newUser').validate({
-            //onkeyup:false,
-            onfocusout:true,
-            errorClass:'error',
-            validClass:'valid',
+            onkeyup: false,
+            errorClass:'help-inline',
+            errorElement:'span',
             rules:{
                 'user.loginName':{ required:true, minlength:3 },
                 'user.realName':{ required:true, minlength:2},
-                'user.password':{ required:true, minlength:3 },
-                'user.enforcementNumber':{required:true, minlength:7},
+                'user.password':{ required:true, minlength:6 },
+                'user.enforcementNumber':{required:true, exactlength:7},
                 'user.validEnforcementDate':{required:true}
             },
+            messages:{
+                'user.loginName':{
+                    required:'请输入您的登录名！',
+                    minlength:'登录名不能少于3个字符！'
+                },
+                'user.realName':{
+                    required:'请输入您的姓名！',
+                    minlength:'姓名不能少于2个字符！'
+                },
+                'user.password':{
+                    required:'请输入您的密码！',
+                    minlength:'密码不能少于6个字符！'
+                },
+                'user.enforcementNumber':{
+                    required:'请输入您的执法证号码！',
+                    exactlength:'您输入的执法证号码不正确！'
+                },
+                'user.validEnforcementDate':{
+                    required:'请输入的您执法证有效期！'
+                }
+            },
             highlight:function (element) {
-                $(element).parents('div').addClass("error");
+                $(element).closest('.control-group').addClass('error');
             },
             unhighlight:function (element) {
-                $(element).parents('div').removeClass("error");
-            },
-            errorPlacement:function (error, element) {
-                $(element).parents('div').append(error);
+                $(element).closest('.control-group').removeClass("error");
             }
             //submitHandler:formSubmit
         });

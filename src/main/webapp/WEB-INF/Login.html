@@ -16,7 +16,7 @@
 </head>
 <body>
 <div class="login_box">
-    <form method="post" id="login_form">
+    <form method="post" action="#" id="login_form">
         <div class="top_b">用户登录</div>
         <div class="alert alert-info alert-login">
             请输入用户名和密码。
@@ -30,7 +30,7 @@
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-user"></i></span>
                     <input type="text" id="name" name="name"
-                           placeholder="用户名" autofocus/>
+                           placeholder="用户名" autocomplete="off" autofocus/>
                 </div>
             </div>
             <div class="formRow">
@@ -90,7 +90,7 @@
         <div class="cnt_b">
             <div class="formRow">
                 <div class="input-prepend">
-                    <span class="add-on"><i class="icon-user"></i></span><input type="text" placeholder="用户名" autofocus/>
+                    <span class="add-on"><i class="icon-user"></i></span><input type="text" class="error" placeholder="用户名" autofocus/>
                 </div>
             </div>
             <div class="formRow">
@@ -155,12 +155,12 @@
 
         //* validation
         $('#login_form').validate({
-            onkeyup:false,
-            errorClass:'error',
-            validClass:'valid',
+            onkeyup: false,
+            errorElement:'span',
+            errorClass:'help-block',
             rules:{
                 name:{ required:true, minlength:3 },
-                password:{ required:true, minlength:3 }
+                password:{ required:true, minlength:6 }
             },
             messages:{
                 name:{
@@ -169,23 +169,23 @@
                 },
                 password:{
                     required:'请输入您的密码！',
-                    minlength:'密码不能少于3个字符！'
+                    minlength:'密码不能少于6个字符！'
                 }
             },
             highlight:function (element) {
-                $(element).closest('div').addClass("f_error");
+                $(element).closest('.formRow').addClass('error');
                 setTimeout(function () {
                     boxHeight()
                 }, 200)
             },
             unhighlight:function (element) {
-                $(element).closest('div').removeClass("f_error");
+                $(element).closest('.formRow').removeClass('error');
                 setTimeout(function () {
                     boxHeight()
                 }, 200)
             },
             errorPlacement:function (error, element) {
-                $(element).closest('div').append(error);
+                $(element).closest('.formRow').append(error);
             },
             submitHandler:loginSubmit
         });

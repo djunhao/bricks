@@ -12,47 +12,39 @@
 </ul>
 <form id="editUser" class="form-horizontal" action="/useradmin/edit/${user.id}" method="post">
     <fieldset>
-        <legend>更新成员信息</legend>
+        <legend>更新成员信息<small>(带 * 的为必填项)</small></legend>
         <input type="hidden" name="__sitebricks__action" value="put"/>
-
         <div class="control-group">
-            <label class="control-label" for="inputName">登录名</label>
-
+            <label class="control-label" for="inputName"><span class="text-error">*</span> 登录名</label>
             <div class="controls">
                 <input type="text" name="user.loginName" value="${user.loginName}" id="inputName">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputRealName">真实姓名</label>
+            <label class="control-label" for="inputRealName"><span class="text-error">*</span> 姓&nbsp;&nbsp;&nbsp;&nbsp;名</label>
 
             <div class="controls">
                 <input type="text" value="${user.realName}" id="inputRealName" name="user.realName">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputPassword">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+            <label class="control-label" for="inputPassword"><span class="text-error">*</span> 密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 
             <div class="controls">
                 <input type="password" name="user.password" value="${user.password}" id="inputPassword">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputRole">权&nbsp;&nbsp;&nbsp;&nbsp;限</label>
+            <label class="control-label" for="inputRole">角&nbsp;&nbsp;&nbsp;&nbsp;色</label>
             <div class="controls">
                 <select id="inputRole" name="role.name">
-                    <!--<#list roleList as arole>
-                    <#if arole.name == user.role.name>
-                    <option value="${arole.name}" selected>${arole.name}</option>
-                    <#else>-->
-                    @Repeat(items=roleList, var="arole")
-                    <option value="${arole.name}">${arole.name}</option>
-                    <!-- </#if>
-                    </#list>-->
+                    @Repeat(items=roleList, var="userRole")
+                    <option value="${userRole.name}">${userRole.name}</option>
                 </select>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputEnforcementNumber">执法证号</label>
+            <label class="control-label" for="inputEnforcementNumber"><span class="text-error">*</span> 执法证</label>
 
             <div class="controls">
                 <input type="text" value="${user.enforcementNumber}" id="inputEnforcementNumber"
@@ -60,7 +52,7 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputValidEnforcementDate">执法证有效期</label>
+            <label class="control-label" for="inputValidEnforcementDate"><span class="text-error">*</span> 执法证有效期</label>
 
             <div class="controls">
                 <input type="datetime" value="${user.validEnforcementDate}" id="inputValidEnforcementDate"
@@ -68,7 +60,7 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputSupervisorNumber">监察员证号</label>
+            <label class="control-label" for="inputSupervisorNumber">监察员证</label>
 
             <div class="controls">
                 <input type="text" value="${user.supervisorNumber}" id="inputSupervisorNumber"
@@ -110,34 +102,42 @@
         });
         //* validation
         $('#editUser').validate({
-            onkeyup:false,
-            errorClass:'error',
-            validClass:'valid',
+            onkeyup: false,
+            errorClass:'help-inline',
+            errorElement:'span',
             rules:{
-                name:{ required:true, minlength:3 },
-                realName:{ required:true, minlength:2},
-                password:{ required:true, minlength:3 },
-                enforcementNumber:{required:true, minlength:7},
-                validEnforcementDate:{required:true}
+                'user.loginName':{ required:true, minlength:3 },
+                'user.realName':{ required:true, minlength:2},
+                'user.password':{ required:true, minlength:6 },
+                'user.enforcementNumber':{required:true, minlength:7},
+                'user.validEnforcementDate':{required:true}
             },
             messages:{
-                loginName:{
+                'user.loginName':{
                     required:'请输入您的登录名！',
                     minlength:'登录名不能少于3个字符！'
                 },
-                password:{
+                'user.realName':{
+                    required:'请输入您的姓名！',
+                    minlength:'姓名不能少于2个字符！'
+                },
+                'user.password':{
                     required:'请输入您的密码！',
-                    minlength:'密码不能少于3个字符！'
+                    minlength:'密码不能少于6个字符！'
+                },
+                'user.enforcementNumber':{
+                    required:'请输入您的执法证号码！',
+                    exactlength:'您输入的执法证号码不正确！'
+                },
+                'user.validEnforcementDate':{
+                    required:'请输入的您执法证有效期！'
                 }
             },
             highlight:function (element) {
-                $(element).closest('div').addClass("f_error");
+                $(element).closest('.control-group').addClass('error');
             },
             unhighlight:function (element) {
-                $(element).closest('div').removeClass("f_error");
-            },
-            errorPlacement:function (error, element) {
-                $(element).closest('div').append(error);
+                $(element).closest('.control-group').removeClass('error');
             }
             //submitHandler:formSubmit
         });

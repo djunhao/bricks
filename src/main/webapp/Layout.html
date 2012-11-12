@@ -19,39 +19,44 @@
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <style>
-        label{
-            font-weight: bold;
-        }
-        .breadcrumb {
-            background-color: #fafafa;
-            border: 1px solid #ddd;
-        }
-        .navbar-inner{
-            padding-top:5px;
-            padding-bottom:5px;
-        }
         .sidebar-nav{
             min-height:0;
             box-shadow: 0 0 10px #BDBDBD;
             -webkit-box-shadow: 0 0 10px #BDBDBD;
             -moz-box-shadow: 0 0 10px #BDBDBD;
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
             margin-bottom: 0;
             padding-bottom:0;
         }
-        .accordion {
-            margin-bottom: 0
-        }
-        .accordion-heading {
-            background-color: #fafafa;
-        }
-        .accordion-group, .accordion-heading.btn {
+        .sidebar-nav .accordion-group {
             -webkit-border-radius: 0;
             -moz-border-radius: 0;
             border-radius: 0;
         }
+        .sidebar-nav .accordion-group:first-child {
+            -webkit-border-radius: 6px 6px 0 0;
+            -moz-border-radius: 6px 6px 0 0;
+            border-radius: 6px 6px 0 0;
+        }
+
+        /*.sidebar-nav .accordion-group:last-child {
+            -webkit-border-radius: 0 0 6px 6px;
+            -moz-border-radius: 0 0 6px 6px;
+            border-radius: 0 0 6px 6px;
+        }*/
+        .sidebar-nav .accordion-heading {
+            background-color: #fafafa;
+            background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+            background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+            background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+            background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+        }
+
     </style>
 </head>
 <body>
@@ -69,15 +74,15 @@
                 <ul class="nav">
                     <li><a href="/">主页</a></li>
                     <li>
-                        <a href="/more/guestbook">留言簿</a>
+                        <a href="/more/guestbook">意见建议</a>
                     </li>
                     <li>
                         <a href="/hello">测试页面</a>
                     </li>
-                    <li><a href="/about">关于</a></li>
+                    <li><a href="/about">关于我们</a></li>
 
                 </ul>
-                <form class="navbar-search pull-left">
+                <form method="post" class="navbar-search">
                     <input type="text" class="search-query" placeholder="Search">
                 </form>
                 @ShowIf(!loggedIn)
@@ -130,11 +135,12 @@
                     <div class="accordion" id="sidebar_menu">
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <button type="button" class="btn btn-link btn-block" data-toggle="collapse"
+                                <a class="accordion-toggle" data-toggle="collapse"
                                         data-parent="#sidebar_menu"
-                                        data-target="#enterprise">
+                                        href="#enterprise">
                                     危化企业登记
-                                </button>
+                                    <i class="icon-chevron-down"></i>
+                                </a>
                             </div>
                             <div id="enterprise" class="accordion-body collapse">
                                 <div class="accordion-inner">
@@ -148,11 +154,12 @@
                         </div>
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <button type="button" class="btn btn-link btn-block" data-toggle="collapse"
+                                <a class="accordion-toggle" data-toggle="collapse"
                                         data-parent="#sidebar_menu"
-                                        data-target="#license">
+                                        href="#license">
                                     行政许可登记
-                                </button>
+                                    <i class="icon-chevron-down"></i>
+                                </a>
                             </div>
                             <div id="license" class="accordion-body collapse">
                                 <div class="accordion-inner">
@@ -166,11 +173,12 @@
                         </div>
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <button type="button" class="btn btn-link btn-block" data-toggle="collapse"
+                                <a class="accordion-toggle" data-toggle="collapse"
                                         data-parent="#sidebar_menu"
-                                        data-target="#enforcement">
+                                        href="#enforcement">
                                     巡查执法记录
-                                </button>
+                                    <i class="icon-chevron-down"></i>
+                                </a>
                             </div>
                             <div id="enforcement" class="accordion-body collapse">
                                 <div class="accordion-inner">
@@ -184,11 +192,12 @@
                         </div>
                         <div class="accordion-group">
                             <div class="accordion-heading">
-                                <button type="button" class="btn btn-link btn-block" data-toggle="collapse"
+                                <a class="accordion-toggle" data-toggle="collapse"
                                         data-parent="#sidebar_menu"
-                                        data-target="#member"><i class="icon-book"></i>
+                                        href="#member">
                                     分局成员信息
-                                </button>
+                                    <i class="icon-chevron-down"></i>
+                                </a>
                             </div>
                             <div id="member" class="accordion-body collapse">
                                 <div class="accordion-inner">
@@ -216,5 +225,20 @@
             Framework</a> &copy; 2012 northstar's studio. All rights reserved.</p>
     </div>
 </footer>
+<script>
+    $(document).ready(function(){
+
+        $(".nav ul>li").each(function() {  //我们假设导航部分的ID为menu，结构是<div class=".nav"><ul><li>...
+
+            if ($(this).find("a").attr("href")==document.URL){
+
+                $(this).attr("class","active")  //给当前页的<li>加上id="current"，如<li class="active">首页</li>
+
+            }
+
+        });
+
+    });
+</script>
 </body>
 </html>
