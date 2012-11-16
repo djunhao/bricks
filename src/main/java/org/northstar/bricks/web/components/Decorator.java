@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Show("Layout.html")
-@Singleton
 public abstract class Decorator {
     private final List<String> PAGES;
     @Inject

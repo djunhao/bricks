@@ -19,8 +19,25 @@
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <style>
-
-
+        .sidebar-nav.affix {
+            top: 70px;
+        }
+        @media (min-width: 768px) and (max-width: 980px) {
+            .sidebar-nav.affix {
+                top: 30px;
+            }
+        }
+        @media (max-width: 767px) {
+            .sidebar-nav {
+                width: auto;
+                margin-bottom: 10px;
+            }
+            .sidebar-nav.affix {
+                position: static;
+                width: auto;
+                top: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -46,9 +63,7 @@
                     <li><a href="/about">关于我们</a></li>
 
                 </ul>
-                <form method="post" class="navbar-search">
-                    <input type="text" class="search-query" placeholder="Search">
-                </form>
+
                 @ShowIf(!loggedIn)
                 <div class="btn-group pull-right">
                     <a class="btn pull-right" href="/signin">请登录</a>
@@ -65,12 +80,16 @@
                         <li><a href="/logout">登出</a></li>
                     </ul>
                 </div>
+                <form method="post" class="navbar-search">
+                    <input type="text" class="search-query" placeholder="Search">
+                </form>
             </div>
         </div>
     </div>
 </div>
 <!-- Navbar End -->
 
+<!-- Subhead End -->
 <div id="wrap">
     <!-- Page Start -->
     <div id="main" class="container">
@@ -82,10 +101,8 @@
                     <p>危险化学品企业信息登记，执法监察记录，行政许可登记以及分局成员信息等……</p>
                     <small><cite>东莞市安全生产监督管理局石龙分局</cite></small>
                 </blockquote>
-
             </div>
         </header>
-        <!-- Subhead End -->
         <div class="row">
             <!-- Main content Start -->
             <div class="span9">
@@ -94,9 +111,8 @@
             </div>
             <!-- Main content End -->
             <!-- Sidebar Start -->
-            <div class="span3">
-                <div data-spy="affix" class="span3 sidebar-nav">
-                    <div class="accordion" id="sidebar_menu">
+            <div class="span3 sidebar">
+                    <div class="accordion sidebar-nav span3" id="sidebar_menu">
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse"
@@ -108,8 +124,8 @@
                             </div>
                             <div id="enterprise" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li class="active"><a href="#">企业列表</a></li>
+                                    <ul class="nav nav-list">
+                                        <li><a href="#">企业列表</a></li>
                                         <li><a href="#">添加企业</a></li>
                                         <li><a href="#">其他操作</a></li>
                                     </ul>
@@ -127,7 +143,7 @@
                             </div>
                             <div id="license" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <ul class="nav nav-pills nav-stacked">
+                                    <ul class="nav nav-list">
                                         <li><a href="#">许可列表</a></li>
                                         <li><a href="#">添加许可</a></li>
                                         <li><a href="#">其他操作</a></li>
@@ -146,7 +162,7 @@
                             </div>
                             <div id="enforcement" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <ul class="nav nav-pills nav-stacked">
+                                    <ul class="nav nav-list">
                                         <li><a href="#">记录列表</a></li>
                                         <li><a href="#">添加记录</a></li>
                                         <li><a href="#">其他操作</a></li>
@@ -165,7 +181,7 @@
                             </div>
                             <div id="member" class="accordion-body collapse">
                                 <div class="accordion-inner">
-                                    <ul class="nav nav-pills nav-stacked">
+                                    <ul class="nav nav-list">
                                         <li><a href="/">成员列表</a></li>
                                         <li><a href="/useradmin/create">添加成员</a></li>
                                         <li><a href="#">成员操作</a></li>
@@ -174,7 +190,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
             <!-- Sidebar End -->
         </div>
@@ -189,19 +204,30 @@
     </div>
 </footer>
 <script>
-    $(document).ready(function(){
-
-        $(".nav ul>li").each(function() {  //我们假设导航部分的ID为menu，结构是<div class=".nav"><ul><li>...
-
-            if ($(this).find("a").attr("href")==document.URL){
-
-                $(this).attr("class","active")  //给当前页的<li>加上id="current"，如<li class="active">首页</li>
-
-            }
-
+    !function ($) {
+        $(function(){
+            var $window = $(window);
+            // side bar
+            $('.sidebar-nav').affix({
+                offset: {
+                    top: function () { return $window.width() <= 980 ? 80 : 30 },
+                    bottom: 60
+                }
+            })
         });
-
-    });
+        $(".navbar ul.nav>li>a").each(function() {
+            if ($(this).attr("href").toLowerCase() == location.pathname.toLowerCase()){
+                $(this).parent().addClass("active"); //给当前页的<li>加上class="active"，如<li class="current">...</li>
+            }
+        });
+        $('.sidebar ul.nav>li>a').each(function() {
+            if ($(this).attr("href").toLowerCase() == location.pathname.toLowerCase()){
+                $(this).closest('div.accordion-body').addClass('in');
+                $(this).closest('div.accordion-group').parent().children('div.accordion-heading').addClass('active');
+                $(this).parent().addClass("active"); //给当前页的<li>加上class="active"，如<li class="current">...</li>
+            }
+        })
+    }(window.jQuery)
 </script>
 </body>
 </html>
