@@ -19,14 +19,13 @@
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <style>
-            /* Change the docs' brand */
+            /* Change the navbar's brand */
         body > .navbar .brand {
             padding-right: 0;
             padding-left: 0;
             margin-left: 20px;
-            /*float: right;*/
             font-weight: bold;
-            /*color: #000;*/
+            color: #000;
             text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
             -webkit-transition: all .2s linear;
             -moz-transition: all .2s linear;
@@ -74,7 +73,18 @@
                 top: 0;
             }
         }
-        .sidebar-nav nav-list
+        .sidebar-nav ul.nav-list > li > a {
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+        }
+
+        .sidebar-nav .active .icon-chevron-down{
+            opacity: 0.8
+        }
+        .sidebar-nav .active a:hover .icon-chevron-down {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -228,6 +238,15 @@
                                 </div>
                             </div>
                         </div>
+                        <!--<div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse"
+                                   data-parent="#sidebar_menu"
+                                   href="#member1">
+                                    其他信息
+                                </a>
+                            </div>
+                        </div>-->
                     </div>
             </div>
             <!-- Sidebar End -->
@@ -246,6 +265,10 @@
     !function ($) {
         $(function(){
             var $window = $(window);
+            // Disable certain links in docs
+            $('.sidebar-nav [href^=#]').click(function (e) {
+                e.preventDefault()
+            });
             // side bar
             $('.sidebar-nav').affix({
                 offset: {
@@ -265,7 +288,7 @@
                 $(this).closest('div.accordion-body').siblings('div.accordion-heading').addClass('active');
                 $(this).parent().addClass("active"); //sidebar current page
             }
-        })
+        });
     }(window.jQuery)
 </script>
 </body>

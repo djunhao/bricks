@@ -4,11 +4,57 @@
     <title>none</title>
 </head>
 <body>
-<ul class="pager pull-left">
-    @ShowIf(prevExists)
-    <li><a href="?page=${page-1}">上一页</a></li>
-    @ShowIf(nextExists)
-    <li><a href="?page=${page+1}">下一页</a></li>
-</ul>
+<div class="pagination">
+    <ul>
+        @ShowIf(!prevExists)
+        <li class="disabled"><span>上一页</span></li>
+        @ShowIf(prevExists)
+        <li><a href="?page=${page-1}" rel="tooltip" title="返回第${page-1}页">上一页</a></li>
+        <li class="disabled">
+            <span style="padding: 3.5px" class="active" id="enter"><form style="margin: 0" id="toPage" method="get">
+                第 <input type="text" id="page" autocomplete="off" name="page" value="${page}"
+                         style="margin:0;width: 15px; height: 10px;"> 页</form>
+                </span>
+        </li>
+        <li><a href="#" id="skip">转到</a></li>
+        @ShowIf(nextExists)
+        <li class="next"><a href="?page=${page+1}" rel="tooltip" title="转到第${page+1}页">下一页</a></li>
+        @ShowIf(!nextExists)
+        <li class="disabled"><span>下一页</span></li>
+    </ul>
+    <ul class="pull-right">
+        <li class="disabled"><a>第${page}/${maxPages}页 共${maxResults}条记录</a></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#skip').bind('click', function () {
+            var number = $("#page").val().trim();
+            if (number > ${maxPages}) {
+                number = ${maxPages};
+            }
+            $(this).attr('href', '?page=' + number);
+        });
+        $('#toPage').bind('submit', function () {
+            var number = $("#page").val().trim();
+            if (number > ${maxPages}) {
+                number = ${maxPages};
+            }
+            $('#page').attr('value', number);
+        });
+        $('.pagination').tooltip({
+            selector:"a[rel=tooltip]"
+        });
+        $('#skip').tooltip({
+            title:function () {
+                var number = $("#page").val().trim();
+                if (number > ${maxPages}) {
+                    number = ${maxPages};
+                }
+                return "转到第" + number + "页";
+            }
+        })
+    })
+</script>
 </body>
 </html>

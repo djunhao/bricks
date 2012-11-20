@@ -183,11 +183,11 @@ footer {
     opacity: .5;
 }
 
-.sidebar-nav .active .icon-chevron-down,
+/*.sidebar-nav .active .icon-chevron-down,
 .sidebar-nav .active a:hover .icon-chevron-down {
     background-image: url(../img/glyphicons-halflings-white.png);
     opacity: 1;
-}
+}*/
 
 /*======= Table header =========*/
 .table thead tr.success th {

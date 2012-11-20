@@ -12,17 +12,6 @@ public class Pager {
     private int maxPerPage;
     private int maxPages;
 
-    /* @Inject
-    private PagedDataSource source;
-
-    @Get
-    void render(){
-        int availableRows = source.getTotalRowCount();
-
-        maxPages = ((availableRows - 1) / maxPerPage) + 1;
-
-    }*/
-
     public int getMaxPages() {
         return maxPages;
     }
@@ -54,5 +43,9 @@ public class Pager {
 
     public int getMaxPerPage() {
         return maxPerPage;
+    }
+
+    public int getMaxResults(){
+        return (maxPages - 1) * maxPerPage + 1;
     }
 }

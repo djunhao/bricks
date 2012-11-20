@@ -59,6 +59,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
     }
 
     public int getUserCounts() {
+        logger.info(">>> getUserCounts() excuted...");
         if (database == null || database.isClosed()) {
             database = getConnection();
         }
