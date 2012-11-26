@@ -1,13 +1,10 @@
 package org.northstar.bricks.test;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-import com.google.sitebricks.Show;
-import com.google.sitebricks.http.Get;
-import org.northstar.bricks.core.dao.RoleDao;
-import org.northstar.bricks.core.dao.UserDao;
-import org.northstar.bricks.core.domain.Role;
-import org.northstar.bricks.core.domain.User;
+import com.google.sitebricks.http.Patch;
+import com.google.sitebricks.http.Post;
+import com.google.sitebricks.http.Put;
+import com.google.sitebricks.rendering.Decorated;
+import org.northstar.bricks.web.components.Decorator;
 
 import java.util.List;
 
@@ -18,43 +15,43 @@ import java.util.List;
  * Time: 下午3:14
  * To change this template use File | Settings | File Templates.
  */
-@Singleton
-@Show("Test.fml")
-public class Test {
-    private String message = "hello mvel template";
+@Decorated
+public class Test extends Decorator {
+    private String text = "initial textfield value";
 
-    public User getUser() {
-        return user;
+    private String putMessage = "";
+
+    public String getPutMessage() {
+        return putMessage;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPutMessage(String putMessage) {
+        this.putMessage = putMessage;
     }
 
-    private User user = new User();
-    private Role role = new Role();
-
-    @Inject
-    private RoleDao roleDao;
-    @Inject
-    private UserDao userDao;
-
-    public String getMessage() {
-        return message;
+    public String getText() {
+        return text;
     }
 
-    @Get
-    public String load() {
-        user = userDao.findById(new Long(0));
-
-        return null;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public List<Role> getRoles() {
-        return roleDao.findAll();
+    @Put
+    public void put() {
+        putMessage = "Submitted via PUT";
     }
 
+    @Patch
+    public void patch() {
+        putMessage = "Submitted via PATCH";
+    }
+
+    @Post
+    public void post() {
+        putMessage = "Submitted via POST";
+    }
     public String getPageTitle() {
-        return "Testing Page for mvel template";
+        return "Form CRUD";
     }
 }

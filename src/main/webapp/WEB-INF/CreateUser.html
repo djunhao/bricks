@@ -5,14 +5,9 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-<ul class="breadcrumb">
-    <li><i class="icon-home"></i> <a href="/">主页</a> <span class="divider">></span></li>
-    <li><a href="/useradmin/list">分局成员登记</a> <span class="divider">></span></li>
-    <li class="active">添加新成员</li>
-</ul>
 <form id="newUser" class="form-horizontal" action="/useradmin/create" method="post">
     <fieldset>
-        <legend>添加新成员<small>(带 * 的为必填项)</small></legend>
+        <legend>添加新成员<small>（注：<span class="text-error">* </span>为必填项）</small></legend>
         <div class="control-group">
             <label class="control-label" for="loginName">
                 <span class="text-error">*</span>

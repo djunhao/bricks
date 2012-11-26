@@ -15,7 +15,6 @@ import org.northstar.bricks.web.components.Decorator;
  *
  * @author David Linsin - linsin@synyx.de
  */
-@Singleton
 @Decorated
 public class GuestbookEntry extends Decorator {
 

@@ -4,36 +4,35 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-<article class="module width_full">
-    <header><h3>用户管理</h3></header>
-    <div class="module_content">
-        <table class="tablesorter" cellspacing="0">
+        <table class="table table-condensed table-bordered">
             <thead>
-            <tr>
-                <th></th>
-                <th>序号</th>
-                <th>用户名</th>
-                <th>权限</th>
+            <tr class="info">
+                <th><input type="checkbox" title="全选"/></th>
+                <th>姓名</th>
+                <th>执法证</th>
+                <th>执法证有效期</th>
+                <th>监察员证</th>
+                <th>监察员证有效期</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             @Repeat(items=pagedUsers, var="user")
             <tr>
-                <td><input type="checkbox"></td>
-                <td>${user.id}</td>
-                <td>${user.loginName}</td>
-                <td>${user.role.name}</td>
-                <td><input type="image" src="static/images/icn_edit.png" title="Edit"
-                           onclick="location.href='useradmin/edit/${user.id}'"> <input type="image"
-                                                                                       src="static/images/icn_trash.png"
-                                                                                       title="Trash"
-                                                                                       onclick="location.href='useradmin/delete/${user.id}'">
+                <td><input type="checkbox"/></td>
+                <td>${user.realName}</td>
+                <td>${user.enforcementNumber}</td>
+                <td>${user.validEnforcementDate}</td>
+                <td>${user.supervisorNumber}</td>
+                <td>${user.validSupervisorDate}</td>
+                <td>
+                    <a href="useradmin/edit/${user.id}" title="编辑【${user.realName}】的信息" rel="tooltip"><i class="icon-edit"></i></a> |
+                    <a href="useradmin/delete/${user.id}" title="删除【${user.realName}】的信息" rel="tooltip"><i class="icon-trash"></i></a>
                 </td>
             </tr>
             </tbody>
         </table>
-    </div>
-</article>
+    @Pager(page = page, maxPerPage = maxPerPage, maxPages = maxPages)
+    <div>pager here</div>
 </body>
 </html>

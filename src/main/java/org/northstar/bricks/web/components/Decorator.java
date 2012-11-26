@@ -10,6 +10,7 @@ import org.northstar.bricks.web.auth.Identity;
 import java.util.Arrays;
 import java.util.List;
 
+@Singleton
 @Show("Layout.html")
 public abstract class Decorator {
     private final List<String> PAGES;

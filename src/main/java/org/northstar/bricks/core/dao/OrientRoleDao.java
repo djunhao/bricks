@@ -8,9 +8,9 @@ import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.core.domain.Role;
+import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +21,6 @@ import java.util.logging.Logger;
  */
 @Singleton
 public class OrientRoleDao extends AbstractDao implements RoleDao {
-    @Inject
     Logger logger;
 
     private OObjectDatabaseTx database;

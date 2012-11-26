@@ -10,9 +10,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<guice.version>3.0</guice.version>
-		<sitebricks.version>0.8.7-SNAPSHOT</sitebricks.version>
+		<sitebricks.version>0.8.8-SNAPSHOT</sitebricks.version>
         <orientdb.version>1.2.0</orientdb.version>
-        <jetty-maven-plugin.version>7.6.5.v20120716</jetty-maven-plugin.version>
+        <jetty-maven-plugin.version>7.6.8.v20121106</jetty-maven-plugin.version>
         <ch.qos.logback.version>1.0.7</ch.qos.logback.version>
 	</properties>
 	<dependencies>
@@ -41,10 +41,10 @@
             <artifactId>orientdb-client</artifactId>
             <version>${orientdb.version}</version>
         </dependency>
-       <!-- <dependency>
+        <!--<dependency>
             <groupId>com.ibm.icu</groupId>
             <artifactId>icu4j</artifactId>
-            <version>49.1</version>
+            <version>50.1</version>
         </dependency>-->
         <dependency>
             <groupId>javax.servlet</groupId>

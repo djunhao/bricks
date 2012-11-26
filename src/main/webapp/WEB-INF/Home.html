@@ -6,10 +6,7 @@
 </head>
 
 <body>
-<ul class="breadcrumb">
-    <li><i class="icon-home"></i> <a href="/">主页</a> <span class="divider">/</span></li>
-    <li class="active">分局成员列表（测试）</li>
-</ul>
+
 <table class="table table-bordered table-condensed table-hover">
     <thead>
     <tr class="info">
@@ -29,7 +26,10 @@
         <td>${user.validEnforcementDate}</td>
         <td>${user.supervisorNumber}</td>
         <td>${user.validSupervisorDate}</td>
-        <td><a href="useradmin/edit/${user.id}">编辑</a> | <a href="useradmin/delete/${user.id}">删除</a></td>
+        <td>
+            <a href="useradmin/edit/${user.id}" title="编辑【${user.realName}】的信息" rel="tooltip"><i class="icon-edit"></i></a> |
+            <a href="useradmin/delete/${user.id}" title="删除【${user.realName}】的信息" rel="tooltip"><i class="icon-trash"></i></a>
+        </td>
     </tr>
     </tbody>
 </table>

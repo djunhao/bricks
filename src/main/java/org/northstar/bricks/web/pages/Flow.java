@@ -12,7 +12,6 @@ import org.northstar.bricks.web.components.Decorator;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Singleton
 @Decorated
 public class Flow extends Decorator {
 
@@ -38,7 +37,6 @@ public class Flow extends Decorator {
     }
 
     @Get
-    @Secure
     public Object load() {
         long startIndex = 0;
         if (page < 1) {

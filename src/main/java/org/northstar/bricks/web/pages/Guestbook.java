@@ -19,7 +19,6 @@ import java.util.List;
  *
  * @author David Linsin - linsin@synyx.de
  */
-@Singleton
 @Decorated
 public class Guestbook extends Decorator {
 

@@ -10,13 +10,12 @@ import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.core.tx.OTransaction.TXTYPE;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import org.northstar.bricks.core.domain.User;
+import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @Singleton
 public class OrientUserDao extends AbstractDao implements UserDao {
-    @Inject
     private Logger logger;
     private OObjectDatabaseTx database;
 
@@ -37,7 +36,7 @@ public class OrientUserDao extends AbstractDao implements UserDao {
         } catch (Exception e) {
             database.rollback();
             e.printStackTrace();
-            logger.warning(">>> " + user.getLoginName() + "(" + user.getId() + ")is not saved.");
+            logger.warn(">>> " + user.getLoginName() + "(" + user.getId() + ")is not saved.");
         } finally {
             database.close();
         }

@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Decorated
-@Singleton
 public class Home extends Decorator {
 
     private List<User> pagedUsers;

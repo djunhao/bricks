@@ -5,15 +5,11 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-<ul class="breadcrumb">
-    <li><i class="icon-home"></i> <a href="/">主页</a> <span class="divider">></span></li>
-    <li><a href="/useradmin/list">分局成员登记</a> <span class="divider">></span></li>
-    <li class="active">更新成员信息</li>
-</ul>
-<form id="editUser" class="form-horizontal" action="/useradmin/edit/${user.id}" method="post">
+<form id="editUser" class="form-horizontal" method="post">
     <fieldset>
-        <legend>更新成员信息<small>(带 * 的为必填项)</small></legend>
+        <legend>更新成员信息<small>（注：<span class="text-error"> * </span>为必填项）</small></legend>
         <input type="hidden" name="__sitebricks__action" value="put"/>
+        <input type="hidden" name="user.id" value="${user.id}"/>
         <div class="control-group">
             <label class="control-label" for="inputName"><span class="text-error">*</span> 登录名</label>
             <div class="controls">
@@ -22,7 +18,6 @@
         </div>
         <div class="control-group">
             <label class="control-label" for="inputRealName"><span class="text-error">*</span> 姓&nbsp;&nbsp;&nbsp;&nbsp;名</label>
-
             <div class="controls">
                 <input type="text" value="${user.realName}" id="inputRealName" name="user.realName">
             </div>

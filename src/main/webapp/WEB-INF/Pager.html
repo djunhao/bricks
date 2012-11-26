@@ -2,25 +2,44 @@
 <html>
 <head>
     <title>none</title>
+    @Require
+    <style>
+            .pagination select{
+                font-size: 9px;
+                height: 23px;
+                width: 50px;
+                padding: 2px;
+                margin: 0
+            }
+    </style>
 </head>
+
 <body>
 <div class="pagination">
     <ul>
         @ShowIf(!prevExists)
+        <li class="disabled"><span>首页</span></li>
+        @ShowIf(!prevExists)
         <li class="disabled"><span>上一页</span></li>
         @ShowIf(prevExists)
-        <li><a href="?page=${page-1}" rel="tooltip" title="返回第${page-1}页">上一页</a></li>
-        <li class="disabled">
+        <li><a href="?page=1" rel="tooltip" title="回到第1页">首页</a></li>
+        @ShowIf(prevExists)
+        <li><a href="?page=${page-1}" rel="tooltip" title="回到第${page-1}页">上一页</a></li>
+        <li>
+            <a href="#" id="skip">转到</a>
             <span style="padding: 3.5px" class="active" id="enter"><form style="margin: 0" id="toPage" method="get">
                 第 <input type="text" id="page" autocomplete="off" name="page" value="${page}"
                          style="margin:0;width: 15px; height: 10px;"> 页</form>
                 </span>
         </li>
-        <li><a href="#" id="skip">转到</a></li>
         @ShowIf(nextExists)
-        <li class="next"><a href="?page=${page+1}" rel="tooltip" title="转到第${page+1}页">下一页</a></li>
+        <li><a href="?page=${page+1}" rel="tooltip" title="转到第${page+1}页">下一页</a></li>
+        @ShowIf(nextExists)
+        <li><a href="?page=${maxPages}" rel="tooltip" title="转到最后一页">末页</a></li>
         @ShowIf(!nextExists)
         <li class="disabled"><span>下一页</span></li>
+        @ShowIf(!nextExists)
+        <li class="disabled"><span>末页</span></li>
     </ul>
     <ul class="pull-right">
         <li class="disabled"><a>第${page}/${maxPages}页 共${maxResults}条记录</a></li>
@@ -53,6 +72,9 @@
                 }
                 return "转到第" + number + "页";
             }
+        });
+        $('#selectPage').bind('change', function(){
+            window.location.href="?page="+$(this).val();
         })
     })
 </script>

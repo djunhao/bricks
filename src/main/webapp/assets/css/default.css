@@ -43,8 +43,6 @@ footer {
     margin-top: -40px;
 }
 
-
-
 .container .credit {
     margin: 10px 0;
 }
@@ -96,9 +94,30 @@ footer {
     font-weight: bold;
 }
 
+/* Change the navbar's brand */
+body > .navbar .brand {
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 20px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+    display: none;
+}
+body > .navbar .brand:hover {
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+}
+
+.navbar-inverse .icon-user {
+    background-image: url("../img/glyphicons-halflings-white.png")
+}
 /*========= Breadcrumb ========*/
 .breadcrumb {
-    font-weight: bold;
+    /*font-weight: bold;*/
     background-color: #fafafa;
     background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
@@ -124,6 +143,11 @@ footer {
     -moz-border-radius: 6px;
     margin-bottom: 0;
     padding-bottom: 0;
+    width: 270px
+}
+
+.sidebar-nav.affix {
+    top: 60px;
 }
 
 .sidebar-nav .accordion {
@@ -159,6 +183,19 @@ footer {
     background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffffff', endColorstr = '#fff2f2f2', GradientType = 0);
+}
+
+.sidebar-nav ul.nav-list > li > a {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.sidebar-nav .active .icon-chevron-down{
+    opacity: 0.8
+}
+.sidebar-nav .active a:hover .icon-chevron-down {
+    opacity: 1;
 }
 
 /* Chevrons */
@@ -369,13 +406,40 @@ footer {
 
 /* Lastly, apply responsive CSS fixes as necessary */
 @media (max-width: 980px) {
+    /* Unfloat brand */
+    body > .navbar-fixed-top .brand {
+        float: left;
+        margin-left: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: inline-block;
+    }
+
     /* Fix top padding when using the responsive grid with the fixed navbar */
     #main {
         padding-top: 0;
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 980px) {
+    .sidebar-nav {
+        width: 166px;
+    }
+    .sidebar-nav.affix {
+        top: 20px;
+    }
+}
+@media (max-width: 767px) {
+    .sidebar-nav {
+        width: auto;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+    .sidebar-nav.affix {
+        position: static;
+        width: auto;
+        top: 0;
+    }
     footer {
         margin-left: -20px;
         margin-right: -20px;

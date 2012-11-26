@@ -5,10 +5,6 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-<ul class="breadcrumb">
-    <li><i class="icon-home"></i> <a href="/">主页</a> <span class="divider">></span></li>
-    <li class="active">留言簿Demo</li>
-</ul>
 <h1>Guestbook Demo</h1>
 
 <strong>Welcome to my guestbook, the time is now ${time}.</strong>
@@ -22,7 +18,7 @@
     @Repeat(items=entries, var="entry")
     <tr>
         <td>${entry.id}</td>
-        <td><a href="/guestbook/${entry.id}">${entry.name}</a></td>
+        <td><a href="/more/guestbook/${entry.id}">${entry.name}</a></td>
         <td>${entry.date}</td>
     </tr>
     </tbody>

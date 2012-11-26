@@ -10,8 +10,6 @@ import com.google.sitebricks.Show;
  * Time: 下午4:34
  * To change this template use File | Settings | File Templates.
  */
-@Singleton
-//@Decorated
 @Show("Login.html")
 public class LoginPage {
 

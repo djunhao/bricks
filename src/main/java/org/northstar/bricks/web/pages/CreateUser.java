@@ -24,7 +24,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Decorated
-@Singleton
 public class CreateUser extends Decorator {
 
     private UserDao userDao;
@@ -89,7 +88,7 @@ public class CreateUser extends Decorator {
 
     @Override
     public String getPageTitle() {
-        return "创建用户";
+        return "添加新成员";
 
     }
 

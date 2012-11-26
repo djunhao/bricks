@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
+import com.google.sitebricks.http.Post;
 import com.google.sitebricks.http.Put;
 import com.google.sitebricks.rendering.Decorated;
 import com.google.sitebricks.routing.Redirect;
@@ -24,8 +25,8 @@ import java.util.List;
  * Time: 上午11:14
  * To change this template use File | Settings | File Templates.
  */
+//@Singleton
 @Decorated
-@Singleton  //必须是单例模式才能保证user实例不变，以便更新到数据库
 public class EditUser extends Decorator {
     private Role role = new Role();
     private User user = new User();
@@ -84,7 +85,7 @@ public class EditUser extends Decorator {
     }
 
     public String getPageTitle() {
-        return "编辑用户信息";
+        return "更新成员信息";
     }
 
     public void setRoleList(List<Role> roleList) {

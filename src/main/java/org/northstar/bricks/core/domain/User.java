@@ -33,10 +33,10 @@ public class User {
     public Long getId() {
         return id;
     }
-
-    /*public void setId(Long id) {
+    //如果页面类使用单例模式，则无需此方法
+    public void setId(Long id) {
         this.id = id;
-    }*/
+    }
 
     public String getLoginName() {
         return loginName;

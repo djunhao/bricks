@@ -12,7 +12,6 @@ import org.northstar.bricks.web.components.Decorator;
  * To change this template use File | Settings | File Templates.
  */
 @Decorated
-@Singleton
 public class About extends Decorator {
 
     public String getPageTitle() {
