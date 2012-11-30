@@ -6,27 +6,54 @@
 </head>
 <body>
 The following demonstrates a form with HTTP PUT method simulated via a hidden field..
-<br/><br/>
-
+<br/>
 <form id="theForm" method="post">
-
     <input id="hidden_field" type="hidden" name="__sitebricks__action" value="put"/>
     <input name="text" type="text" value="${text}"/>
 
     <input id="put" type="submit" value="PUT"/>
     <input type="button" onclick="removeHiddenFieldAndSubmit()()" value="POST"/>
 </form>
-
-<br/>
 Hint: POST button removes hidden field via javascript and then submits normally via POST
-<br/>
 Bound:
-<p id="boundText">
+<p>
     textfield: ${text}
 </p>
-Message: <span id="putMessage">${putMessage}</span>
-</div>
+<p id="putMessage">Message: ${putMessage}</p>
+    The following expression is repeated over every item in the bound collection of names.
+    <ul>
+        @Repeat(items=names, var="name")
+        <li>${index}: ${name} (last? ${isLast}) - ${__page.text}</li>
+    </ul>
+    Repeat inside a repeat:
+    <ul>
+        @Repeat(items=movies, var="movie")
+        <li> @Repeat(items=movie.actors, var="actor")<span>${actor} </span> </li>
+    </ul>
+
+    <select id="select1">
+    <option value="1">选项1</option>
+    <option value="2">选项2</option>
+    <option value="3">选项3</option>
+    </select>
+    <div>
+        <span id="add">选中添加到右边>></span>
+        <span id="add_all">全部选中添加到左边<<</span>
+    </div>
+    <select multiple="multiple"  id="select2" style="width:100px; height:160px">
+
+    </select>
+<!--@Choose(from=things, bind="thing")
+<select />-->
 <script type="text/javascript">
+    $(document).ready(function () {
+        $("#select1 option").each(function(){
+            if($(this).val() == "2"){
+                $(this).attr('selected',"selected");
+                //alert($(this).val())
+            }
+        });
+    });
     function removeHiddenFieldAndSubmit() {
         // remove the hidden field
         var el = document.getElementById("hidden_field");

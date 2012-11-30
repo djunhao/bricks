@@ -1,7 +1,6 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.core.dao.UserDao;
@@ -59,7 +58,7 @@ public class Home extends Decorator {
         return (userCounts - 1) / maxPerPage + 1;
     }
 
-    public String getPath() {
-        return request.context();
+    public User getUser() {
+        return getPagedUsers().get(0);
     }
 }

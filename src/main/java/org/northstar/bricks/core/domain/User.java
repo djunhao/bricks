@@ -33,6 +33,7 @@ public class User {
     public Long getId() {
         return id;
     }
+
     //如果页面类使用单例模式，则无需此方法
     public void setId(Long id) {
         this.id = id;

@@ -6,7 +6,6 @@
 </head>
 
 <body>
-
 <table class="table table-bordered table-condensed table-hover">
     <thead>
     <tr class="info">
@@ -27,8 +26,8 @@
         <td>${user.supervisorNumber}</td>
         <td>${user.validSupervisorDate}</td>
         <td>
-            <a href="useradmin/edit/${user.id}" title="编辑【${user.realName}】的信息" rel="tooltip"><i class="icon-edit"></i></a> |
-            <a href="useradmin/delete/${user.id}" title="删除【${user.realName}】的信息" rel="tooltip"><i class="icon-trash"></i></a>
+            <a href="/useradmin/edit/${user.id}" title="编辑【${user.realName}】的信息" rel="tooltip"><i class="icon-edit"></i></a> |
+            <a href="/useradmin/delete/${user.id}" title="删除【${user.realName}】的信息" rel="tooltip"><i class="icon-trash"></i></a>
         </td>
     </tr>
     </tbody>

@@ -30,7 +30,6 @@ public class Pager {
 
     public boolean isNextExists() {
         return page < maxPages;
-        // return !getNext().isEmpty();
     }
 
     public boolean isPrevExists() {
@@ -45,7 +44,7 @@ public class Pager {
         return maxPerPage;
     }
 
-    public int getMaxResults(){
+    public int getMaxResults() {
         return (maxPages - 1) * maxPerPage + 1;
     }
 }

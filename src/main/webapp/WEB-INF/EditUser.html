@@ -78,13 +78,19 @@
     </fieldset>
 </form>
 
-<script src="/js/jquery.actual.min.js"></script>
-<script src="/js/jquery.form.js"></script>
+<script src="/assets/js/jquery.actual.min.js"></script>
+<script src="/assets/js/jquery.form.js"></script>
 <script src="/lib/validation/jquery.validate.min.js"></script>
 <script src="/lib/datepicker/js/bootstrap-datepicker.js"></script>
 <script src="/lib/datepicker/js/bootstrap-datepicker.zh-CN.js"></script>
 <script>
     $(document).ready(function () {
+        //User role is selected by default
+        $("select#inputRole option").each(function(){
+            if($(this).val() == "${user.role.name}"){
+                $(this).attr("selected", "selected");
+            }
+        });
         $('#inputValidEnforcementDate').datepicker({
             format:'yyyy-mm-dd',
             language:'zh-CN',

@@ -8,8 +8,6 @@ import com.google.sitebricks.routing.Redirect;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.northstar.bricks.config.URIContext;
-import org.northstar.bricks.web.pages.Home;
-import org.northstar.bricks.web.pages.LoginPage;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,16 +21,21 @@ class SecureMethodInterceptor implements MethodInterceptor {
     private Provider<Identity> identityProvider;
     @Inject
     private Provider<Redirect> redirectProvider;
+    @Inject
+    private Provider<Request> requestProvider;
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Identity identity = identityProvider.get();
-        //String contextPath = redirectProvider.get().context();
+        String context = requestProvider.get().context();
+        String uri = requestProvider.get().uri();
+        StringBuilder path = new StringBuilder(context).append(URIContext.LOGIN_PAGE).append("?target=").append(uri);
         if (!identity.isAuthenticated()) {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
-                return Reply.saying().redirect(redirectProvider.get().to(LoginPage.class));
+                return Reply.saying().redirect(path.toString());
             }
-            return LoginPage.class;
+            //return redirectProvider.get().to(LoginPage.class, ImmutableMap.of("target", uri));
+            return path.toString();
         }
         return invocation.proceed();
     }

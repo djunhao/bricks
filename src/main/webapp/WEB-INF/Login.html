@@ -203,7 +203,7 @@
     }
     function showResult(data) {
         if (data.info == "success") {
-            window.location = "./";
+            window.location = "${target}";
         } else {
             $('#error_msg').alert();
             $('#error_msg').fadeIn();

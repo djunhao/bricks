@@ -23,6 +23,11 @@
 		</dependency>
         <dependency>
             <groupId>com.google.sitebricks</groupId>
+            <artifactId>sitebricks-persist</artifactId>
+            <version>${sitebricks.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.sitebricks</groupId>
             <artifactId>sitebricks-slf4j</artifactId>
             <version>${sitebricks.version}</version>
         </dependency>
@@ -50,6 +55,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>

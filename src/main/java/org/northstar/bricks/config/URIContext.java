@@ -13,8 +13,7 @@ public interface URIContext {
     public static final String USER_CREATE = USER_ROOT + "create";
     public static final String USER_EDIT = USER_ROOT + "edit/:id";
     public static final String USER_DELETE = USER_ROOT + "delete/:id";
-    public static final String LOGIN_PAGE = ROOT + "signin";
-    public static final String LOGIN_ACTION = ROOT + "login";
+    public static final String LOGIN_PAGE = ROOT + "login";
     public static final String LOGOUT_ACTION = ROOT + "logout";
     public static final String ABOUT = ROOT + "about";
 }

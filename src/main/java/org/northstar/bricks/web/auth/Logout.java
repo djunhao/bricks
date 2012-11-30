@@ -5,7 +5,6 @@ import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.routing.Redirect;
-import org.northstar.bricks.config.URIContext;
 import org.northstar.bricks.web.pages.Home;
 
 /**

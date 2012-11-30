@@ -1,7 +1,6 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.core.dao.UserDao;
@@ -37,6 +36,7 @@ public class Flow extends Decorator {
     }
 
     @Get
+    @Secure
     public Object load() {
         long startIndex = 0;
         if (page < 1) {

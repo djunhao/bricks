@@ -6,7 +6,7 @@ import com.google.sitebricks.http.Put;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.web.components.Decorator;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -51,7 +51,32 @@ public class Test extends Decorator {
     public void post() {
         putMessage = "Submitted via POST";
     }
+
     public String getPageTitle() {
         return "Form CRUD";
+    }
+
+    private static final List<String> NAMES = Arrays.asList("Dhanji", "Josh", "Jody", "Iron Man");
+
+    //property returns a list of names
+    public List<String> getNames() {
+        return NAMES;
+    }
+
+    //try a set this time, returns movies (to demo nested repeat)
+    public Set<Movie> getMovies() {
+        return new HashSet<Movie>(Arrays.asList(new Movie(), new Movie(), new Movie()));
+    }
+
+    public Collection<String> getThings() {
+        return NAMES;
+    }
+
+    public static class Movie {
+
+        //try a collection this time. same as property Repeat.getNames() from the outer class
+        public Collection<String> getActors() {
+            return NAMES;
+        }
     }
 }

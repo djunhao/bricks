@@ -12,7 +12,6 @@ import org.northstar.bricks.test.Forms;
 import org.northstar.bricks.test.Hello;
 import org.northstar.bricks.test.Test;
 import org.northstar.bricks.web.auth.AuthModule;
-import org.northstar.bricks.web.auth.Login;
 import org.northstar.bricks.web.auth.Logout;
 import org.northstar.bricks.web.components.GuestbookNavigation;
 import org.northstar.bricks.web.components.NewCard;
@@ -46,9 +45,8 @@ public class BricksModule extends SitebricksModule {
         at(URIContext.USER_EDIT).show(EditUser.class);
         at(URIContext.USER_CREATE).show(CreateUser.class);
         at(URIContext.ABOUT).show(About.class);
-
+        //at("/login").show(LoginPage.class);
         at(URIContext.USER_DELETE).serve(DeleteUser.class);
-        at(URIContext.LOGIN_ACTION).serve(Login.class);
         at(URIContext.LOGOUT_ACTION).serve(Logout.class);
 
         embed(Pager.class).as("Pager");
