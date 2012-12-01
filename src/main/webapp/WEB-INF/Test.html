@@ -3,6 +3,8 @@
 <head>
     <title>Form CRUD</title>
     <meta charset="utf-8"/>
+    @Require
+    <script src="/assets/js/test.js"></script>
 </head>
 <body>
 The following demonstrates a form with HTTP PUT method simulated via a hidden field..
@@ -41,13 +43,13 @@ Bound:
         <span id="add_all">全部选中添加到左边<<</span>
     </div>
     <select multiple="multiple"  id="select2" style="width:100px; height:160px">
-
+       <option></option>
     </select>
 <!--@Choose(from=things, bind="thing")
 <select />-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#select1 option").each(function(){
+        $('select#select1 option').each(function(){
             if($(this).val() == "2"){
                 $(this).attr('selected',"selected");
                 //alert($(this).val())

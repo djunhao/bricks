@@ -28,8 +28,8 @@ class SecureMethodInterceptor implements MethodInterceptor {
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Identity identity = identityProvider.get();
         String context = requestProvider.get().context();
-        String uri = requestProvider.get().uri();
-        StringBuilder path = new StringBuilder(context).append(URIContext.LOGIN_PAGE).append("?target=").append(uri);
+        String target = requestProvider.get().uri();
+        StringBuilder path = new StringBuilder(context).append(URIContext.LOGIN_PAGE).append("?target=").append(target);
         if (!identity.isAuthenticated()) {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
                 return Reply.saying().redirect(path.toString());

@@ -1,7 +1,6 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
-import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.rendering.Decorated;
 import org.northstar.bricks.core.dao.UserDao;
 import org.northstar.bricks.core.domain.User;
@@ -20,8 +19,6 @@ public class Home extends Decorator {
 
     @Inject
     private Logger logger;
-    @Inject
-    private Request request;
 
     @Inject
     Home(UserDao dao) {
@@ -53,12 +50,8 @@ public class Home extends Decorator {
         return maxPerPage;
     }
 
-    public int getMaxPages() {
-        int userCounts = dao.getUserCounts();
-        return (userCounts - 1) / maxPerPage + 1;
+    public int getMaxResults() {
+        return dao.getUserCounts();
     }
 
-    public User getUser() {
-        return getPagedUsers().get(0);
-    }
 }

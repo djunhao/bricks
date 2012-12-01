@@ -4,6 +4,8 @@ import com.google.inject.Scopes;
 import com.google.inject.multibindings.Multibinder;
 import com.google.sitebricks.SitebricksModule;
 import com.google.sitebricks.SitebricksServletModule;
+import com.google.sitebricks.binding.FlashCache;
+import com.google.sitebricks.binding.HttpSessionFlashCache;
 import com.google.sitebricks.conversion.Converter;
 import com.google.sitebricks.conversion.DateConverters;
 import org.northstar.bricks.core.dao.*;
@@ -30,7 +32,7 @@ public class BricksModule extends SitebricksModule {
 
         //install(new JpaPersistModule("myFirstJpaUnit"));
 
-        //bind(FlashCache.class).to(HttpSessionFlashCache.class).asEagerSingleton();
+        bind(FlashCache.class).to(HttpSessionFlashCache.class).in(Scopes.SINGLETON);
         bind(EntryDao.class).to(SimpleEntryDao.class).in(Scopes.SINGLETON);
         bind(UserDao.class).to(OrientUserDao.class).in(Scopes.SINGLETON);
         bind(RoleDao.class).to(OrientRoleDao.class).in(Scopes.SINGLETON);

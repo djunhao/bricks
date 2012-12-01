@@ -60,9 +60,8 @@ public class Flow extends Decorator {
         return maxPerPage;
     }
 
-    public int getMaxPages() {
-        int userCounts = dao.getUserCounts();
-        return (userCounts - 1) / maxPerPage + 1;
+    public int getMaxResults() {
+        return dao.getUserCounts();
     }
 
 }

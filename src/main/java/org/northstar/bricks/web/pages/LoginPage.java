@@ -23,12 +23,11 @@ import java.util.Map;
 @Show("Login.html")
 public class LoginPage {
     private String target;
-
     private String name;
     private String password;
-
     private Identity identity;
     private Authentication authentication;
+    private Logger logger;
 
     @Inject
     LoginPage(Identity identity, Authentication authentication) {
@@ -36,10 +35,12 @@ public class LoginPage {
         this.authentication = authentication;
     }
 
-    private Logger logger;
-
     public String getTarget() {
         return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
     }
 
     public String getName() {
@@ -56,10 +57,6 @@ public class LoginPage {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setTarget(String target) {
-        this.target = target;
     }
 
     @Post
@@ -79,7 +76,7 @@ public class LoginPage {
     @Get
     public Object get() {
         if (identity.isAuthenticated()) {
-            return target;
+            return target != null ? target : Home.class;
         }
         return null;
     }

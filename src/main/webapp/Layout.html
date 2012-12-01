@@ -4,18 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>危险化学品企业信息管理 - ${pageTitle}</title>
-
     <!-- Bootstrap framework -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/assets/css/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" href="/lib/datepicker/css/datepicker.css" />
     <link rel="stylesheet" href="/assets/css/default.css">
-
     <!--[if lt IE 9]>
     <script src="/assets/js/ie/html5.js"></script>
     <script src="/assets/js/ie//respond.min.js"></script>
     <![endif]-->
-
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <style>
@@ -37,7 +34,6 @@
            <a class="brand" href="#" data-toggle="collapse" data-target=".nav-collapse">危险化学品安全监管</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-
                     <li><a href="/">主页</a></li>
                     <li>
                         <a href="/more/guestbook">意见建议</a>
@@ -51,10 +47,9 @@
                 <form method="post" class="navbar-search">
                     <input type="text" class="search-query" placeholder="搜 索">
                 </form>
-
                 @ShowIf(!loggedIn)
                 <div class="btn-group pull-right">
-                    <a class="btn btn-inverse pull-right" href="/signin">请登录</a>
+                    <a class="btn btn-inverse pull-right" href="/login">请登录</a>
                 </div>
                 @ShowIf(loggedIn)
                 <div class="btn-group pull-right">
@@ -73,10 +68,7 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Navbar End -->
-
-<!-- Subhead End -->
+</div><!-- Navbar End -->
 <div id="wrap">
     <!-- Page Start -->
     <div id="main" class="container">
@@ -89,7 +81,7 @@
                     <small><cite>东莞市安全生产监督管理局石龙分局</cite></small>
                 </blockquote>
             </div>
-        </header>
+        </header><!-- Subhead End -->
         <div class="row">
             <!-- Main content Start -->
             <div class="span9">
@@ -99,8 +91,7 @@
                 </ul>
                 @Decorated
                 <div>This should be replaced by the extension</div>
-            </div>
-            <!-- Main content End -->
+            </div><!-- Main content End -->
             <!-- Sidebar Start -->
             <div class="span3 sidebar">
                     <div class="accordion sidebar-nav" id="sidebar_menu">
@@ -180,23 +171,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="accordion-group">
-                            <div class="accordion-heading">
-                                <a class="accordion-toggle" data-toggle="collapse"
-                                   data-parent="#sidebar_menu"
-                                   href="#member1">
-                                    其他信息
-                                </a>
-                            </div>
-                        </div>-->
                     </div>
-            </div>
-            <!-- Sidebar End -->
-        </div>
-        <!-- Row End -->
-    </div>
-    <!-- Page End -->
-</div>
+            </div><!-- Sidebar End -->
+        </div><!-- Row End -->
+    </div><!-- Page End -->
+</div><!-- #wrap End -->
 <footer>
     <div class="container">
         <p class="credit">Based on <a href="http://twitter.github.com/bootstrap" target="_blank">Bootstrap

@@ -10,14 +10,10 @@ package org.northstar.bricks.web.components;
 public class Pager {
     private int page;
     private int maxPerPage;
-    private int maxPages;
+    private int maxResults;
 
     public int getMaxPages() {
-        return maxPages;
-    }
-
-    public void setMaxPages(int maxPages) {
-        this.maxPages = maxPages;
+        return (maxResults - 1) / maxPerPage + 1;
     }
 
     public int getPage() {
@@ -29,7 +25,7 @@ public class Pager {
     }
 
     public boolean isNextExists() {
-        return page < maxPages;
+        return page < getMaxPages();
     }
 
     public boolean isPrevExists() {
@@ -45,6 +41,9 @@ public class Pager {
     }
 
     public int getMaxResults() {
-        return (maxPages - 1) * maxPerPage + 1;
+        return maxResults;
+    }
+    public void setMaxResults(int maxResults) {
+        this.maxResults = maxResults;
     }
 }
