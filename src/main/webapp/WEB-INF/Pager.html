@@ -20,11 +20,11 @@
         @ShowIf(!prevExists)
         <li class="disabled"><span>首页</span></li>
         @ShowIf(!prevExists)
-        <li class="disabled"><span>上一页</span></li>
+        <li class="disabled"><span>前页</span></li>
         @ShowIf(prevExists)
         <li><a href="?page=1" rel="tooltip" title="回到第1页">首页</a></li>
         @ShowIf(prevExists)
-        <li><a href="?page=${page-1}" rel="tooltip" title="回到第${page-1}页">上一页</a></li>
+        <li><a href="?page=${page-1}" rel="tooltip" title="回到第${page-1}页">前页</a></li>
         <li>
             <a href="#" id="skip">转到</a>
             <span style="padding: 3.5px" class="active" id="enter"><form style="margin: 0" id="toPage" method="get">
@@ -32,17 +32,20 @@
                          style="margin:0;width: 15px; height: 10px;"> 页</form>
                 </span>
         </li>
+        <li><a>22</a></li>
         @ShowIf(nextExists)
-        <li><a href="?page=${page+1}" rel="tooltip" title="转到第${page+1}页">下一页</a></li>
+        <li><a href="?page=${page+1}" rel="tooltip" title="转到第${page+1}页">后页</a></li>
         @ShowIf(nextExists)
-        <li><a href="?page=${maxPages}" rel="tooltip" title="转到最后一页">末页</a></li>
+        <li><a href="?page=${maxPages}" rel="tooltip" title="转到最后一页">尾页</a></li>
         @ShowIf(!nextExists)
-        <li class="disabled"><span>下一页</span></li>
+        <li class="disabled"><span>后页</span></li>
         @ShowIf(!nextExists)
-        <li class="disabled"><span>末页</span></li>
+        <li class="disabled"><span>尾页</span></li>
     </ul>
     <ul class="pull-right">
-        <li class="disabled"><a>第${page}/${maxPages}页 共${maxResults}条记录</a></li>
+        <li class="disabled">
+            <span>共${maxResults}条  ${maxPerPage}条/页  第${page}/${maxPages}页</span>
+        </li>
     </ul>
 </div>
 <script type="text/javascript">
