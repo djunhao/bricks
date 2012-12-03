@@ -14,7 +14,7 @@ public class Home extends Decorator {
 
     private List<User> pagedUsers;
     private int page;
-    private Integer maxPerPage = 1;
+    private Integer maxPerPage = 6;
     private final UserDao dao;
 
     @Inject

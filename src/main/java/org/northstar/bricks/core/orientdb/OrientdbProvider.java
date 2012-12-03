@@ -56,7 +56,9 @@ public class OrientdbProvider implements Provider<OObjectDatabaseTx> {
             }
 
         }
-        databaseTx.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
+        if (databaseTx != null) {
+            databaseTx.getEntityManager().registerEntityClasses(BricksConstants.ENTITY_PACKAGE);
+        }
         //databaseTx.setMVCC(false);
         return databaseTx;
     }

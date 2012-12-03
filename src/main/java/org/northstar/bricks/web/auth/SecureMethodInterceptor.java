@@ -19,8 +19,8 @@ import org.northstar.bricks.config.URIContext;
 class SecureMethodInterceptor implements MethodInterceptor {
     @Inject
     private Provider<Identity> identityProvider;
-    @Inject
-    private Provider<Redirect> redirectProvider;
+    /*@Inject
+    private Provider<Redirect> redirectProvider;*/
     @Inject
     private Provider<Request> requestProvider;
 
