@@ -8,28 +8,11 @@ package org.northstar.bricks.web.components;
  * To change this template use File | Settings | File Templates.
  */
 public class Pager {
-    private int page;
     private int maxPerPage;
     private int maxResults;
 
     public int getMaxPages() {
         return (maxResults - 1) / maxPerPage + 1;
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public boolean isNextExists() {
-        return page < getMaxPages();
-    }
-
-    public boolean isPrevExists() {
-        return page > 1;
     }
 
     public void setMaxPerPage(int maxPerPage) {

@@ -205,8 +205,7 @@
         if (data.info == "success") {
             window.location = "${target!=null?target:'./'}";
         } else {
-            $('#error_msg').alert();
-            $('#error_msg').fadeIn();
+            $('#error_msg').alert().fadeIn();
         }
     }
 

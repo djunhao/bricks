@@ -26,13 +26,14 @@
         <td>${user.supervisorNumber}</td>
         <td>${user.validSupervisorDate}</td>
         <td>
+            <a href="/useradmin/view/${user.id}" title="查看【${user.realName}】的信息" rel="tooltip"><i class="icon-th"></i></a> |
             <a href="/useradmin/edit/${user.id}" title="编辑【${user.realName}】的信息" rel="tooltip"><i class="icon-edit"></i></a> |
             <a href="/useradmin/delete/${user.id}" title="删除【${user.realName}】的信息" rel="tooltip"><i class="icon-trash"></i></a>
         </td>
     </tr>
     </tbody>
 </table>
-@Pager(page = page, maxPerPage = maxPerPage, maxResults = maxResults)
+@Pager(maxPerPage = maxPerPage, maxResults = maxResults)
 <div>pager here</div>
 </body>
 </html>
