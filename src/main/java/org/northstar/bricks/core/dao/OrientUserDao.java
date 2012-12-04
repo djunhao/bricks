@@ -98,8 +98,25 @@ public class OrientUserDao extends AbstractDao implements UserDao {
         if (database == null || database.isClosed()) {
             database = getConnection();
         }
-        String queryString = "select from User where @rid > ? limit " + maxResults;
-        OQuery<User> command = new OSQLSynchQuery<User>(queryString);
+        //String queryString = "select from User skip " + startIndex +" limit " + maxResults;
+        StringBuilder queryString = new StringBuilder("select from User SKIP ").append(startIndex).append(" LIMIT ").append(maxResults);
+        OQuery<User> command = new OSQLSynchQuery<User>(queryString.toString());
+        //int clusterId = database.getClusterIdByName(User.class.getSimpleName());
+
+        //ORID startRid = new ORecordId(clusterId, startIndex);
+        //List<User> userList = database.command(query).execute(startRid);
+        //List<User> userList = database.query(command, startRid);
+        List<User> userList = database.query(command);
+        database.close();
+        return userList;
+    }
+
+    public List<User> findUsers(long startIndex, int maxResults) {
+        if (database == null || database.isClosed()) {
+            database = getConnection();
+        }
+        StringBuilder queryString = new StringBuilder("select from User WHERE @rid > ? ").append("LIMIT ").append(maxResults);
+        OQuery<User> command = new OSQLSynchQuery<User>(queryString.toString());
         int clusterId = database.getClusterIdByName(User.class.getSimpleName());
 
         ORID startRid = new ORecordId(clusterId, startIndex);

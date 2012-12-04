@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 @Decorated
 public class Home extends Decorator {
 
-    private List<User> pagedUsers;
     private int page;
     private Integer maxPerPage = 6;
     private final UserDao dao;
@@ -38,10 +37,18 @@ public class Home extends Decorator {
         if (page < 1) {
             page = 1;
         }
-        startIndex = (page - 1) * maxPerPage - 1;
+        startIndex = (page - 1) * maxPerPage;
         return dao.findPagedUsers(startIndex, maxPerPage);
     }
 
+    public List<User> getUsers() {
+        long startIndex = 0;
+        if (page < 1) {
+            page = 1;
+        }
+        startIndex = (page - 1) * maxPerPage - 1;
+        return dao.findUsers(startIndex, maxPerPage);
+    }
     public String getPageTitle() {
         return "主页";
     }

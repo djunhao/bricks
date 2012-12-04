@@ -24,6 +24,7 @@ public interface UserDao {
     List<User> findAll();
 
     List<User> findPagedUsers(long startIndex, int maxResults);
+    List<User> findUsers(long startIndex, int maxResults);
 
     List<User> authenticated(String name, String password);
 
