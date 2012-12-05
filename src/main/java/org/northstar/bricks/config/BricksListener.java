@@ -5,7 +5,6 @@ import com.google.inject.Injector;
 import com.google.inject.Stage;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.sitebricks.slf4j.Slf4jModule;
-import org.northstar.bricks.core.orientdb.OrientdbModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +18,6 @@ public class BricksListener extends GuiceServletContextListener {
 
     protected Injector getInjector() {
         logger.info(">>>[BIRCKS] Sitebricks web application demo started.");
-        return Guice.createInjector(Stage.DEVELOPMENT, new Slf4jModule(), new BricksModule(), new OrientdbModule());
+        return Guice.createInjector(Stage.DEVELOPMENT, new Slf4jModule(), new BricksModule());
     }
 }

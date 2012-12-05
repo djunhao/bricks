@@ -9,7 +9,6 @@ import com.google.sitebricks.binding.HttpSessionFlashCache;
 import com.google.sitebricks.conversion.Converter;
 import com.google.sitebricks.conversion.DateConverters;
 import org.northstar.bricks.core.dao.*;
-import org.northstar.bricks.core.orientdb.OrientdbFilter;
 import org.northstar.bricks.test.Forms;
 import org.northstar.bricks.test.Hello;
 import org.northstar.bricks.test.Test;
@@ -34,8 +33,6 @@ public class BricksModule extends SitebricksModule {
 
         bind(FlashCache.class).to(HttpSessionFlashCache.class).in(Scopes.SINGLETON);
         bind(EntryDao.class).to(SimpleEntryDao.class).in(Scopes.SINGLETON);
-        bind(UserDao.class).to(OrientUserDao.class).in(Scopes.SINGLETON);
-        bind(RoleDao.class).to(OrientRoleDao.class).in(Scopes.SINGLETON);
 
         //at("/static/default.css").export("bricks.css");
         //at("/static/pager.css").export("pager.css");
@@ -76,7 +73,7 @@ public class BricksModule extends SitebricksModule {
         return new SitebricksServletModule() {
             @Override
             protected void configurePreFilters() {
-                filter("/*").through(OrientdbFilter.class);
+                //filter("/*").through(OrientdbFilter.class);
             }
         };
     }
