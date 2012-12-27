@@ -5,10 +5,10 @@ import com.google.sitebricks.headless.Request;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Post;
 import com.google.sitebricks.rendering.Decorated;
-import org.northstar.bricks.core.dao.RoleDao;
-import org.northstar.bricks.core.dao.UserDao;
-import org.northstar.bricks.core.domain.Role;
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.dao.RoleDao;
+import org.northstar.bricks.data.dao.UserDao;
+import org.northstar.bricks.data.domain.Role;
+import org.northstar.bricks.data.domain.User;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.components.Decorator;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ public class CreateUser extends Decorator {
     private Request request;
 
     @Inject
-    CreateUser(UserDao userDao, UserDao userDao1, RoleDao roleDao) {
+    CreateUser(UserDao userDao, RoleDao roleDao) {
         this.userDao = userDao;
         this.roleDao = roleDao;
     }

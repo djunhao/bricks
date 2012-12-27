@@ -2,8 +2,8 @@ package org.northstar.bricks.web.auth;
 
 import com.google.inject.Inject;
 import com.google.inject.servlet.SessionScoped;
-import org.northstar.bricks.core.dao.UserDao;
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.dao.UserDao;
+import org.northstar.bricks.data.domain.User;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

@@ -1,7 +1,7 @@
 package org.northstar.bricks.web.auth;
 
-import org.northstar.bricks.core.dao.UserDao;
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.dao.UserDao;
+import org.northstar.bricks.data.domain.User;
 
 import javax.inject.Inject;
 import java.util.List;

@@ -1,8 +1,8 @@
 package org.northstar.bricks.web.components;
 
 import com.google.inject.Inject;
-import org.northstar.bricks.core.dao.EntryDao;
-import org.northstar.bricks.core.domain.Entry;
+import org.northstar.bricks.data.dao.EntryDao;
+import org.northstar.bricks.data.domain.Entry;
 
 /**
  * Used as a teaser element in the entry site of a guestbook

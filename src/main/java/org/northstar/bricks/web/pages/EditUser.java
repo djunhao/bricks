@@ -7,10 +7,10 @@ import com.google.sitebricks.http.Get;
 import com.google.sitebricks.http.Put;
 import com.google.sitebricks.rendering.Decorated;
 import com.google.sitebricks.routing.Redirect;
-import org.northstar.bricks.core.dao.RoleDao;
-import org.northstar.bricks.core.dao.UserDao;
-import org.northstar.bricks.core.domain.Role;
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.dao.RoleDao;
+import org.northstar.bricks.data.dao.UserDao;
+import org.northstar.bricks.data.domain.Role;
+import org.northstar.bricks.data.domain.User;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.components.Decorator;
 

@@ -3,8 +3,8 @@ package org.northstar.bricks.web.pages;
 import com.google.inject.Inject;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.rendering.Decorated;
-import org.northstar.bricks.core.dao.UserDao;
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.dao.UserDao;
+import org.northstar.bricks.data.domain.User;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.components.Decorator;
 
@@ -43,8 +43,7 @@ public class Flow extends Decorator {
             page = 1;
         }
         startIndex = (page - 1) * maxPerPage - 1;
-        pagedUsers = dao.findPagedUsers(startIndex, maxPerPage);
-        //pagedUsers = dao.findAll();
+        pagedUsers = dao.findUsers(startIndex, maxPerPage);
         return null;
     }
 

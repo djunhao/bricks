@@ -1,6 +1,6 @@
-package org.northstar.bricks.core.dao;
+package org.northstar.bricks.data.dao;
 
-import org.northstar.bricks.core.domain.Card;
+import org.northstar.bricks.data.domain.Card;
 
 import java.util.Arrays;
 import java.util.Date;

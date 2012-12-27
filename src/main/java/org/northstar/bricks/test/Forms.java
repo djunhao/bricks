@@ -1,9 +1,13 @@
 package org.northstar.bricks.test;
 
 import com.google.sitebricks.rendering.Decorated;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import com.orientechnologies.orient.core.iterator.ORecordIteratorClass;
+import com.orientechnologies.orient.core.record.impl.ODocument;
+import org.northstar.bricks.config.BricksConstants;
 import org.northstar.bricks.web.components.Decorator;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,36 +19,43 @@ import java.util.List;
  */
 @Decorated
 public class Forms extends Decorator {
-    private String text = "initial textfield value";
-    private String chosen = "(nothing)";
-    private List<String> autobots = Arrays.asList("Bumblebee", "Ultra Magnus", "Optimus Prime", "Kup", "Hot Rod");
+    final ODatabaseDocumentTx database;
 
-    public String getText() {
-        return text;
+    public Forms() {
+        database = new ODatabaseDocumentTx ("local:databases/petshop");
+        if (!database.exists()) {
+            database.create();
+        }
+        database.open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        try {
+            long cars = database.countClass("Animal");
+            if (cars<1){
+                ODocument animal = new ODocument("Animal");
+                animal.field( "name", "Gaudi" );
+                animal.field( "location", "Madrid" );
+                animal.save();
+            }
+        } finally {
+            database.close();
+        }
+
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public List<?> getList() {
+        database.open(BricksConstants.ORIENTDB_USER, BricksConstants.ORIENTDB_PASSWORD);
+        try {
+            ORecordIteratorClass<ODocument> result = database.browseClass("Animal");
+            List<ODocument> animals = new ArrayList<ODocument>();
+            for (ODocument doc : result) {
+                animals.add(doc);
+            }
+            return animals;
+        }  finally {
+            database.close();
+        }
     }
-
-    public List<String> getAutobots() {
-        return autobots;
-    }
-
-    public void setAutobots(List<String> autobots) {
-        this.autobots = autobots;
-    }
-
-    public String getChosen() {
-        return chosen;
-    }
-
-    public void setChosen(String chosen) {
-        this.chosen = chosen;
-    }
-
     @Override
     public String getPageTitle() {
-        return "form tests";
+        return "Test Page2";
     }
 }

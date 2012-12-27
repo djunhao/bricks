@@ -1,6 +1,6 @@
-package org.northstar.bricks.core.dao;
+package org.northstar.bricks.data.dao;
 
-import org.northstar.bricks.core.domain.Role;
+import org.northstar.bricks.data.domain.Role;
 
 import java.util.List;
 

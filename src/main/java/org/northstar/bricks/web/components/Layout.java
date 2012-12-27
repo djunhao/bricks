@@ -3,7 +3,7 @@ package org.northstar.bricks.web.components;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.sitebricks.Show;
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.domain.User;
 import org.northstar.bricks.web.auth.Identity;
 
 /**

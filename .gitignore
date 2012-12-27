@@ -1,5 +1,6 @@
-target
+target/
 bricks.iws
 bricks.iml
 bricks.ipr
 my.odb
+databases/

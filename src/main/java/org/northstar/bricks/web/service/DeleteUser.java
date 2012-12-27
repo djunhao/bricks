@@ -6,8 +6,8 @@ import com.google.inject.name.Named;
 import com.google.sitebricks.headless.Reply;
 import com.google.sitebricks.http.Get;
 import com.google.sitebricks.routing.Redirect;
-import org.northstar.bricks.core.dao.UserDao;
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.dao.UserDao;
+import org.northstar.bricks.data.domain.User;
 import org.northstar.bricks.web.auth.Secure;
 import org.northstar.bricks.web.pages.Home;
 

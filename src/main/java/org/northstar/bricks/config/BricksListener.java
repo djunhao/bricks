@@ -5,7 +5,7 @@ import com.google.inject.Injector;
 import com.google.inject.Stage;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.sitebricks.slf4j.Slf4jModule;
-import org.northstar.bricks.core.orientdb.OrientdbModule;
+import org.northstar.bricks.data.orientdb.OrientdbModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

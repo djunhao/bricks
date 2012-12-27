@@ -1,4 +1,4 @@
-package org.northstar.bricks.core.orientdb;
+package org.northstar.bricks.data.orientdb;
 
 import com.google.inject.Inject;
 import com.orientechnologies.orient.core.exception.ORecordNotFoundException;

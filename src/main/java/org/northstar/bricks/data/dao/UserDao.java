@@ -1,6 +1,6 @@
-package org.northstar.bricks.core.dao;
+package org.northstar.bricks.data.dao;
 
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.domain.User;
 
 import java.util.List;
 

@@ -1,6 +1,8 @@
 package org.northstar.bricks.web.pages;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
+import com.google.sitebricks.At;
 import com.google.sitebricks.Show;
 import com.google.sitebricks.client.transport.Json;
 import com.google.sitebricks.headless.Reply;
@@ -10,6 +12,8 @@ import org.northstar.bricks.web.auth.Authentication;
 import org.northstar.bricks.web.auth.Identity;
 import org.slf4j.Logger;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +43,7 @@ public class LoginPage {
         return target;
     }
 
-    public void setTarget(String target) {
+    public void setTarget(@Named("target") String target) {
         this.target = target;
     }
 
@@ -76,10 +80,19 @@ public class LoginPage {
     @Get
     public Object get() {
         if (identity.isAuthenticated()) {
-            return target != null ? target : Home.class;
+            return Home.class;
         }
         return null;
     }
+   /* @Get
+    @At("/:target")
+    public Object load(@Named("target") String target) {
+            logger.info("target uri is: " + target);
+            if (identity.isAuthenticated()) {
+                return target;
+            }
+            return null;
+    }*/
 
     public String getPageTitle() {
         return "用户登录";

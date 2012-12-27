@@ -1,4 +1,4 @@
-package org.northstar.bricks.core.dao;
+package org.northstar.bricks.data.dao;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -9,7 +9,7 @@ import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.core.tx.OTransaction.TXTYPE;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.domain.User;
 import org.slf4j.Logger;
 
 import java.util.List;

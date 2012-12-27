@@ -1,5 +1,6 @@
 package org.northstar.bricks.web.auth;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.sitebricks.headless.Reply;
@@ -8,6 +9,7 @@ import com.google.sitebricks.routing.Redirect;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.northstar.bricks.config.URIContext;
+import org.northstar.bricks.web.pages.LoginPage;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,8 +21,8 @@ import org.northstar.bricks.config.URIContext;
 class SecureMethodInterceptor implements MethodInterceptor {
     @Inject
     private Provider<Identity> identityProvider;
-    /*@Inject
-    private Provider<Redirect> redirectProvider;*/
+    @Inject
+    private Provider<Redirect> redirectProvider;
     @Inject
     private Provider<Request> requestProvider;
 
@@ -34,7 +36,7 @@ class SecureMethodInterceptor implements MethodInterceptor {
             if (Reply.class.isAssignableFrom(invocation.getMethod().getReturnType())) {
                 return Reply.saying().redirect(path.toString());
             }
-            //return redirectProvider.get().to(LoginPage.class, ImmutableMap.of("target", uri));
+            //return redirectProvider.get().to(LoginPage.class, ImmutableMap.of("target", target));
             return path.toString();
         }
         return invocation.proceed();

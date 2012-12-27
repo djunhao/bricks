@@ -8,8 +8,8 @@ import com.google.sitebricks.binding.FlashCache;
 import com.google.sitebricks.binding.HttpSessionFlashCache;
 import com.google.sitebricks.conversion.Converter;
 import com.google.sitebricks.conversion.DateConverters;
-import org.northstar.bricks.core.dao.*;
-import org.northstar.bricks.core.orientdb.OrientdbFilter;
+import org.northstar.bricks.data.dao.*;
+import org.northstar.bricks.data.orientdb.OrientdbFilter;
 import org.northstar.bricks.test.Forms;
 import org.northstar.bricks.test.Hello;
 import org.northstar.bricks.test.Test;
@@ -47,7 +47,7 @@ public class BricksModule extends SitebricksModule {
         at(URIContext.USER_EDIT).show(EditUser.class);
         at(URIContext.USER_CREATE).show(CreateUser.class);
         at(URIContext.ABOUT).show(About.class);
-        //at("/login").show(LoginPage.class);
+        //at("/login/:target").show(LoginPage.class);
         at(URIContext.USER_DELETE).serve(DeleteUser.class);
         at(URIContext.LOGOUT_ACTION).serve(Logout.class);
 
@@ -58,7 +58,6 @@ public class BricksModule extends SitebricksModule {
         at("/more/guestbook").show(Guestbook.class);
         at("/more/guestbook/:id").show(GuestbookEntry.class);
         at("/hello").show(Hello.class);
-        at("/count").show(Count.class);
         at("/forms").show(Forms.class);
         at("/more/test").show(Test.class);
 

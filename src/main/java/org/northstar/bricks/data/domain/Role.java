@@ -1,4 +1,4 @@
-package org.northstar.bricks.core.domain;
+package org.northstar.bricks.data.domain;
 
 import com.orientechnologies.orient.core.annotation.OId;
 

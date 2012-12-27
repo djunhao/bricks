@@ -1,4 +1,4 @@
-package org.northstar.bricks.core.orientdb;
+package org.northstar.bricks.data.orientdb;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;

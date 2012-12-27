@@ -1,4 +1,4 @@
-package org.northstar.bricks.core.dao;
+package org.northstar.bricks.data.dao;
 
 /**
  * Created with IntelliJ IDEA.

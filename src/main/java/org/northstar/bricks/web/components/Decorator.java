@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.google.sitebricks.Show;
-import org.northstar.bricks.core.domain.User;
+import org.northstar.bricks.data.domain.User;
 import org.northstar.bricks.web.auth.Identity;
 
 import java.util.Arrays;
