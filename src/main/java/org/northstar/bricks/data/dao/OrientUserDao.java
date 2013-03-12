@@ -3,6 +3,8 @@ package org.northstar.bricks.data.dao;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
+import com.orientechnologies.orient.core.id.OClusterPosition;
+import com.orientechnologies.orient.core.id.OClusterPositionLong;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.query.OQuery;
@@ -119,7 +121,8 @@ public class OrientUserDao extends AbstractDao implements UserDao {
         OQuery<User> command = new OSQLSynchQuery<User>(queryString.toString());
         int clusterId = database.getClusterIdByName(User.class.getSimpleName());
 
-        ORID startRid = new ORecordId(clusterId, startIndex);
+        OClusterPosition ocp = new OClusterPositionLong(startIndex);
+        ORID startRid = new ORecordId(clusterId, ocp);
         //List<User> userList = database.command(query).execute(startRid);
         List<User> userList = database.query(command, startRid);
         database.close();
@@ -153,7 +156,8 @@ public class OrientUserDao extends AbstractDao implements UserDao {
             database = getConnection();
         }
         int clusterId = database.getClusterIdByName(User.class.getSimpleName());
-        ORID rid = new ORecordId(clusterId, id);
+        OClusterPosition ocp = new OClusterPositionLong(id);
+        ORID rid = new ORecordId(clusterId, ocp);
         User user = database.load(rid);
         database.close();
         return user;

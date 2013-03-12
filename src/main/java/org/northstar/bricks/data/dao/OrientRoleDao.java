@@ -3,6 +3,8 @@ package org.northstar.bricks.data.dao;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
+import com.orientechnologies.orient.core.id.OClusterPosition;
+import com.orientechnologies.orient.core.id.OClusterPositionLong;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.query.OQuery;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
@@ -35,7 +37,8 @@ public class OrientRoleDao extends AbstractDao implements RoleDao {
             database = getConnection();
         }
         int clusterId = database.getClusterIdByName(Role.class.getSimpleName());
-        ORecordId rid = new ORecordId(clusterId, id);
+        OClusterPosition ocp = new OClusterPositionLong(id);
+        ORecordId rid = new ORecordId(clusterId, ocp);
         Role role = database.load(rid);
         database.close();
         return role;
